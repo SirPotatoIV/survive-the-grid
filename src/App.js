@@ -6,7 +6,7 @@ import Grid from './components/Grid'
 function App() {
   return (
     <div className="App">
-      <Grid gridSize="" />
+      <Grid gridSize = "5" />
     </div>
   );
 }
