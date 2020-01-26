@@ -10,11 +10,19 @@ function Player(){
         console.log(e.key)
         switch(e.key){
             case "w":
-                newPosition[1] = newPosition[1] + 1;
+                newPosition[1] = newPosition[1] - 1;
                 setPosition(newPosition)
                 break
             case "s":
-                newPosition[1] = newPosition[1] - 1;
+                newPosition[1] = newPosition[1] + 1;
+                setPosition(newPosition)
+                break
+            case "d":
+                newPosition[0] = newPosition[0] + 1;
+                setPosition(newPosition)
+                break
+            case "a":
+                newPosition[0] = newPosition[0] - 1;
                 setPosition(newPosition)
                 break
             default:
@@ -41,7 +49,6 @@ function Player(){
                 alt = "player"
                 height = "50px"
                 width = "50px"
-
             />
         </div>
     )
