@@ -1,69 +1,58 @@
 import React, {useState, useEffect} from 'react';
 import "./style.css"
-import createTiles from "../../utils/gridCreator.js"
 
-import Tile from "../Tile"
-
-const tiles = createTiles(5)
+// import Tile from "../Tile"
+import Player from "../Player"
 
 function Grid({gridSize}){
     
-    // const [tiles, setTiles] = useState([])
-    // const [tileElements, setTileElements] = useState([])
-    console.log(tiles["x1y1"])
-    const testArray = [1, 2, 3, 4];
-    const testMap = testArray.map(x => x * 2)
-    console.log(testMap)
-    const tileElements = tiles.map((tile)=>{
-        const columnStart = tile.location[1]; 
-        const columnEnd = columnStart + 1;
-        const rowStart = tile.location[0]
-        const rowEnd = rowStart + 1;
-        
-        return(
-                <div 
-                    key={tile.tileName}
-                    style={{
-                        gridColumnStart: `${columnStart}`,
-                        gridColumnEnd: `${columnEnd}`,
-                        gridRowStart:`${rowStart}`,
-                        gridRowEnd: `${rowEnd}` 
-                    }}
-                >
-                    {tile.tileName}
-                </div>
-                )
-    })
-    console.log(tileElements)
+    const [tiles, setTiles] = useState([])
+    const [tileElements, setTileElements] = useState([])
 
     useEffect(()=>{
-        // const newTiles = createTiles()
-        // setTiles(newTiles)
+       
+        let createdTiles = [];
+        // write loop to create gridSize * gridSize objects that will represent tiles
+        let x = 0;
+        for(let i=0; i <= gridSize; i++){
+            for(let j=0; j <= gridSize; j++){
+                const tileName = `x${i}y${j}`
+                const tileLocation = [i,j];
+                const newTile = {
+                    tileName,
+                    location: tileLocation,
+                    isObstruction: false
+                }
+                createdTiles[x] = newTile
+                x++;
+            }
+        }
+        setTiles(createdTiles)
+        
     }, [])
 
     useEffect(()=> {
-    //     console.log(tiles, Array.isArray(tiles))
-    //     const allTiles = tiles.map((tile)=>{
-    //         return(tile.location)
-    //         // const columnStart = tile.location[1] 
-    //         // const columnEnd = columnStart + 1;
-    //         // const rowStart = tile.location[0]
-    //         // const rowEnd = rowStart + 1;
-
-    //         // return(
-    //         //         <div 
-    //         //             key={tile.location} 
-    //         //             style={{
-    //         //                 gridColumn: `${columnStart} / ${columnEnd}`,
-    //         //                 gridRow: `${rowStart} / ${rowEnd} `
-    //         //             }}
-    //         //         >
-    //         //             {tile.location}
-    //         //         </div>
-    //         //     )
-    //     })
-    //     console.log(allTiles)
-    //     setTileElements(allTiles)
+        const tileElements = tiles.map((tile)=>{
+            const columnStart = tile.location[0]; 
+            const columnEnd = columnStart + 1;
+            const rowStart = tile.location[1]
+            const rowEnd = rowStart + 1;
+            
+            return(
+                    <div 
+                        key={tile.tileName}
+                        style={{
+                            gridColumnStart: `${columnStart}`,
+                            gridColumnEnd: `${columnEnd}`,
+                            gridRowStart:`${rowStart}`,
+                            gridRowEnd: `${rowEnd}` 
+                        }}
+                    >
+                        {tile.tileName}
+                    </div>
+                )
+        })
+        setTileElements(tileElements)
     }, [tiles])
 
     return(
@@ -76,6 +65,7 @@ function Grid({gridSize}){
              }}
         >
             {tileElements}
+            <Player />
         </div>
     )
 }
