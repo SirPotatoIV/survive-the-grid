@@ -1,49 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import "./style.css"
 import playerImage from "./player.png"
 
-function Player(){
-    const [position, setPosition] = useState([2,3])
-
-    function handleKey(e) {
-        let newPosition = position;
-        console.log(e.key)
-        switch(e.key){
-            case "w":
-                newPosition[1] = newPosition[1] - 1;
-                setPosition(newPosition)
-                break
-            case "s":
-                newPosition[1] = newPosition[1] + 1;
-                setPosition(newPosition)
-                break
-            case "d":
-                newPosition[0] = newPosition[0] + 1;
-                setPosition(newPosition)
-                break
-            case "a":
-                newPosition[0] = newPosition[0] - 1;
-                setPosition(newPosition)
-                break
-            default:
-                console.log("you hit the wrong key dog")
-        }
-        console.log(newPosition)
-    }
-
-    useEffect(() => {
-        window.addEventListener("keydown", handleKey);
-        return () => window.removeEventListener("keydown", handleKey);
-      }, [position]);
-
+function Player({pos}){
     return(
         <div className="tile"   
             style={{
-                gridRowStart:`${position[0]}`,
-                gridRowEnd: `${position[0]+1}`,
-                gridColumnStart: `${position[1]}`,
-                gridColumnEnd: `${position[1]+1}`
-            }} >
+                gridRowStart:`${pos[0]}`,
+                gridRowEnd: `${pos[0]+1}`,
+                gridColumnStart: `${pos[1]}`,
+                gridColumnEnd: `${pos[1]+1}`
+            }} 
+        >
             <img 
                 src = {playerImage}
                 alt = "player"

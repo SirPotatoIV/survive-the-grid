@@ -8,6 +8,36 @@ function Grid({gridSize}){
     
     const [tiles, setTiles] = useState([])
     const [tileElements, setTileElements] = useState([])
+    const [position, setPosition] = useState([2,3])
+
+    function handleKey(e) {
+        let newPosition = position;
+        switch(e.key){
+            case "w":
+                newPosition[0] = newPosition[0] - 1;
+                setPosition([...newPosition])
+                break
+            case "s":
+                newPosition[0] = newPosition[0] + 1;
+                setPosition([...newPosition])
+                break
+            case "d":
+                newPosition[1] = newPosition[1] + 1;
+                setPosition([...newPosition])
+                break
+            case "a":
+                newPosition[1] = newPosition[1] - 1;
+                setPosition([...newPosition])
+                break
+            default:
+                console.log("you hit the wrong key dog")
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("keydown", handleKey);
+        return () => window.removeEventListener("keydown", handleKey);
+      }, [position]);
 
     useEffect(()=>{
        
@@ -65,7 +95,7 @@ function Grid({gridSize}){
              }}
         >
             {tileElements}
-            <Player />
+            <Player pos = {position} />
         </div>
     )
 }
