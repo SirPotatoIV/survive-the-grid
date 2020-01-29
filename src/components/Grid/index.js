@@ -1,18 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React,  {useContext, useEffect, useState} from 'react';
 import "./style.css"
 
 // import Tile from "../Tile"
 import Player from "../Player"
+import { GameContext } from '../../state/context';
 
 function Grid({gridSize}){
     
     const [tiles, setTiles] = useState([])
     const [tileElements, setTileElements] = useState([])
-    const [position, setPosition] = useState([2,3])
+    const {position, setPosition} = useContext(GameContext)
 
-    function handleKey(e) {
+    function handleKeyPress(event) {
         let newPosition = position;
-        switch(e.key){
+        switch(event.key){
             case "w":
                 newPosition[0] = newPosition[0] - 1;
                 setPosition([...newPosition])
@@ -35,8 +36,8 @@ function Grid({gridSize}){
     }
 
     useEffect(() => {
-        window.addEventListener("keydown", handleKey);
-        return () => window.removeEventListener("keydown", handleKey);
+        window.addEventListener("keydown", handleKeyPress);
+        return () => window.removeEventListener("keydown", handleKeyPress);
       }, [position]);
 
     useEffect(()=>{
