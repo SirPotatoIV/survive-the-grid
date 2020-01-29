@@ -2,11 +2,14 @@ import React from 'react';
 import './App.css';
 
 import Grid from './components/Grid'
+import GameContext from './state/context';
 
 function App() {
   return (
     <div className="App">
-      <Grid gridSize = "5" />
+      <GameContext>
+        <Grid gridSize = "5" />
+      </GameContext>
     </div>
   );
 }
