@@ -1,9 +1,9 @@
-import React, {useContext, useEffect} from "react"
+import {useContext, useEffect} from "react"
 import { GameContext } from "../state/context";
 
-const {position, setPosition} = useContext(GameContext)
 
 export default function useKeyboard(){
+    const {position, setPosition} = useContext(GameContext)
     useEffect(() => {
         window.addEventListener("keydown", handleKeyPress);
         return () => window.removeEventListener("keydown", handleKeyPress);

@@ -1,44 +1,17 @@
 import React,  {useContext, useEffect, useState} from 'react';
 import "./style.css"
 
-// import Tile from "../Tile"
 import Player from "../Player"
+import useKeyboard from "../../hooks/useKeyboard"
 import { GameContext } from '../../state/context';
 
 function Grid({gridSize}){
     
     const [tiles, setTiles] = useState([])
     const [tileElements, setTileElements] = useState([])
-    const {position, setPosition} = useContext(GameContext)
+    const {position} = useContext(GameContext)
 
-    function handleKeyPress(event) {
-        let newPosition = position;
-        switch(event.key){
-            case "w":
-                newPosition[0] = newPosition[0] - 1;
-                setPosition([...newPosition])
-                break
-            case "s":
-                newPosition[0] = newPosition[0] + 1;
-                setPosition([...newPosition])
-                break
-            case "d":
-                newPosition[1] = newPosition[1] + 1;
-                setPosition([...newPosition])
-                break
-            case "a":
-                newPosition[1] = newPosition[1] - 1;
-                setPosition([...newPosition])
-                break
-            default:
-                console.log("you hit the wrong key dog")
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener("keydown", handleKeyPress);
-        return () => window.removeEventListener("keydown", handleKeyPress);
-      }, [position]);
+    useKeyboard()
 
     useEffect(()=>{
        
