@@ -4,7 +4,7 @@ import playerImage from "./player.png"
 
 function Player({pos}){
     return(
-        <div className="tile"   
+        <div   
             style={{
                 gridRowStart:`${pos[0]}`,
                 gridRowEnd: `${pos[0]+1}`,

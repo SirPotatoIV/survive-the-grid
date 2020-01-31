@@ -1,9 +1,3 @@
-div {
-    color: blue;
-    font-size: 40px;
-}
-
-.grid{
-    grid-template-columns: repeat(50, 10px );
-    grid-template-rows: repeat(50, 10px );
+.tile{
+    border: 2px solid black;
 }

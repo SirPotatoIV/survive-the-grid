@@ -3,6 +3,7 @@ import "./style.css"
 
 import Player from "../Player"
 import useKeyboard from "../../hooks/useKeyboard"
+import { gameConstants } from "../../constants"
 import { GameContext } from '../../state/context';
 
 // Takes in the grids size from the parent component App
@@ -23,9 +24,9 @@ function Grid({gridSize}){
         // loop to create gridSize * gridSize objects that will represent tiles
         let x = 0;
         // outer loop for x direction tiling
-        for(let i=0; i <= gridSize; i++){
+        for(let i=1; i <= gridSize; i++){
             // inner loop for y direction tiling
-            for(let j=0; j <= gridSize; j++){
+            for(let j=1; j <= gridSize; j++){
                 // create the name of the tile to use for reference in future code ... possibly
                 const tileName = `x${i}y${j}`
                 // used for figuring out the tiles location
@@ -58,8 +59,8 @@ function Grid({gridSize}){
             className="grid" 
             style={{
                 display: "grid",
-                gridTemplateColumns: `repeat(${gridSize}, auto )`,
-                gridTemplateRows: `repeat(${gridSize}, auto )`
+                gridTemplateColumns: `repeat(${gridSize}, ${gameConstants.container}px)`,
+                gridTemplateRows: `repeat(${gridSize}, ${gameConstants.container}px)`
              }}
         >
             { tiles.map((tile)=>{
@@ -71,6 +72,7 @@ function Grid({gridSize}){
             return(
                     <div 
                         key={tile.tileName}
+                        className="tile"
                         style={{
                             gridColumnStart: `${columnStart}`,
                             gridColumnEnd: `${columnEnd}`,
