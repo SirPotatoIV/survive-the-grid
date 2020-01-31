@@ -35,8 +35,16 @@ function Grid({gridSize}){
         
     }, [])
 
-    useEffect(()=> {
-        const tileElements = tiles.map((tile)=>{
+    return(
+        <div 
+            className="grid" 
+            style={{
+                display: "grid",
+                gridTemplateColumns: `repeat(${gridSize}, auto )`,
+                gridTemplateRows: `repeat(${gridSize}, auto )`
+             }}
+        >
+            { tiles.map((tile)=>{
             const columnStart = tile.location[0]; 
             const columnEnd = columnStart + 1;
             const rowStart = tile.location[1]
@@ -55,20 +63,7 @@ function Grid({gridSize}){
                         {tile.tileName}
                     </div>
                 )
-        })
-        setTileElements(tileElements)
-    }, [tiles])
-
-    return(
-        <div 
-            className="grid" 
-            style={{
-                display: "grid",
-                gridTemplateColumns: `repeat(${gridSize}, auto )`,
-                gridTemplateRows: `repeat(${gridSize}, auto )`
-             }}
-        >
-            {tileElements}
+            })}
             <Player pos = {position} />
         </div>
     )

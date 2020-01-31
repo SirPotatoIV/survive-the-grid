@@ -14,6 +14,11 @@ export default function useKeyboard(){
         switch(event.key){
             case "w":
                 newPosition[0] = newPosition[0] - 1;
+                //
+                //
+                // I think the next step is making this a database call instead of setting the position.
+                //
+                //
                 setPosition([...newPosition])
                 break
             case "s":
