@@ -3,9 +3,10 @@ import "./style.css"
 
 import Player from "../Player"
 import useKeyboard from "../../hooks/useKeyboard"
-import { gameConstants } from "../../constants"
+import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
-import makeGrid from "../../grids/makeGrid"
+import makeTiles from "../../grids/makeTiles"
+import createState from "../../state/createState"
 
 // Takes in the grids size from the parent component App
 function Grid({gridSize}){
@@ -20,7 +21,7 @@ function Grid({gridSize}){
 
     // I don't think this code needs to be in a useEffect, or if it even should be in a useEffect, but leaving it here for now
     useEffect(()=>{
-        const createdTiles = makeGrid(gridSize)
+        const createdTiles = makeTiles(gridSize)
         setTiles(createdTiles)
     }, [])
 
@@ -33,8 +34,8 @@ function Grid({gridSize}){
             className="grid" 
             style={{
                 display: "grid",
-                gridTemplateColumns: `repeat(${gridSize}, ${gameConstants.container}px)`,
-                gridTemplateRows: `repeat(${gridSize}, ${gameConstants.container}px)`
+                gridTemplateColumns: `repeat(${gridSize}, ${DIMENSIONS.TILESIZE}px)`,
+                gridTemplateRows: `repeat(${gridSize}, ${DIMENSIONS.TILESIZE}px)`
              }}
         >
             { tiles.map((tile)=>{
