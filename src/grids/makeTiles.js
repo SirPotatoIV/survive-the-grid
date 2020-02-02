@@ -1,4 +1,4 @@
-export default function makeGrid(gridSize){
+export default function makeTiles(gridSize){
     // used to store tiles as they are created
     let createdTiles = [];
     // loop to create gridSize * gridSize objects that will represent tiles

@@ -1,29 +1,27 @@
-import React,  {useContext, useEffect, useState} from 'react';
+import React,  {useContext} from 'react';
 import "./style.css"
 
 import Player from "../Player"
 import useKeyboard from "../../hooks/useKeyboard"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
-import makeTiles from "../../grids/makeTiles"
-import createState from "../../state/createState"
 
 // Takes in the grids size from the parent component App
-function Grid({gridSize}){
+function Grid(){
     
     // stores the tiles in a state
-    const [tiles, setTiles] = useState([])
     // stores the players position in context
-    const {position} = useContext(GameContext)
+    const {position, state} = useContext(GameContext)
+    // console.log(state)
 
     // Starts the events that listen for keys being hit and results in the player moving
     useKeyboard()
 
     // I don't think this code needs to be in a useEffect, or if it even should be in a useEffect, but leaving it here for now
-    useEffect(()=>{
-        const createdTiles = makeTiles(gridSize)
-        setTiles(createdTiles)
-    }, [])
+    // useEffect(()=>{
+    //     const createdTiles = makeTiles(gridSize)
+    //     setTiles(createdTiles)
+    // }, [])
 
     // renders the component
     return(
@@ -34,11 +32,11 @@ function Grid({gridSize}){
             className="grid" 
             style={{
                 display: "grid",
-                gridTemplateColumns: `repeat(${gridSize}, ${DIMENSIONS.TILESIZE}px)`,
-                gridTemplateRows: `repeat(${gridSize}, ${DIMENSIONS.TILESIZE}px)`
+                gridTemplateColumns: `repeat(${DIMENSIONS.GRIDSIZE}, ${DIMENSIONS.TILESIZE}px)`,
+                gridTemplateRows: `repeat(${DIMENSIONS.GRIDSIZE}, ${DIMENSIONS.TILESIZE}px)`
              }}
         >
-            { tiles.map((tile)=>{
+            { state.gridTiles.map((tile)=>{
             const columnStart = tile.location.x; 
             const columnEnd = columnStart + 1;
             const rowStart = tile.location.y
