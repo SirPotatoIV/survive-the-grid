@@ -3,34 +3,46 @@ import { GameContext } from "../state/context";
 
 
 export default function useKeyboard(){
-    const {position, setPosition} = useContext(GameContext)
+    const {state, dispatch} = useContext(GameContext)
     useEffect(() => {
         window.addEventListener("keydown", handleKeyPress);
         return () => window.removeEventListener("keydown", handleKeyPress);
-    }, [position]);
+    }, []);
 
     function handleKeyPress(event) {
-        let newPosition = position;
+        const player = {...state.player}
+        console.log(player)
         switch(event.key){
             case "w":
-                newPosition[0] = newPosition[0] - 1;
-                setPosition([...newPosition])
+                player.position.x = player.position.x - 1;
+                dispatch({
+                    type: "move",
+                    payload: player
+                })
                 break
             case "s":
-                newPosition[0] = newPosition[0] + 1;
-                setPosition([...newPosition])
+                player.position.x = player.position.x + 1;
+                dispatch({
+                    type: "move",
+                    payload: player
+                })
                 break
             case "d":
-                newPosition[1] = newPosition[1] + 1;
-                setPosition([...newPosition])
+                player.position.y = player.position.y + 1;
+                dispatch({
+                    type: "move",
+                    payload: player
+                })
                 break
             case "a":
-                newPosition[1] = newPosition[1] - 1;
-                setPosition([...newPosition])
+                player.position.y = player.position.y - 1;
+                dispatch({
+                    type: "move",
+                    payload: player
+                })
                 break
             default:
                 console.log("you hit the wrong key dog")
         }
-        console.log(position)
     }
 }

@@ -12,6 +12,6 @@ export default function GameProvider(props){
     const [state, dispatch] = useReducer(reducer, initialState)
     
     return(
-        <GameContext.Provider value={{position, setPosition, state, reducer}} {...props}/>
+        <GameContext.Provider value={{position, setPosition, state, reducer, dispatch}} {...props}/>
     )
 }

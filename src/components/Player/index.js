@@ -1,22 +1,22 @@
 import React from 'react';
 import "./style.css"
-import playerImage from "./player.png"
+import playerImage from "./tank.png"
 
 function Player({pos}){
     return(
         <div   
             style={{
-                gridRowStart:`${pos[0]}`,
-                gridRowEnd: `${pos[0]+1}`,
-                gridColumnStart: `${pos[1]}`,
-                gridColumnEnd: `${pos[1]+1}`
+                gridRowStart:`${pos.x}`,
+                gridRowEnd: `${pos.x+1}`,
+                gridColumnStart: `${pos.y}`,
+                gridColumnEnd: `${pos.y+1}`
             }} 
         >
             <img 
                 src = {playerImage}
                 alt = "player"
-                height = "50px"
-                width = "50px"
+                height = "auto"
+                width = "70px"
             />
         </div>
     )
