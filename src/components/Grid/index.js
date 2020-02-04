@@ -11,7 +11,7 @@ function Grid(){
     
     // stores the players position in context
     const {state} = useContext(GameContext)
-    console.log(state)
+
     // Starts the events that listen for keys being hit and results in the player moving
     useKeyboard()
 
@@ -48,7 +48,7 @@ function Grid(){
                         </div>
                     )
             })}
-            <Player pos = {state.player.position} />
+            <Player />
         </div>
     )
 }

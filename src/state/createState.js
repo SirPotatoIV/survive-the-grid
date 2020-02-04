@@ -7,7 +7,8 @@ export default function createState(){
         player: {
             position:{
                    x: 1,
-                   y: 1
+                   y: 1,
+                   orientation: 0
             }
         }
     }

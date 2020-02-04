@@ -8,10 +8,9 @@ const initialState = createState()
 
 export default function GameProvider(props){
     // contains state of players position
-    const [position, setPosition] = useState([2,3])
     const [state, dispatch] = useReducer(reducer, initialState)
     
     return(
-        <GameContext.Provider value={{position, setPosition, state, reducer, dispatch}} {...props}/>
+        <GameContext.Provider value={{state, reducer, dispatch}} {...props}/>
     )
 }

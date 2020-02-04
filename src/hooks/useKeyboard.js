@@ -11,17 +11,25 @@ export default function useKeyboard(){
 
     function handleKeyPress(event) {
         const player = {...state.player}
-        console.log(player)
         switch(event.key){
             case "w":
-                player.position.x = player.position.x - 1;
+                if(player.orientation === 0){
+                    player.position.x = player.position.x - 1;
+                }else{
+                    player.orientation = 0;
+                }
                 dispatch({
                     type: "move",
                     payload: player
                 })
                 break
             case "s":
-                player.position.x = player.position.x + 1;
+                if(player.orientation === 180){
+                    player.position.x = player.position.x + 1;
+                }else{
+                    player.orientation = 180;
+                    console.log(player)
+                }
                 dispatch({
                     type: "move",
                     payload: player
