@@ -52,10 +52,12 @@ function makeTiles(){
 function makeTileObject(){
     const gridTiles = makeTiles();
     const tileTracker = {};
+    // Makes an object with a property for every tile in the map.
+    // -- the tile name is used as the property name. The value of the poperty is an object containing information about the tile.
+    // -- each tile has values like x, y, type, isObstruction, etc 
     for(let i = 0; i < gridTiles.length; i++){
         tileTracker[gridTiles[i].tileName] = gridTiles[i]
     }
-    console.log(tileTracker)
 }
 
 export {makeTiles, makeTileObject}

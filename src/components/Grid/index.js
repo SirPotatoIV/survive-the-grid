@@ -33,6 +33,7 @@ function Grid(){
                 const columnEnd = columnStart + 1;
                 const rowStart = tile.y
                 const rowEnd = rowStart + 1;
+                const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
             
                 return(
                         <div 
@@ -42,7 +43,8 @@ function Grid(){
                                 gridColumnStart: `${columnStart}`,
                                 gridColumnEnd: `${columnEnd}`,
                                 gridRowStart:`${rowStart}`,
-                                gridRowEnd: `${rowEnd}` 
+                                gridRowEnd: `${rowEnd}`, 
+                                backgroundColor: backgroundColor
                             }}
                         >
                             {tile.tileName}
