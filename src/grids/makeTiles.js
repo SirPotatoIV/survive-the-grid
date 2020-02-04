@@ -1,4 +1,4 @@
-import {mapString} from "./map"
+import {mapStrings} from "./map"
 import {tileTypes} from "./tileTypes"
 const {mapBoundary,
     wall,
@@ -6,13 +6,16 @@ const {mapBoundary,
     projectile,
     empty} = tileTypes
 
-
-export default function makeTiles(gridSize){
-   
-    return mapString.reduce(function(tileAccumulator, currentRow, y){
+function makeTiles(){
+   // Takes an array of strings from the map.js file and a reduce function with an embbeded reduce to create an array of objects.
+   // -- The each object in the array equates to a tile in the map.
+    return mapStrings.reduce(function(tileAccumulator, currentRow, y){
         return [
+            // spreads all previously created tiles into the next returned array. Results in all the tiles being in one array.
             ...tileAccumulator,
+            // spreads the current indice, which is a string and splits the string into individual indices to form a new array to reduce.
             ...currentRow.split("").reduce(function(rowAccumulator, currentTile, x){
+                // Used to differentiate between each character in mapStrings and assign values to properties based on the character.
                 switch(currentTile){
                     case " ":
                         return [
@@ -40,12 +43,26 @@ export default function makeTiles(gridSize){
                         console.log("Tile character not recognized in mapString: ", currentTile)
                         return [...rowAccumulator];
                 }
-
             },[])
         ]
     }, [])
 
-    
+}
+
+function makeTileObject(){
+    const gridTiles = makeTiles();
+    const tileTracker = {};
+    for(let i = 0; i < gridTiles.length; i++){
+        tileTracker[gridTiles[i].tileName] = gridTiles[i]
+    }
+    console.log(tileTracker)
+}
+
+export {makeTiles, makeTileObject}
+
+    // Code below is old code that did something very similar to the above code.
+    // -- saving in case something horribly breaks with the new code.
+    // =======================================================
     
     // // used to store tiles as they are created
     // let createdTiles = [];
@@ -76,4 +93,4 @@ export default function makeTiles(gridSize){
     // }
     // // updates the tile state
     // return(createdTiles)
-}
+// }

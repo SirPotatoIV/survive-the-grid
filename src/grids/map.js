@@ -1,12 +1,12 @@
-// Map is 12x12. the map will visually look like 10x10 with the edge rows/columns 
+// Map is 6x6. the map will visually look like 5x5 with the edge rows/columns 
 // being invisible with the property of obstruction
 
-export const mapString =
+export const mapStrings =
 [
-    "ooooooo",
-    "o     o",
-    "o     o",
-    "o     o",
-    "o     o",
-    "ooooooo",
+    "oooooo",
+    "o    o",
+    "o    o",
+    "o    o",
+    "o    o",
+    "oooooo",
 ]
