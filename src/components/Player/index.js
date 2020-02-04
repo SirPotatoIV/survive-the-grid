@@ -8,7 +8,6 @@ function Player(){
     const {state} = useContext(GameContext)
     const pos = state.player.position
     
-    console.log(pos)
     return(
         <div   
             style={{
