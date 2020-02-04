@@ -4,6 +4,7 @@ import { GameContext } from "../state/context";
 
 export default function useKeyboard(){
     const {state, dispatch} = useContext(GameContext)
+    
     useEffect(() => {
         window.addEventListener("keydown", handleKeyPress);
         return () => window.removeEventListener("keydown", handleKeyPress);

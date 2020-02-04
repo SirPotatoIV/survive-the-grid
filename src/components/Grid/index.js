@@ -13,6 +13,7 @@ function Grid(){
     const {state} = useContext(GameContext)
 
     // Starts the events that listen for keys being hit and results in the player moving
+ 
     useKeyboard()
 
     // renders the component
