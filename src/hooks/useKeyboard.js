@@ -13,10 +13,10 @@ export default function useKeyboard(){
         const player = {...state.player}
         switch(event.key){
             case "w":
-                if(player.orientation === 0){
+                if(player.position.orientation === 0){
                     player.position.x = player.position.x - 1;
                 }else{
-                    player.orientation = 0;
+                    player.position.orientation = 0;
                 }
                 dispatch({
                     type: "move",
@@ -24,10 +24,10 @@ export default function useKeyboard(){
                 })
                 break
             case "s":
-                if(player.orientation === 180){
+                if(player.position.orientation === 180){
                     player.position.x = player.position.x + 1;
                 }else{
-                    player.orientation = 180;
+                    player.position.orientation = 180;
                     console.log(player)
                 }
                 dispatch({
@@ -36,14 +36,24 @@ export default function useKeyboard(){
                 })
                 break
             case "d":
-                player.position.y = player.position.y + 1;
+                if(player.position.orientation === 90){
+                    player.position.y = player.position.y + 1;
+                }else{
+                    player.position.orientation = 90;
+                    console.log(player)
+                }
                 dispatch({
                     type: "move",
                     payload: player
                 })
                 break
             case "a":
-                player.position.y = player.position.y - 1;
+                if(player.position.orientation === 270){
+                    player.position.y = player.position.y - 1;
+                }else{
+                    player.position.orientation = 270;
+                    console.log(player)
+                }
                 dispatch({
                     type: "move",
                     payload: player
