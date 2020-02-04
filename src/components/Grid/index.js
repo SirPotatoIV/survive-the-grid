@@ -24,14 +24,14 @@ function Grid(){
             className="grid" 
             style={{
                 display: "grid",
-                gridTemplateColumns: `repeat(${DIMENSIONS.GRIDSIZE}, ${DIMENSIONS.TILESIZE}px)`,
-                gridTemplateRows: `repeat(${DIMENSIONS.GRIDSIZE}, ${DIMENSIONS.TILESIZE}px)`
+                gridTemplateColumns: `repeat(${state.gridTiles.length}, ${DIMENSIONS.TILESIZE}px)`,
+                gridTemplateRows: `repeat(${state.gridTiles.length}, ${DIMENSIONS.TILESIZE}px)`
              }}
         >
             { state.gridTiles.map((tile)=>{
-                const columnStart = tile.location.x; 
+                const columnStart = tile.x; 
                 const columnEnd = columnStart + 1;
-                const rowStart = tile.location.y
+                const rowStart = tile.y
                 const rowEnd = rowStart + 1;
             
                 return(

@@ -1,4 +1,4 @@
 export const DIMENSIONS = {
-    GRIDSIZE: 5,
+    GRIDSIZE: 6,
     TILESIZE: 75
 }
