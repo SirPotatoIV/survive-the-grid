@@ -16,6 +16,24 @@ function Grid() {
 
     useKeyboard()
 
+    console.log(Object.keys(state.tileTracker).length)
+    const gridTiles = Object.keys(state.tileTracker).map((tileRef) => {
+        const tile = state.tileTracker[tileRef]
+        const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
+        return(<div
+                    key={tile.tileName}
+                    className="tile"
+                    style={{
+                        gridColumnStart: `${tile.x}`,
+                        gridColumnEnd: `${tile.x+1}`,
+                        gridRowStart: `${tile.y}`,
+                        gridRowEnd: `${tile.y+1}`,
+                        backgroundColor: backgroundColor
+                    }}
+                >
+                    {tile.tileName}
+                </div>)
+    })
     // renders the component
     return (
         // adds the player inside the grid

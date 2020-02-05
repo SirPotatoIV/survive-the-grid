@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useStateValue } from "../state/context";
+import {MOVE_PLAYER, BUILD_WALL} from "../state/actions"
 import detectCollision from "../utils/detectCollision"
 import buildWall from "../utils/buildWall"
 
@@ -23,7 +24,7 @@ export default function useKeyboard() {
                     player.position.orientation = 0;
                     // send updated position to reducer
                     return dispatch({
-                        type: "move",
+                        type: MOVE_PLAYER,
                         payload: player
                     })
                 }
@@ -33,7 +34,7 @@ export default function useKeyboard() {
                     player.position.y--;
                     // send updated position to reducer
                     return dispatch({
-                        type: "move",
+                        type: MOVE_PLAYER,
                         payload: player
                     })
                 } 
@@ -46,7 +47,7 @@ export default function useKeyboard() {
                     player.position.orientation = 180;
                     // send updated position to reducer
                     return dispatch({
-                        type: "move",
+                        type: MOVE_PLAYER,
                         payload: player
                     })
                 }
@@ -56,7 +57,7 @@ export default function useKeyboard() {
                     player.position.y++;
                     // send updated position to reducer
                     return dispatch({
-                        type: "move",
+                        type: MOVE_PLAYER,
                         payload: player
                     })
                 }
@@ -68,7 +69,7 @@ export default function useKeyboard() {
                     player.position.orientation = 90;
                     // send updated postion to reducer
                     return dispatch({
-                        type: "move",
+                        type: MOVE_PLAYER,
                         payload: player
                     }) 
                 }
@@ -78,7 +79,7 @@ export default function useKeyboard() {
                     player.position.x++;
                     // send updated position to reducer
                     return dispatch({
-                        type: "move",
+                        type: MOVE_PLAYER,
                         payload: player
                     })
                 }
@@ -90,7 +91,7 @@ export default function useKeyboard() {
                     player.position.orientation = 270;
                     // send updated positon to reducer
                     return dispatch({
-                        type: "move",
+                        type: MOVE_PLAYER,
                         payload: player
                     })
                 } 
@@ -100,7 +101,7 @@ export default function useKeyboard() {
                     player.position.x--;
                     // send updated position to reducer
                     return dispatch({
-                        type: "move",
+                        type: MOVE_PLAYER,
                         payload: player
                     })
                 }
