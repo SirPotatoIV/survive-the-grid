@@ -29,8 +29,7 @@ function Grid() {
                 gridTemplateRows: `repeat(${state.gridTiles.length}, ${DIMENSIONS.TILESIZE}px)`
             }}
         >
-            {Object.keys(state.tileTracker).map((tileRef) => {
-            const tile = state.tileTracker[tileRef]
+            {state.gridTiles.map((tile) => {
             const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
             return(<div
                         key={tile.tileName}
