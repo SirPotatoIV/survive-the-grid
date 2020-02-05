@@ -1,22 +1,23 @@
 import React, {useContext} from 'react';
 import "./style.css"
 import playerImage from "./tank.png"
-import {GameContext} from "../../state/context"
+import {useStateValue} from "../../state/context"
 
 function Player(){
     
-    const {state} = useContext(GameContext)
+    const [state, dispatch] = useStateValue()
     const pos = state.player.position
     
     return(
         <div   
             style={{
-                gridRowStart:`${pos.x}`,
-                gridRowEnd: `${pos.x+1}`,
-                gridColumnStart: `${pos.y}`,
-                gridColumnEnd: `${pos.y+1}`,
+                gridRowStart:`${pos.y}`,
+                gridRowEnd: `${pos.y+1}`,
+                gridColumnStart: `${pos.x}`,
+                gridColumnEnd: `${pos.x+1}`,
                 transform: `rotate(${pos.orientation}deg)`
             }} 
+            className="player"
         >
             <img 
                 src = {playerImage}

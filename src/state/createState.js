@@ -1,15 +1,15 @@
-import {makeTiles, makeTileObject} from "../grids/makeTiles"
+import { makeTiles, makeTileObject } from "../grids/makeTiles"
 
-export default function createState(){
+export default function createState() {
     return {
         gridTiles: makeTiles(),
         tileTracker: makeTileObject(),
         player: {
-            position:{
-                   x: 1,
-                   y: 1,
-                   orientation: 0
+            position: {
+                x: 2,
+                y: 2,
+                orientation: 0
             }
-        }
+        },
     }
 }

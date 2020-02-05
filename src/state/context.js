@@ -1,17 +1,17 @@
-import React, {createContext, useReducer} from "react"
+import React, { createContext, useReducer, useContext } from "react"
 import reducer from "./reducer"
 import createState from "./createState"
 // import useKeyboard from "../hooks/useKeyboard"
 
-export const GameContext = createContext();
+const GameContext = createContext();
 // creates the initial state of the game, which is used as an argument for useReducer
 const initialState = createState()
 
-export default function GameProvider(props){
-    // contains state of players position
-    const [state, dispatch] = useReducer(reducer, initialState)
-
-    return(
-        <GameContext.Provider value={{state, reducer, dispatch}} {...props}/>
+export const GameProvider = ({ children }) => {
+    return (
+        <GameContext.Provider value={useReducer(reducer, initialState)}>
+            {children}
+        </GameContext.Provider>
     )
 }
+export const useStateValue = () => useContext(GameContext)

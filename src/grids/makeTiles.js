@@ -1,10 +1,6 @@
 import {mapStrings} from "./map"
 import {tileTypes} from "./tileTypes"
-const {mapBoundary,
-    wall,
-    player,
-    projectile,
-    empty} = tileTypes
+const {mapBoundary, empty} = tileTypes
 
 function makeTiles(){
    // Takes an array of strings from the map.js file and a reduce function with an embbeded reduce to create an array of objects.
@@ -58,6 +54,7 @@ function makeTileObject(){
     for(let i = 0; i < gridTiles.length; i++){
         tileTracker[gridTiles[i].tileName] = gridTiles[i]
     }
+    return tileTracker
 }
 
 export {makeTiles, makeTileObject}
