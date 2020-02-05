@@ -1,12 +1,3 @@
-import React from 'react';
-import "./style.css"
+import Tile from "./Tile.js"
 
-function Tile(){
-
-    return(
-        <div className="tile">
-            Test
-        </div>
-    )
-}
-export default Tile;
+export default Tile
