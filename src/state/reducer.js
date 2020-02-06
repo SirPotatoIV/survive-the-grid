@@ -4,7 +4,15 @@ export default function reducer(state, action) {
     switch (action.type) {
         case MOVE_PLAYER:
             // recieved from useKeyboard on "w,a,s,d" key press
-            return { ...state, player: action.payload }
+            // console.log({ 
+            //     ...state, 
+            //     player: action.payload.player, 
+            //     tileTracker: {
+            //         ...state.tileTracker,
+            //         [action.payload.pastTile.tileName]: action.payload.pastTile,
+            //         [action.payload.futureTile.tileName]: action.payload.futureTile
+            //     }})
+            return { ...state, player: action.payload.player}
         case BUILD_WALL:
             // recieved from useKeyboard on "e" key press
             return { ...state, tileTracker: { ...state.tileTracker, [action.payload.tileName]: action.payload.value } }

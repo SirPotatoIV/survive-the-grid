@@ -19,7 +19,7 @@ export default function useKeyboard() {
         const player = { ...state.player }
 
         const pastTileName = `x${state.player.position.x}y${state.player.position.y}`
-        
+
         switch (event.key) {
             case "w":
                 // player is NOT facing the direction they want to move, rotate player
@@ -29,19 +29,22 @@ export default function useKeyboard() {
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: player
+                        payload: {player}
                     })
                 }
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.position.x, player.position.y - 1) === "not obscruction") {
                     const futureTileName = `x${state.player.position.x}y${state.player.position.y - 1}`
-                    console.log(updateTiles(state, "player", pastTileName, futureTileName))
+                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // decrement player y position
                     player.position.y--;
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: player
+                        payload: {
+                            player,
+                            pastTile, 
+                            futureTile} 
                     })
                 }
 
@@ -54,7 +57,7 @@ export default function useKeyboard() {
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: player
+                        payload: {player}
                     })
                 }
                 // if player movement is not a collision, update the players location
@@ -64,7 +67,7 @@ export default function useKeyboard() {
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: player
+                        payload: {player}
                     })
                 }
                 break
@@ -76,7 +79,7 @@ export default function useKeyboard() {
                     // send updated postion to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: player
+                        payload: {player}
                     })
                 }
                 // if player movement is not a collision, update the players location
@@ -86,7 +89,7 @@ export default function useKeyboard() {
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: player
+                        payload: {player}
                     })
                 }
                 break
@@ -98,7 +101,7 @@ export default function useKeyboard() {
                     // send updated positon to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: player
+                        payload: {player}
                     })
                 }
                 // if player movement is not a collision, update the players location
@@ -108,7 +111,7 @@ export default function useKeyboard() {
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: player
+                        payload: {player}
                     })
                 }
                 break
