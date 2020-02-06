@@ -12,7 +12,7 @@ export default function buildWall(state){
         // wall.orientation = state.player.position.orientation;
         // return(wall)
         const tileName = `x${state.player.position.x}y${state.player.position.y - 1}`
-        const updatedTile = {...state.tileTracker[tileName]}
+        const updatedTile = {...state.tileTracker[tileName]} // new Object()
         updatedTile.isObstruction = true;
         updatedTile.type = "wall"
         return(updatedTile)

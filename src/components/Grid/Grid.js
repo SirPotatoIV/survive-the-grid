@@ -5,14 +5,13 @@ import Player from "../Player"
 import Tile from "../Tile"
 import useKeyboard from "../../hooks/useKeyboard"
 import { DIMENSIONS } from "../../utils/constants"
-import {GameContext} from '../../state/context';
+import { GameContext } from '../../state/context';
 
 // Takes in the grids size from the parent component App
 function Grid() {
 
     // stores the players position in context
-    const {state} = useContext(GameContext)
-
+    const { state } = useContext(GameContext)
     // Starts the events that listen for keys being hit and results in the player moving
 
     useKeyboard()
@@ -30,29 +29,29 @@ function Grid() {
                 gridTemplateRows: `repeat(${state.gridTiles.length}, ${DIMENSIONS.TILESIZE}px)`
             }}
         >
-            {state.gridTiles.map((tile) => {
-            let backgroundColor = "transparent"
-            if(tile.type === "mapBoundary"){
-                backgroundColor = "gray"
-            }
-            if(tile.type === "wall"){
-                backgroundColor = "yellow"
-            }
-            // const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
-            
-            return(<Tile
-                        key={tile.tileName}
-                        tileName={tile.tileName}
-                        style={{
-                            gridColumnStart: `${tile.x}`,
-                            gridColumnEnd: `${tile.x+1}`,
-                            gridRowStart: `${tile.y}`,
-                            gridRowEnd: `${tile.y+1}`,
-                            backgroundColor: backgroundColor
-                        }}
-                    >
-                        {tile.tileName}
-                    </Tile>)
+            {Object.entries(state.tileTracker).map(([key, tile]) => {
+                let backgroundColor = "transparent"
+                if (tile.type === "mapBoundary") {
+                    backgroundColor = "gray"
+                }
+                if (tile.type === "wall") {
+                    backgroundColor = "yellow"
+                }
+                // const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
+
+                return (<Tile
+                    key={tile.tileName}
+                    tileName={tile.tileName}
+                    style={{
+                        gridColumnStart: `${tile.x}`,
+                        gridColumnEnd: `${tile.x + 1}`,
+                        gridRowStart: `${tile.y}`,
+                        gridRowEnd: `${tile.y + 1}`,
+                        backgroundColor: backgroundColor
+                    }}
+                >
+                    {tile.tileName}
+                </Tile>)
             })}
             <Player />
         </div>
