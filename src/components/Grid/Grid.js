@@ -3,6 +3,8 @@ import "./style.css"
 
 import Player from "../Player"
 import Tile from "../Tile"
+// https://opengameart.org/content/wall-0
+import wallImage from "./wall.png"
 import useKeyboard from "../../hooks/useKeyboard"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
@@ -31,11 +33,13 @@ function Grid() {
         >
             {Object.entries(state.tileTracker).map(([key, tile]) => {
                 let backgroundColor = "transparent"
+                let backgroundImage = "null"
                 if (tile.type === "mapBoundary") {
                     backgroundColor = "gray"
                 }
                 if (tile.type === "wall") {
                     backgroundColor = "yellow"
+                    backgroundImage = wallImage
                 }
                 // const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
 
@@ -47,7 +51,8 @@ function Grid() {
                         gridColumnEnd: `${tile.x + 1}`,
                         gridRowStart: `${tile.y}`,
                         gridRowEnd: `${tile.y + 1}`,
-                        backgroundColor: backgroundColor
+                        backgroundColor: backgroundColor,
+                        backgroundImage: `url(${backgroundImage})`
                     }}
                 >
                     {tile.tileName}

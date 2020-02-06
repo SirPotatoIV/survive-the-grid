@@ -1,24 +1,42 @@
 export default function buildWall(state){
-    // let wall = {
-    //     x: null,
-    //     y: null,
-    //     orientation: null,
-    //     health: 100
-    // }
-    // check orientation
+    
     if(state.player.position.orientation === 0){
-        // wall.x = state.player.position.x;
-        // wall.y = state.player.position.y - 1;
-        // wall.orientation = state.player.position.orientation;
-        // return(wall)
+        // get name of tile in front of the player
         const tileName = `x${state.player.position.x}y${state.player.position.y - 1}`
         const updatedTile = {...state.tileTracker[tileName]} // new Object()
         updatedTile.isObstruction = true;
         updatedTile.type = "wall"
+        // update tile in front of the player to be type wall
         return(updatedTile)
-        // return tileName
     }
-    // get name of tile in front of the player
-    // update tile in front of the player to be type wall
-    // rerender tile to show wall
+
+    if(state.player.position.orientation === 180){
+        // get name of tile in front of the player
+        const tileName = `x${state.player.position.x}y${state.player.position.y + 1}`
+        const updatedTile = {...state.tileTracker[tileName]} // new Object()
+        updatedTile.isObstruction = true;
+        updatedTile.type = "wall"
+        // update tile in front of the player to be type wall
+        return(updatedTile)
+    }
+
+    if(state.player.position.orientation === 90){
+        // get name of tile in front of the player
+        const tileName = `x${state.player.position.x + 1}y${state.player.position.y}`
+        const updatedTile = {...state.tileTracker[tileName]} // new Object()
+        updatedTile.isObstruction = true;
+        updatedTile.type = "wall"
+        // update tile in front of the player to be type wall
+        return(updatedTile)
+    }
+
+    if(state.player.position.orientation === 270){
+        // get name of tile in front of the player
+        const tileName = `x${state.player.position.x - 1}y${state.player.position.y}`
+        const updatedTile = {...state.tileTracker[tileName]} // new Object()
+        updatedTile.isObstruction = true;
+        updatedTile.type = "wall"
+        // update tile in front of the player to be type wall
+        return(updatedTile)
+    }
 }

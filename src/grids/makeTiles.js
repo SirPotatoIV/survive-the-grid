@@ -1,4 +1,4 @@
-import {mapStrings} from "./map"
+import {mapStrings} from "./map2"
 import {tileTypes} from "./tileTypes"
 const {mapBoundary, empty} = tileTypes
 
