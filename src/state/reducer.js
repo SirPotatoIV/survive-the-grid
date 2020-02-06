@@ -4,16 +4,16 @@ export default function reducer(state, action) {
     switch (action.type) {
         case MOVE_PLAYER:
             // recieved from useKeyboard on "w,a,s,d" key press
-            console.log(action.payload)
-            console.log({ 
-                ...state, 
-                player: action.payload.player, 
+            return { 
+                ...state,
+                // update player component location 
+                player: action.payload.player,
+                // update tile player moved into and tile they moved out of 
                 tileTracker: {
                     ...state.tileTracker,
                     [action.payload.pastTile.tileName]: action.payload.pastTile,
                     [action.payload.futureTile.tileName]: action.payload.futureTile
-                }})
-            return { ...state, player: action.payload.player}
+                }}
         case ROTATE_PLAYER:
             return{...state, player: action.payload.player}
         case BUILD_WALL:

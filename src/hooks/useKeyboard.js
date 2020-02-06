@@ -34,7 +34,9 @@ export default function useKeyboard() {
                 }
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.position.x, player.position.y - 1) === "not obscruction") {
+                    // name of tile that player will move into
                     const futureTileName = `x${state.player.position.x}y${state.player.position.y - 1}`
+                    // get new values for previous tile player was in and tile the player moved into
                     const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // decrement player y position
                     player.position.y--;
@@ -62,11 +64,13 @@ export default function useKeyboard() {
                 }
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.position.x, player.position.y + 1) === "not obscruction") {
+                    // name of tile that player will move into
                     const futureTileName = `x${state.player.position.x}y${state.player.position.y + 1}`
+                    // get new values for previous tile player was in and tile the player moved into
                     const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // increment player y position
                     player.position.y++;
-                    // send updated position to reducer
+                    // send updated player position, pastTile, and futureTile to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
                         payload: {
@@ -89,12 +93,19 @@ export default function useKeyboard() {
                 }
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.position.x + 1, player.position.y) === "not obscruction") {
+                    // name of tile that player will move into
+                    const futureTileName = `x${state.player.position.x + 1}y${state.player.position.y}`
+                    // get new values for previous tile player was in and tile the player moved into
+                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // increment player x position
                     player.position.x++;
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: {player}
+                        payload: {
+                            player,
+                            pastTile, 
+                            futureTile} 
                     })
                 }
                 break
@@ -111,12 +122,19 @@ export default function useKeyboard() {
                 }
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.position.x - 1, player.position.y) === "not obscruction") {
+                    // name of tile that player will move into
+                    const futureTileName = `x${state.player.position.x + 1}y${state.player.position.y}`
+                    // get new values for previous tile player was in and tile the player moved into
+                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // decrement player position x
                     player.position.x--;
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: {player}
+                        payload: {
+                            player,
+                            pastTile, 
+                            futureTile} 
                     })
                 }
                 break
