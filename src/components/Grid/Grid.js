@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import "./style.css"
 
 import Player from "../Player"
+import Tile from "../Tile"
 import useKeyboard from "../../hooks/useKeyboard"
 import { DIMENSIONS } from "../../utils/constants"
 import {GameContext} from '../../state/context';
@@ -30,10 +31,18 @@ function Grid() {
             }}
         >
             {state.gridTiles.map((tile) => {
-            const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
-            return(<div
+            let backgroundColor = "transparent"
+            if(tile.type === "mapBoundary"){
+                backgroundColor = "gray"
+            }
+            if(tile.type === "wall"){
+                backgroundColor = "yellow"
+            }
+            // const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
+            
+            return(<Tile
                         key={tile.tileName}
-                        className="tile"
+                        tileName={tile.tileName}
                         style={{
                             gridColumnStart: `${tile.x}`,
                             gridColumnEnd: `${tile.x+1}`,
@@ -43,7 +52,7 @@ function Grid() {
                         }}
                     >
                         {tile.tileName}
-                    </div>)
+                    </Tile>)
             })}
             <Player />
         </div>

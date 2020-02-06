@@ -108,8 +108,11 @@ export default function useKeyboard() {
                 break
             case "e":
                 // -- to be used for building a wall --
-                buildWall(state, state.player)
-                break
+                const tileWithWall = buildWall(state)
+                return dispatch({
+                    type: BUILD_WALL,
+                    payload: tileWithWall
+                })
             case " ":
                 // https://stackoverflow.com/questions/22559830/html-prevent-space-bar-from-scrolling-page
                 // preventing spacebar from causing page to scroll
