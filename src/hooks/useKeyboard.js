@@ -1,8 +1,9 @@
 import { useContext, useEffect } from "react"
 import { GameContext } from "../state/context";
-import { MOVE_PLAYER, BUILD_WALL } from "../state/actions"
+import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE } from "../state/actions"
 import detectCollision from "../utils/detectCollision"
 import buildWall from "../utils/buildWall"
+import shootProjectile from "../utils/shootProjectile";
 
 export default function useKeyboard() {
     const { state, dispatch } = useContext(GameContext)
@@ -121,8 +122,13 @@ export default function useKeyboard() {
                 // preventing spacebar from causing page to scroll
                 event.preventDefault();
                 // -- to be used for firing a projectile --
-
-                break
+                const newProjectile = shootProjectile(state)
+                return dispatch({
+                    type: SHOOT_PROJECTILE,
+                    payload: {
+                        newProjectile
+                    }
+                })
             default:
                 console.log("you hit the wrong key dog")
         }

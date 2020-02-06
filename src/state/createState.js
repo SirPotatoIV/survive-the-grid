@@ -5,11 +5,13 @@ export default function createState() {
         gridTiles: makeTiles(),
         tileTracker: makeTileObject(),
         player: {
+            name: "Jake",
             position: {
                 x: 2,
                 y: 2,
                 orientation: 0
             }
         },
+        projectiles: []
     }
 }

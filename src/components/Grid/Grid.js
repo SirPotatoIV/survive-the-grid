@@ -3,6 +3,7 @@ import "./style.css"
 
 import Player from "../Player"
 import Tile from "../Tile"
+import Projectile from "../Projectile"
 // https://opengameart.org/content/wall-0
 import wallImage from "./wall.png"
 import useKeyboard from "../../hooks/useKeyboard"
@@ -38,7 +39,7 @@ function Grid() {
                     backgroundColor = "gray"
                 }
                 if (tile.type === "wall") {
-                    backgroundColor = "yellow"
+                    backgroundColor = "black"
                     backgroundImage = wallImage
                 }
                 // const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
@@ -58,6 +59,10 @@ function Grid() {
                     {tile.tileName}
                 </Tile>)
             })}
+            {state.projectiles.map((projectile, index) =>
+                {
+                    return(<Projectile key={index} projectileState = {projectile}/>)
+                })}
             <Player />
         </div>
     )
