@@ -1,18 +1,21 @@
-import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES } from "./actions"
+import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER } from "./actions"
 
 export default function reducer(state, action) {
     switch (action.type) {
         case MOVE_PLAYER:
             // recieved from useKeyboard on "w,a,s,d" key press
-            // console.log({ 
-            //     ...state, 
-            //     player: action.payload.player, 
-            //     tileTracker: {
-            //         ...state.tileTracker,
-            //         [action.payload.pastTile.tileName]: action.payload.pastTile,
-            //         [action.payload.futureTile.tileName]: action.payload.futureTile
-            //     }})
+            console.log(action.payload)
+            console.log({ 
+                ...state, 
+                player: action.payload.player, 
+                tileTracker: {
+                    ...state.tileTracker,
+                    [action.payload.pastTile.tileName]: action.payload.pastTile,
+                    [action.payload.futureTile.tileName]: action.payload.futureTile
+                }})
             return { ...state, player: action.payload.player}
+        case ROTATE_PLAYER:
+            return{...state, player: action.payload.player}
         case BUILD_WALL:
             // recieved from useKeyboard on "e" key press
             return { ...state, tileTracker: { ...state.tileTracker, [action.payload.tileName]: action.payload.value } }

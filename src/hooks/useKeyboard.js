@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react"
 import { GameContext } from "../state/context";
-import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE } from "../state/actions"
+import { MOVE_PLAYER, ROTATE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE } from "../state/actions"
 import detectCollision from "../utils/detectCollision"
 import buildWall from "../utils/buildWall"
 import shootProjectile from "../utils/shootProjectile";
@@ -28,7 +28,7 @@ export default function useKeyboard() {
                     player.position.orientation = 0;
                     // send updated position to reducer
                     return dispatch({
-                        type: MOVE_PLAYER,
+                        type: ROTATE_PLAYER,
                         payload: {player}
                     })
                 }
@@ -56,18 +56,23 @@ export default function useKeyboard() {
                     player.position.orientation = 180;
                     // send updated position to reducer
                     return dispatch({
-                        type: MOVE_PLAYER,
+                        type: ROTATE_PLAYER,
                         payload: {player}
                     })
                 }
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.position.x, player.position.y + 1) === "not obscruction") {
+                    const futureTileName = `x${state.player.position.x}y${state.player.position.y + 1}`
+                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // increment player y position
                     player.position.y++;
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
-                        payload: {player}
+                        payload: {
+                            player,
+                            pastTile, 
+                            futureTile} 
                     })
                 }
                 break
@@ -78,7 +83,7 @@ export default function useKeyboard() {
                     player.position.orientation = 90;
                     // send updated postion to reducer
                     return dispatch({
-                        type: MOVE_PLAYER,
+                        type: ROTATE_PLAYER,
                         payload: {player}
                     })
                 }
@@ -100,7 +105,7 @@ export default function useKeyboard() {
                     player.position.orientation = 270;
                     // send updated positon to reducer
                     return dispatch({
-                        type: MOVE_PLAYER,
+                        type: ROTATE_PLAYER,
                         payload: {player}
                     })
                 }

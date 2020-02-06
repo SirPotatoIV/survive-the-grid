@@ -9,7 +9,7 @@ export default function createState() {
             position: {
                 x: 2,
                 y: 2,
-                orientation: 0
+                orientation: 180
             }
         },
         projectiles: []

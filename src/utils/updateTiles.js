@@ -9,6 +9,7 @@ export default function updateTiles(state, type, pastTileName, futureTileName){
     //     x: x+1,
     //     y: y+1
     // }
+    console.log(state.tileTracker[pastTileName])
     const pastTile = {
         ...state.tileTracker[pastTileName],
         isObstruction: false,
