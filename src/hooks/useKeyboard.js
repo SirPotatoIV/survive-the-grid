@@ -4,6 +4,7 @@ import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE } from "../state/actions"
 import detectCollision from "../utils/detectCollision"
 import buildWall from "../utils/buildWall"
 import shootProjectile from "../utils/shootProjectile";
+import updateTiles from "../utils/updateTiles"
 
 export default function useKeyboard() {
     const { state, dispatch } = useContext(GameContext)
@@ -17,6 +18,8 @@ export default function useKeyboard() {
         // create new object containing current state
         const player = { ...state.player }
 
+        const pastTileName = `x${state.player.position.x}y${state.player.position.y}`
+        
         switch (event.key) {
             case "w":
                 // player is NOT facing the direction they want to move, rotate player
@@ -31,6 +34,8 @@ export default function useKeyboard() {
                 }
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.position.x, player.position.y - 1) === "not obscruction") {
+                    const futureTileName = `x${state.player.position.x}y${state.player.position.y - 1}`
+                    console.log(updateTiles(state, "player", pastTileName, futureTileName))
                     // decrement player y position
                     player.position.y--;
                     // send updated position to reducer

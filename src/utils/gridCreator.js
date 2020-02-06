@@ -9,7 +9,10 @@ export default function createTiles(gridSize){
             const newTile = {
                 tileName,
                 location: tileLocation,
-                isObstruction: false
+                isObstruction: false,
+                type: null,
+                health: null,
+                player: null
             }
             createdTiles[x] = newTile
             x++;

@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import "./Projectile.css"
 import rocketImage from "./rocket.png"
-import {GameContext} from "../../state/context"
 
 function Projectile(props){
     

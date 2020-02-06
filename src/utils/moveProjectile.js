@@ -47,9 +47,4 @@ export default function moveProjectile(projectile){
         };
         return(updatedProjectile)
     }
-
-
-    // if(projectile.orientation === 270){
-
-    // }
 }
