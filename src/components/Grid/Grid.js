@@ -7,6 +7,7 @@ import Projectile from "../Projectile"
 // https://opengameart.org/content/wall-0
 import wallImage from "./wall.png"
 import useKeyboard from "../../hooks/useKeyboard"
+import {MAP_BOUNDARY, WALL} from "../../grids/tileTypes"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
 
@@ -35,10 +36,10 @@ function Grid() {
             {Object.entries(state.tileTracker).map(([key, tile]) => {
                 let backgroundColor = "transparent"
                 let backgroundImage = "null"
-                if (tile.type === "mapBoundary") {
+                if (tile.type === MAP_BOUNDARY) {
                     backgroundColor = "gray"
                 }
-                if (tile.type === "wall") {
+                if (tile.type === WALL) {
                     backgroundColor = "black"
                     backgroundImage = wallImage
                 }

@@ -1,8 +1,7 @@
-export const tileTypes =
-{
-    mapBoundary: "mapBoundary",
-    wall: "wall",
-    player: "player",
-    projectile: "projectile",
-    empty: "empty"
-}
+const MAP_BOUNDARY = "MAP_BOUNDARY";
+const WALL = "WALL";
+const PLAYER = "PLAYER";
+const PROJECTILE = "PROJECTILE";
+const EMPTY = "EMPTY";
+
+export {MAP_BOUNDARY, WALL, PLAYER, PROJECTILE, EMPTY}

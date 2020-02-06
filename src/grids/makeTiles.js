@@ -1,6 +1,5 @@
 import {mapStrings} from "./map2"
-import {tileTypes} from "./tileTypes"
-const {mapBoundary, empty} = tileTypes
+import {MAP_BOUNDARY, EMPTY} from "./tileTypes"
 
 function makeTiles(){
    // Takes an array of strings from the map.js file and a reduce function with an embbeded reduce to create an array of objects.
@@ -18,7 +17,7 @@ function makeTiles(){
                             ...rowAccumulator,
                             {
                                 tileName: `x${x+1}y${y+1}`,
-                                type: empty,
+                                type: EMPTY,
                                 isObstruction: false,
                                 x: x+1,
                                 y: y+1
@@ -29,7 +28,7 @@ function makeTiles(){
                             ...rowAccumulator,
                             {
                                 tileName: `x${x+1}y${y+1}`,
-                                type: mapBoundary,
+                                type: MAP_BOUNDARY,
                                 isObstruction: true,
                                 x: x+1,
                                 y: y+1
