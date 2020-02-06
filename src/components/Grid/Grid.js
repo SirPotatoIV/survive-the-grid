@@ -4,13 +4,13 @@ import "./style.css"
 import Player from "../Player"
 import useKeyboard from "../../hooks/useKeyboard"
 import { DIMENSIONS } from "../../utils/constants"
-import { useStateValue } from '../../state/context';
+import {GameContext} from '../../state/context';
 
 // Takes in the grids size from the parent component App
 function Grid() {
 
     // stores the players position in context
-    const [state] = useStateValue()
+    const {state} = useContext(GameContext)
 
     // Starts the events that listen for keys being hit and results in the player moving
 

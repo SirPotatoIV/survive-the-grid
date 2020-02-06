@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import "./style.css"
 import playerImage from "./tank.png"
-import {useStateValue} from "../../state/context"
+import {GameContext} from "../../state/context"
 
 function Player(){
     
-    const [state, dispatch] = useStateValue()
+    const {state} = useContext(GameContext)
     const pos = state.player.position
     
     return(

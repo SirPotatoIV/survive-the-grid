@@ -1,11 +1,11 @@
-import { useEffect } from "react"
-import { useStateValue } from "../state/context";
+import { useContext, useEffect } from "react"
+import {GameContext} from "../state/context";
 import {MOVE_PLAYER, BUILD_WALL} from "../state/actions"
 import detectCollision from "../utils/detectCollision"
 import buildWall from "../utils/buildWall"
 
 export default function useKeyboard() {
-    const [state, dispatch] = useStateValue()
+    const {state, dispatch} = useContext(GameContext)
 
     useEffect(() => {
         window.addEventListener("keydown", handleKeyPress);

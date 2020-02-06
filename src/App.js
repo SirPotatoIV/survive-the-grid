@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 import Grid from './components/Grid'
-import { GameProvider } from './state/context';
+import GameProvider from './state/context';
 
 function App() {
   return (
