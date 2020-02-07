@@ -5,6 +5,8 @@ import detectCollision from "../utils/detectCollision"
 import buildWall from "../utils/buildWall"
 import shootProjectile from "../utils/shootProjectile";
 import updateTiles from "../utils/updateTiles"
+import movePlayer from "../utils/movePlayer";
+import { DIRECTIONS } from "../utils/constants";
 
 export default function useKeyboard(test) {
     const { state, dispatch } = useContext(GameContext)
@@ -21,6 +23,7 @@ export default function useKeyboard(test) {
 
         switch (event.key) {
             case "w":
+                console.log(movePlayer(player.name, DIRECTIONS.NORTH, state))
                 // player is NOT facing the direction they want to move, rotate player
                 if (player.orientation !== 0) {
                     // change player orientation
@@ -50,6 +53,7 @@ export default function useKeyboard(test) {
                 }
                 break
             case "s":
+                console.log(movePlayer(player.name, DIRECTIONS.SOUTH, state))
                 // player is NOT facing the direction they want to move, rotate player
                 if (player.orientation !== 180) {
                     // change player orientation
@@ -79,6 +83,7 @@ export default function useKeyboard(test) {
                 }
                 break
             case "d":
+                console.log(movePlayer(player.name, DIRECTIONS.EAST, state))
                 // player is NOT facing the direction they want to move, rotate player
                 if (player.orientation !== 90) {
                     // change player orientation
@@ -108,6 +113,7 @@ export default function useKeyboard(test) {
                 }
                 break
             case "a":
+                console.log(movePlayer(player.name, DIRECTIONS.WEST, state))
                 // player is NOT facing the direction they want to move, rotate player
                 if (player.orientation !== 270) {
                     // change player orientation
