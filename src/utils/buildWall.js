@@ -9,7 +9,7 @@ export default function buildWall(state){
         health: GAME_PARAMS.MAX_WALL_HEALTH
     }
     // deconstruction the values from the player to make code easier to read
-    const { x, y, orientation} = state.player
+    const { x, y, orientation} = state.players.main
 
     if(orientation === 0){
         // get name of tile in front of the player

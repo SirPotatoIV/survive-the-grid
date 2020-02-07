@@ -29,6 +29,7 @@ export default function reducer(state, action) {
             //     tileTracker: {...state.tileTracker, ...updatedTiles}})
             return{...state, projectiles: [...action.payload]}
         case DAMAGE_WALL:
+            console.log("health: ",state.tileTracker[action.payload.tileName].health)
             return { 
                 ...state,
                 // update tile player moved into and tile they moved out of 

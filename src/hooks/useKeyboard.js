@@ -15,12 +15,9 @@ export default function useKeyboard(test) {
     });
     function handleKeyPress(event, playerName) {
         // create new object containing current state
-        let player = {}
-        if(!playerName){
-            player = { ...state.player }
-        }
+        const player = state.players.main
 
-        const pastTileName = `x${state.player.x}y${state.player.y}`
+        const pastTileName = `x${player.x}y${player.y}`
 
         switch (event.key) {
             case "w":
@@ -37,9 +34,9 @@ export default function useKeyboard(test) {
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.x, player.y - 1) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.x}y${state.player.y - 1}`
+                    const futureTileName = `x${player.x}y${player.y - 1}`
                     // get new values for previous tile player was in and tile the player moved into
-                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
+                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName, player)
                     // decrement player y position
                     player.y--;
                     // send updated position to reducer
@@ -66,9 +63,9 @@ export default function useKeyboard(test) {
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.x, player.y + 1) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.x}y${state.player.y + 1}`
+                    const futureTileName = `x${player.x}y${player.y + 1}`
                     // get new values for previous tile player was in and tile the player moved into
-                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
+                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName, player)
                     // increment player y position
                     player.y++;
                     // send updated player position, pastTile, and futureTile to reducer
@@ -95,9 +92,9 @@ export default function useKeyboard(test) {
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.x + 1, player.y) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.x + 1}y${state.player.y}`
+                    const futureTileName = `x${player.x + 1}y${player.y}`
                     // get new values for previous tile player was in and tile the player moved into
-                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
+                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName, player)
                     // increment player x position
                     player.x++;
                     // send updated position to reducer
@@ -124,9 +121,9 @@ export default function useKeyboard(test) {
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.x - 1, player.y) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.x - 1}y${state.player.y}`
+                    const futureTileName = `x${player.x - 1}y${player.y}`
                     // get new values for previous tile player was in and tile the player moved into
-                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
+                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName, player)
                     // decrement player position x
                     player.x--;
                     // send updated position to reducer

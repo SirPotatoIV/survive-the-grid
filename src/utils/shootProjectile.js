@@ -1,6 +1,6 @@
 export default function shootProjectile(state){
     //detect orientation
-    const player = state.player;
+    const player = state.players.main;
     if(player.orientation === 0){
         
         const newProjectile = {

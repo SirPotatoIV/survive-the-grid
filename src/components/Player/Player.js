@@ -6,7 +6,7 @@ import {GameContext} from "../../state/context"
 function Player(){
     
     const {state} = useContext(GameContext)
-    const player = state.player
+    const player = state.players.main
     
     return(
         <div   
