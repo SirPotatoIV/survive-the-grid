@@ -5,16 +5,7 @@ export default function createState() {
     return {
         gridTiles: makeTiles(),
         tileTracker: makeTileObject(),
-        players: {
-                    main: {
-                        name: "main",
-                        x: 2,
-                        y: 2,
-                        orientation: 180,
-                        health: 3
-                    }
-                },
-        newPlayers: makePlayers(),
+        players: makePlayers(["main", "AI_1", "AI_2", "AI_3"]),
         otherPlayers: [],
         projectiles: []
     }

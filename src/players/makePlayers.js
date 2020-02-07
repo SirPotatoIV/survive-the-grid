@@ -8,9 +8,9 @@
 //     }
 // },
 
-const playerNames = ["main"];
 const startPositions = [[2,2], [2,9], [9,2], [9,9]]
-export default function makePlayers(){
+
+export default function makePlayers(playerNames){
     const playerArray = playerNames.map(function(playerName, index){
         return({
                 name: playerName,

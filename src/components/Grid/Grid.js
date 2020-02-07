@@ -61,15 +61,20 @@ function Grid() {
                     {tile.tileName}
                 </Tile>)
             })}
+            
             {state.projectiles.map((projectile, index) =>
                 {
                     return(<Projectile key={index} projectileState = {projectile}/>)
-                })}
-            {state.otherPlayers.map((otherPlayer, index) => 
-                {   
-                    return(<OtherPlayer key={index} otherPlayerState = {otherPlayer}/>)
-                })}
-            <Player />
+                })
+            }
+
+            {Object.entries(state.players).map(([key, player]) => {
+                    return (<Player
+                        key={player.name}
+                        playerName={player.name}
+                    />)
+                })
+            }
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import {EMPTY} from "../grids/tileTypes"
 
 export default function updateTiles(state, type, pastTileName, futureTileName, player){
-    console.log(player)
     const pastTile = {
         ...state.tileTracker[pastTileName],
         isObstruction: false,

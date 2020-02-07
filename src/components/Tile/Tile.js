@@ -7,13 +7,13 @@ function Tile({children, style, tileName}){
     // used for checking for updates
     const tile = state.tileTracker[tileName]
     // console.log(state.tileTracker[tileName].health)
-    return useMemo(()=>{
+    // return useMemo(()=>{
         return(<div className = "tile"
             style = {style}
         >
             {children}
             <span className="health">{tile.health}</span>
         </div>)
-    }, [tile])
+    // }, [tile])
 }
 export default Tile;
