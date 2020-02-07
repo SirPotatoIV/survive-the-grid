@@ -11,49 +11,50 @@ export default function moveProjectile(state, projectile){
     // }
 
     if(projectile.orientation === 0){
+        // calculate future projectile state if it doesn't collide
         const futureProjectileState = {
             ...projectile,
             y: projectile.y - 1,
             distanceTraveled: projectile.distanceTraveled + 1 
         }
-        console.log(projectile.distanceTraveled, futureProjectileState.distanceTraveled)
+        // check if projectile will collide and get projectile state
         const updatedProjectile = projectileCollision(state, futureProjectileState)
-        // update projectile position
-        // const updatedProjectile = {
-        //     ...projectile, 
-        //     y: projectile.y - 1, 
-        //     distanceTraveled: projectile.distanceTraveled + 1 
-        // };
         return(updatedProjectile)
     }
 
     if(projectile.orientation === 180){
-        // update projectile position
-        const updatedProjectile = {
-            ...projectile, 
-            y: projectile.y + 1, 
+        // calculate future projectile state if it doesn't collide
+        const futureProjectileState = {
+            ...projectile,
+            y: projectile.y + 1,
             distanceTraveled: projectile.distanceTraveled + 1 
-        };
+        }
+        // check if projectile will collide and get projectile state
+        const updatedProjectile = projectileCollision(state, futureProjectileState)
         return(updatedProjectile)
     }
 
     if(projectile.orientation === 90){
-        // update projectile position
-        const updatedProjectile = {
-            ...projectile, 
-            x: projectile.x + 1, 
+        // calculate future projectile state if it doesn't collide
+        const futureProjectileState = {
+            ...projectile,
+            x: projectile.x + 1,
             distanceTraveled: projectile.distanceTraveled + 1 
-        };
+        }
+        // check if projectile will collide and get projectile state
+        const updatedProjectile = projectileCollision(state, futureProjectileState)
         return(updatedProjectile)
     }
 
     if(projectile.orientation === 270){
-        // update projectile position
-        const updatedProjectile = {
-            ...projectile, 
-            x: projectile.x - 1, 
+        // calculate future projectile state if it doesn't collide
+        const futureProjectileState = {
+            ...projectile,
+            x: projectile.x - 1,
             distanceTraveled: projectile.distanceTraveled + 1 
-        };
+        }
+        // check if projectile will collide and get projectile state
+        const updatedProjectile = projectileCollision(state, futureProjectileState)
         return(updatedProjectile)
     }
 }

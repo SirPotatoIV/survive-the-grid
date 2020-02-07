@@ -1,4 +1,4 @@
-import {PLAYER, WALL, MAP_BOUNDARY} from "../grids/tileTypes"
+import { PLAYER, WALL, MAP_BOUNDARY } from "../grids/tileTypes"
 import { GAME_PARAMS } from "../utils/constants"
 
 export default function projectileCollision(state, futureProjectileState){
