@@ -3,7 +3,6 @@ import {GameContext} from "../../state/context"
 import "./style.css"
 
 function Tile({children, style, tileName}){
-
     const {state} = useContext(GameContext)
     const tile = state.tileTracker[tileName]
     

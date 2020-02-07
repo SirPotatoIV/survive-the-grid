@@ -4,5 +4,7 @@ export const DIMENSIONS = {
 }
 
 export const GAME_PARAMS = {
-    PROJECTILE_RANGE: 4
+    PROJECTILE_RANGE: 4,
+    MAX_HEALTH: 3,
+    MIN_HEALTH: 1
 }

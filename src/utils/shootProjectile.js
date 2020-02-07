@@ -1,49 +1,50 @@
 export default function shootProjectile(state){
     //detect orientation
-    if(state.player.position.orientation === 0){
+    const player = state.player;
+    if(player.orientation === 0){
         
         const newProjectile = {
             player: state.player.name,
             distanceTraveled: 0,
-            x: state.player.position.x,
-            y: state.player.position.y,
-            orientation: state.player.position.orientation
+            x: player.x,
+            y: player.y,
+            orientation: player.orientation
         }
         return(newProjectile)
     }
 
-    if(state.player.position.orientation === 180){
+    if(player.orientation === 180){
        
         const newProjectile = {
             player: state.player.name,
             distanceTraveled: 0,
-            x: state.player.position.x,
-            y: state.player.position.y,
-            orientation: state.player.position.orientation
+            x: player.x,
+            y: player.y,
+            orientation: player.orientation
         }
         return(newProjectile)
     }
 
-    if(state.player.position.orientation === 90){
+    if(player.orientation === 90){
         
         const newProjectile = {
             player: state.player.name,
             distanceTraveled: 0,
-            x: state.player.position.x,
-            y: state.player.position.y,
-            orientation: state.player.position.orientation
+            x: player.x,
+            y: player.y,
+            orientation: player.orientation
         }
         return(newProjectile)
     }
 
-    if(state.player.position.orientation === 270){
+    if(player.orientation === 270){
         
         const newProjectile = {
             player: state.player.name,
             distanceTraveled: 0,
-            x: state.player.position.x,
-            y: state.player.position.y,
-            orientation: state.player.position.orientation
+            x: player.x,
+            y: player.y,
+            orientation: player.orientation
         }
         return(newProjectile)
     }

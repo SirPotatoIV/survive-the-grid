@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import useKeyboard from "./useKeyboard"
 import moveProjectile from "../utils/moveProjectile.js"
 import { GAME_PARAMS } from "../utils/constants.js"
 
@@ -10,7 +11,7 @@ export default function useGameLoop(state, dispatch){
             // update projectile position
             // check if projectile collided
             // -- if collision, collided with what (player name or tileName for wall)
-            // check if player or wall health needs to be updated
+            // check if player or wall health needs to be update
             
             // updates the state of projectiles
             const updatedProjectiles = 

@@ -6,17 +6,19 @@ import buildWall from "../utils/buildWall"
 import shootProjectile from "../utils/shootProjectile";
 import updateTiles from "../utils/updateTiles"
 
-export default function useKeyboard() {
+export default function useKeyboard(test) {
     const { state, dispatch } = useContext(GameContext)
 
     useEffect(() => {
         window.addEventListener("keydown", handleKeyPress);
         return () => window.removeEventListener("keydown", handleKeyPress);
     });
-
-    function handleKeyPress(event) {
+    function handleKeyPress(event, playerName) {
         // create new object containing current state
-        const player = { ...state.player }
+        let player = {}
+        if(!playerName){
+            player = { ...state.player }
+        }
 
         const pastTileName = `x${state.player.x}y${state.player.y}`
 
