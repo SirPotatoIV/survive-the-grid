@@ -1,11 +1,12 @@
 import {WALL} from "../grids/tileTypes"
+import { GAME_PARAMS } from "../utils/constants"
 
 export default function buildWall(state){
     // all the updated values that a tile changed to wall needs
     const wallProperties = {
         isObstruction: true,
         type: WALL,
-        health: 3
+        health: GAME_PARAMS.MAX_WALL_HEALTH
     }
     // deconstruction the values from the player to make code easier to read
     const { x, y, orientation} = state.player
