@@ -10,3 +10,10 @@ export const GAME_PARAMS = {
     MAX_WALL_HEALTH: 3,
     MIN_WALL_HEALTH: 1
 }
+
+export const DIRECTIONS = {
+    NORTH: "NORTH",
+    SOUTH: "SOUTH",
+    EAST: "EAST",
+    WEST: "WEST"
+}

@@ -1,5 +1,5 @@
 import { makeTiles, makeTileObject } from "../grids/makeTiles"
-import { GAME_PARAMS } from "../utils/constants"
+import makePlayers from "../players/makePlayers"
 
 export default function createState() {
     return {
@@ -14,6 +14,7 @@ export default function createState() {
                         health: 3
                     }
                 },
+        newPlayers: makePlayers(),
         otherPlayers: [],
         projectiles: []
     }
