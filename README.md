@@ -1,3 +1,15 @@
+# Survive the Grid
+
+This project is currently in development. The end goal is a 2D battle royale create with React and use Firebase for its real time database features. Currently you can move a player, build walls, and shoot projectiles.
+
+## Controls
+* Move: w, s, a, d
+* Build Wall: e
+* Shoot Projectile: spacebar
+
+## Deployed Link
+https://app.netlify.com/sites/survive-the-grid/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
