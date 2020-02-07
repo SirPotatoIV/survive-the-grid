@@ -24,7 +24,7 @@ export default function useGameLoop(state, dispatch){
                 })
                 // updates position and distance traveled
                 .map(projectile => {
-                    const updatedProjectile = moveProjectile(state, projectile)
+                    const updatedProjectile = moveProjectile(state, projectile, dispatch)
                     return(updatedProjectile)
                 })
                 

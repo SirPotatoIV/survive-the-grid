@@ -29,8 +29,13 @@ export default function reducer(state, action) {
             //     tileTracker: {...state.tileTracker, ...updatedTiles}})
             return{...state, projectiles: [...action.payload]}
         case DAMAGE_WALL:
-            console.log("wall damaged", action.payload)
-            return{...state}
+            return { 
+                ...state,
+                // update tile player moved into and tile they moved out of 
+                tileTracker: {
+                    ...state.tileTracker,
+                    [action.payload.tileName]: action.payload
+                }}
         default:
             throw new Error("Unknown action:", action.type)
     }

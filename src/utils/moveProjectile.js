@@ -1,6 +1,6 @@
 import projectileCollision from "../utils/projectileCollision"
 
-export default function moveProjectile(state, projectile){
+export default function moveProjectile(state, projectile, dispatch){
     // PROJECTILE OBJECT STRUCTURE FOR REFERENCE
     // const newProjectile = {
     //     player: state.player.name,
@@ -18,7 +18,7 @@ export default function moveProjectile(state, projectile){
             distanceTraveled: projectile.distanceTraveled + 1 
         }
         // check if projectile will collide and get projectile state
-        const updatedProjectile = projectileCollision(state, futureProjectileState)
+        const updatedProjectile = projectileCollision(state, futureProjectileState, dispatch)
         return(updatedProjectile)
     }
 
@@ -30,7 +30,7 @@ export default function moveProjectile(state, projectile){
             distanceTraveled: projectile.distanceTraveled + 1 
         }
         // check if projectile will collide and get projectile state
-        const updatedProjectile = projectileCollision(state, futureProjectileState)
+        const updatedProjectile = projectileCollision(state, futureProjectileState, dispatch)
         return(updatedProjectile)
     }
 
@@ -42,7 +42,7 @@ export default function moveProjectile(state, projectile){
             distanceTraveled: projectile.distanceTraveled + 1 
         }
         // check if projectile will collide and get projectile state
-        const updatedProjectile = projectileCollision(state, futureProjectileState)
+        const updatedProjectile = projectileCollision(state, futureProjectileState, dispatch)
         return(updatedProjectile)
     }
 
@@ -54,7 +54,7 @@ export default function moveProjectile(state, projectile){
             distanceTraveled: projectile.distanceTraveled + 1 
         }
         // check if projectile will collide and get projectile state
-        const updatedProjectile = projectileCollision(state, futureProjectileState)
+        const updatedProjectile = projectileCollision(state, futureProjectileState, dispatch)
         return(updatedProjectile)
     }
 }
