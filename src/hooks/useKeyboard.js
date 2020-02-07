@@ -7,6 +7,7 @@ import shootProjectile from "../utils/shootProjectile";
 import updateTiles from "../utils/updateTiles"
 import movePlayer from "../utils/movePlayer";
 import { DIRECTIONS } from "../utils/constants";
+import checkPlayerCollision from "../utils/checkPlayerCollision";
 
 export default function useKeyboard(test) {
     const { state, dispatch } = useContext(GameContext)
@@ -23,7 +24,9 @@ export default function useKeyboard(test) {
 
         switch (event.key) {
             case "w":
-                console.log(movePlayer(player.name, DIRECTIONS.NORTH, state))
+                const playerChange = movePlayer(player.name, DIRECTIONS.NORTH, state)
+                const playerFuturePosition = checkPlayerCollision(playerChange, state)
+                console.log(playerChange, playerFuturePosition)
                 // player is NOT facing the direction they want to move, rotate player
                 if (player.orientation !== 0) {
                     // change player orientation
