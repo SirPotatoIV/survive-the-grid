@@ -5,6 +5,13 @@ import { GAME_PARAMS } from "../utils/constants.js"
 export default function useGameLoop(state, dispatch){
     useEffect(() => {
         const handleTime = setTimeout(() => {
+            // update player positions
+            // check if player collisions occurred
+            // update projectile position
+            // check if projectile collided
+            // -- if collision, collided with what (player name or tileName for wall)
+            // check if player or wall health needs to be updated
+            
             // updates the state of projectiles
             const updatedProjectiles = 
                 // removes projectiles that have already traveled 4 spaces

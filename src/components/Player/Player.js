@@ -6,16 +6,16 @@ import {GameContext} from "../../state/context"
 function Player(){
     
     const {state} = useContext(GameContext)
-    const pos = state.player.position
+    const player = state.player
     
     return(
         <div   
             style={{
-                gridRowStart:`${pos.y}`,
-                gridRowEnd: `${pos.y+1}`,
-                gridColumnStart: `${pos.x}`,
-                gridColumnEnd: `${pos.x+1}`,
-                transform: `rotate(${pos.orientation}deg)`
+                gridRowStart:`${player.y}`,
+                gridRowEnd: `${player.y+1}`,
+                gridColumnStart: `${player.x}`,
+                gridColumnEnd: `${player.x+1}`,
+                transform: `rotate(${player.orientation}deg)`
             }} 
             className="player"
         >

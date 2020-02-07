@@ -18,14 +18,14 @@ export default function useKeyboard() {
         // create new object containing current state
         const player = { ...state.player }
 
-        const pastTileName = `x${state.player.position.x}y${state.player.position.y}`
+        const pastTileName = `x${state.player.x}y${state.player.y}`
 
         switch (event.key) {
             case "w":
                 // player is NOT facing the direction they want to move, rotate player
-                if (player.position.orientation !== 0) {
+                if (player.orientation !== 0) {
                     // change player orientation
-                    player.position.orientation = 0;
+                    player.orientation = 0;
                     // send updated position to reducer
                     return dispatch({
                         type: ROTATE_PLAYER,
@@ -33,13 +33,13 @@ export default function useKeyboard() {
                     })
                 }
                 // if player movement is not a collision, update the players location
-                if (detectCollision(state, player.position.x, player.position.y - 1) === "not obscruction") {
+                if (detectCollision(state, player.x, player.y - 1) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.position.x}y${state.player.position.y - 1}`
+                    const futureTileName = `x${state.player.x}y${state.player.y - 1}`
                     // get new values for previous tile player was in and tile the player moved into
                     const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // decrement player y position
-                    player.position.y--;
+                    player.y--;
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
@@ -52,9 +52,9 @@ export default function useKeyboard() {
                 break
             case "s":
                 // player is NOT facing the direction they want to move, rotate player
-                if (player.position.orientation !== 180) {
+                if (player.orientation !== 180) {
                     // change player orientation
-                    player.position.orientation = 180;
+                    player.orientation = 180;
                     // send updated position to reducer
                     return dispatch({
                         type: ROTATE_PLAYER,
@@ -62,13 +62,13 @@ export default function useKeyboard() {
                     })
                 }
                 // if player movement is not a collision, update the players location
-                if (detectCollision(state, player.position.x, player.position.y + 1) === "not obscruction") {
+                if (detectCollision(state, player.x, player.y + 1) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.position.x}y${state.player.position.y + 1}`
+                    const futureTileName = `x${state.player.x}y${state.player.y + 1}`
                     // get new values for previous tile player was in and tile the player moved into
                     const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // increment player y position
-                    player.position.y++;
+                    player.y++;
                     // send updated player position, pastTile, and futureTile to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
@@ -81,9 +81,9 @@ export default function useKeyboard() {
                 break
             case "d":
                 // player is NOT facing the direction they want to move, rotate player
-                if (player.position.orientation !== 90) {
+                if (player.orientation !== 90) {
                     // change player orientation
-                    player.position.orientation = 90;
+                    player.orientation = 90;
                     // send updated postion to reducer
                     return dispatch({
                         type: ROTATE_PLAYER,
@@ -91,13 +91,13 @@ export default function useKeyboard() {
                     })
                 }
                 // if player movement is not a collision, update the players location
-                if (detectCollision(state, player.position.x + 1, player.position.y) === "not obscruction") {
+                if (detectCollision(state, player.x + 1, player.y) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.position.x + 1}y${state.player.position.y}`
+                    const futureTileName = `x${state.player.x + 1}y${state.player.y}`
                     // get new values for previous tile player was in and tile the player moved into
                     const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // increment player x position
-                    player.position.x++;
+                    player.x++;
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,
@@ -110,9 +110,9 @@ export default function useKeyboard() {
                 break
             case "a":
                 // player is NOT facing the direction they want to move, rotate player
-                if (player.position.orientation !== 270) {
+                if (player.orientation !== 270) {
                     // change player orientation
-                    player.position.orientation = 270;
+                    player.orientation = 270;
                     // send updated positon to reducer
                     return dispatch({
                         type: ROTATE_PLAYER,
@@ -120,13 +120,13 @@ export default function useKeyboard() {
                     })
                 }
                 // if player movement is not a collision, update the players location
-                if (detectCollision(state, player.position.x - 1, player.position.y) === "not obscruction") {
+                if (detectCollision(state, player.x - 1, player.y) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.position.x - 1}y${state.player.position.y}`
+                    const futureTileName = `x${state.player.x - 1}y${state.player.y}`
                     // get new values for previous tile player was in and tile the player moved into
                     const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // decrement player position x
-                    player.position.x--;
+                    player.x--;
                     // send updated position to reducer
                     return dispatch({
                         type: MOVE_PLAYER,

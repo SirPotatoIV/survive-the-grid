@@ -1,4 +1,4 @@
-import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER } from "./actions"
+import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL } from "./actions"
 
 export default function reducer(state, action) {
     switch (action.type) {
@@ -24,7 +24,13 @@ export default function reducer(state, action) {
             return{...state, projectiles: [...state.projectiles, action.payload.newProjectile]}
         case UPDATE_PROJECTILES:
             // recieved from gameLoop
+            // console.log({...state,
+            //     projectiles: [...action.payload]
+            //     tileTracker: {...state.tileTracker, ...updatedTiles}})
             return{...state, projectiles: [...action.payload]}
+        case DAMAGE_WALL:
+            console.log("wall damaged", action.payload)
+            return{...state}
         default:
             throw new Error("Unknown action:", action.type)
     }
