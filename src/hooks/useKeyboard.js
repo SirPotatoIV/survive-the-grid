@@ -49,7 +49,6 @@ export default function useKeyboard() {
                             futureTile} 
                     })
                 }
-
                 break
             case "s":
                 // player is NOT facing the direction they want to move, rotate player

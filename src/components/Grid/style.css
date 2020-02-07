@@ -8,3 +8,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.health{
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+}

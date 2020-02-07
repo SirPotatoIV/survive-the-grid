@@ -57,7 +57,7 @@ function Grid() {
                         backgroundImage: `url(${backgroundImage})`
                     }}
                 >
-                    {tile.tileName}
+                    {tile.tileName}<span className="health">{tile.health}</span>
                 </Tile>)
             })}
             {state.projectiles.map((projectile, index) =>
