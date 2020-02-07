@@ -8,7 +8,7 @@ export default function buildWall(state){
         health: 3
     }
     // deconstruction the values from the player to make code easier to read
-    const { x, y, orientation} = state.player.position
+    const { x, y, orientation} = state.player
 
     if(orientation === 0){
         // get name of tile in front of the player
