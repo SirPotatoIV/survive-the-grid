@@ -6,7 +6,7 @@ export default function shootProjectile(state){
             player: state.player.name,
             distanceTraveled: 0,
             x: state.player.position.x,
-            y: state.player.position.y -1,
+            y: state.player.position.y,
             orientation: state.player.position.orientation
         }
         return(newProjectile)
@@ -18,7 +18,7 @@ export default function shootProjectile(state){
             player: state.player.name,
             distanceTraveled: 0,
             x: state.player.position.x,
-            y: state.player.position.y + 1,
+            y: state.player.position.y,
             orientation: state.player.position.orientation
         }
         return(newProjectile)
@@ -29,7 +29,7 @@ export default function shootProjectile(state){
         const newProjectile = {
             player: state.player.name,
             distanceTraveled: 0,
-            x: state.player.position.x + 1,
+            x: state.player.position.x,
             y: state.player.position.y,
             orientation: state.player.position.orientation
         }
@@ -41,7 +41,7 @@ export default function shootProjectile(state){
         const newProjectile = {
             player: state.player.name,
             distanceTraveled: 0,
-            x: state.player.position.x - 1,
+            x: state.player.position.x,
             y: state.player.position.y,
             orientation: state.player.position.orientation
         }

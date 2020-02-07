@@ -1,4 +1,6 @@
-export default function moveProjectile(projectile){
+import projectileCollision from "../utils/projectileCollision"
+
+export default function moveProjectile(state, projectile){
     // PROJECTILE OBJECT STRUCTURE FOR REFERENCE
     // const newProjectile = {
     //     player: state.player.name,
@@ -9,12 +11,19 @@ export default function moveProjectile(projectile){
     // }
 
     if(projectile.orientation === 0){
-        // update projectile position
-        const updatedProjectile = {
-            ...projectile, 
-            y: projectile.y - 1, 
+        const futureProjectileState = {
+            ...projectile,
+            y: projectile.y - 1,
             distanceTraveled: projectile.distanceTraveled + 1 
-        };
+        }
+        console.log(projectile.distanceTraveled, futureProjectileState.distanceTraveled)
+        const updatedProjectile = projectileCollision(state, futureProjectileState)
+        // update projectile position
+        // const updatedProjectile = {
+        //     ...projectile, 
+        //     y: projectile.y - 1, 
+        //     distanceTraveled: projectile.distanceTraveled + 1 
+        // };
         return(updatedProjectile)
     }
 

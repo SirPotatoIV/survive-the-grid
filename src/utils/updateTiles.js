@@ -12,7 +12,7 @@ export default function updateTiles(state, type, pastTileName, futureTileName){
     const futureTile = {
         ...state.tileTracker[futureTileName],
         isObstruction: true,
-        player: state.player.name,
+        player: state.player.name || null,
         type: type
     }
 

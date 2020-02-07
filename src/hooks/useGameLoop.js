@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import moveProjectile from "../utils/moveProjectile.js"
+import { GAME_PARAMS } from "../utils/constants.js"
 
 export default function useGameLoop(state, dispatch){
     useEffect(() => {
@@ -8,14 +9,14 @@ export default function useGameLoop(state, dispatch){
             const updatedProjectiles = 
                 // removes projectiles that have already traveled 4 spaces
                 state.projectiles.filter(function(projectile){
-                    if(projectile.distanceTraveled < 4){
+                    if(projectile.distanceTraveled < GAME_PARAMS.PROJECTILE_RANGE){
                         return true
                     }
                     return false
                 })
                 // updates position and distance traveled
                 .map(projectile => {
-                    const updatedProjectile = moveProjectile(projectile)
+                    const updatedProjectile = moveProjectile(state, projectile)
                     return(updatedProjectile)
                 })
                 

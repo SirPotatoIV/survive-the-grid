@@ -123,7 +123,7 @@ export default function useKeyboard() {
                 // if player movement is not a collision, update the players location
                 if (detectCollision(state, player.position.x - 1, player.position.y) === "not obscruction") {
                     // name of tile that player will move into
-                    const futureTileName = `x${state.player.position.x + 1}y${state.player.position.y}`
+                    const futureTileName = `x${state.player.position.x - 1}y${state.player.position.y}`
                     // get new values for previous tile player was in and tile the player moved into
                     const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName)
                     // decrement player position x
