@@ -4,6 +4,7 @@ export default function reducer(state, action) {
     switch (action.type) {
         case MOVE_PLAYER:
             // recieved from useKeyboard on "w,a,s,d" key press
+            console.log(action.payload.updatedPlayer)
             return { 
                 ...state,
                 // update player component location 
@@ -11,6 +12,7 @@ export default function reducer(state, action) {
             }
                 // update tile player moved into and tile they moved out of 
         case ROTATE_PLAYER:
+            console.log(action.payload.updatedPlayer)
             return{
                 ...state, 
                 players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
@@ -24,7 +26,6 @@ export default function reducer(state, action) {
         case UPDATE_PROJECTILES:
             return{...state, projectiles: [...action.payload]}
         case DAMAGE_WALL:
-            console.log("health: ",state.tileTracker[action.payload.tileName].health)
             return { 
                 ...state,
                 // update tile player moved into and tile they moved out of 
@@ -33,7 +34,6 @@ export default function reducer(state, action) {
                     [action.payload.tileName]: action.payload
                 }}
         case RERENDER:
-            console.log(RERENDER)
             return{...action.payload.newState}
         default:
             throw new Error("Unknown action:", action.type)

@@ -6,7 +6,6 @@ import {GameContext} from "../../state/context"
 function Player(props){
     const {state} = useContext(GameContext)
     const player = state.players[props.playerName]
-    console.log("player updated:", player.name, player.orientation, player.dx, player.dy)
     // return useMemo(() =>
     // {
         return(<div   

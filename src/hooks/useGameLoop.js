@@ -1,4 +1,5 @@
-import { useEffect } from "react"
+import { useEffect, useContext } from "react"
+import { GameContext } from "../state/context";
 // import useKeyboard from "./useKeyboard"
 import moveProjectile from "../utils/moveProjectile.js"
 import aiDecision from "../players/aiDecision.js"
@@ -6,19 +7,20 @@ import { GAME_PARAMS } from "../utils/constants.js"
 import { RERENDER } from "../state/actions.js"
 
 export default function useGameLoop(state, dispatch){
-    
+
+    const newState = {...state}
     useEffect(() => {
         const handleTime = setTimeout(() => {
-            const newState = {...state}
             // update player positions
             // check if player collisions occurred
             // update projectile position
             // check if projectile collided
             // -- if collision, collided with what (player name or tileName for wall)
             // check if player or wall health needs to be update
-            aiDecision()
+            const updatedPlayers = aiDecision(newState, dispatch)
+            newState.players = updatedPlayers;
             // take action
-           const newPlayers = Object.entries(newState.players).map(([key, player]) => {
+            const newPlayers = Object.entries(newState.players).map(([key, player]) => {
                 const name = player.name
                 const x = player.x+player.dx;
                 const y = player.y+player.dy;
@@ -26,12 +28,10 @@ export default function useGameLoop(state, dispatch){
                 let tileToCheck = ""
 
                 if(player.isRotating){
-                    console.log(player)
                     newState.players[name].orientation = player.newOrientation 
                 }
                 if(player.isMoving){
                     tileToCheck = `x${x}y${y}`
-                    console.log(tileToCheck)
                 }
                 if(player.isMoving && !newState.tileTracker[tileToCheck].isObstruction){
                     // update player positions
@@ -73,13 +73,12 @@ export default function useGameLoop(state, dispatch){
                     payload: updatedProjectiles
                 })
             }
-            console.log(newState.players.main)
+            
             return dispatch({
                 type: RERENDER,
                 payload: {newState}
             })
-        
-        }, 100)
+        }, 2000)
         return () => clearTimeout(handleTime);
-    }, [state.projectiles, state.players])
+    }, [state.players])
 }
