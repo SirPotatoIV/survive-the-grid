@@ -1,10 +1,11 @@
 import { useEffect } from "react"
-import moveProjectile from "../utils/moveProjectile.js"
-import aiDecision from "../players/aiDecision.js"
 import { GAME_PARAMS } from "../utils/constants.js"
 import { RERENDER } from "../state/actions.js"
-import calcTileToCheck from "../utils/calcTileToCheck";
-import {WALL} from "../maps/tileTypes"
+import {WALL} from "../maps/tileTypes.js"
+import aiDecision from "../players/aiDecision.js"
+import calcTileToCheck from "../utils/calcTileToCheck.js";
+import shootProjectile from "../utils/shootProjectile.js"
+import moveProjectile from "../utils/moveProjectile.js"
 
 export default function useGameLoop(state, dispatch){
 
@@ -25,7 +26,8 @@ export default function useGameLoop(state, dispatch){
                 })
             }
             // AI makes decisions
-            newState.players = aiDecision(newState, dispatch)
+            // newState.players = aiDecision(newState, dispatch)
+            console.log(newState.players.main)
             // take action
             const newPlayers = Object.entries(newState.players).map(([key, player]) => {
                 const name = player.name
@@ -48,7 +50,7 @@ export default function useGameLoop(state, dispatch){
                     newState.tileTracker[tileToCheck].player = player.name;
                     // update tile moving out of
                     newState.tileTracker[currentTile].isObstruction = false;
-                    console.log(newState.tileTracker[currentTile])
+                    // console.log(newState.tileTracker[currentTile])
                     newState.tileTracker[currentTile].player = null;
                     newState.players[name].isMoving = false;
                 }
@@ -60,6 +62,11 @@ export default function useGameLoop(state, dispatch){
                         health: GAME_PARAMS.MAX_WALL_HEALTH
                     }
                     newState.players[name].isBuilding = false;
+                }
+                if(player.isShooting){
+                    const newProjectile = shootProjectile(player, tileToCheck)
+                    newState.projectiles = [...newState.projectiles, newProjectile]
+                    newState.players[name].isShooting = false;
                 }
                 // reset player properties used for action resolution
                 newState.players[name].dx = 0;
@@ -94,7 +101,7 @@ export default function useGameLoop(state, dispatch){
                 type: RERENDER,
                 payload: {newState}
             })
-        }, 500)
+        }, 50)
         return () => clearTimeout(handleTime);
-    }, [state.players, state.isRunning])
+    }, [state.players, state.isRunning, state.projectiles])
 }

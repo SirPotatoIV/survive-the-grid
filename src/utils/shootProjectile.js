@@ -1,12 +1,12 @@
-export default function shootProjectile(state){
-    const player = state.players.main;
+export default function shootProjectile(player, tileToCheck){
+    console.log(tileToCheck)
     return({
         player: player.name,
         distanceTraveled: 0,
         dx: 0,
         dy: 0,
-        x: player.x,
-        y: player.y,
+        x: parseInt(tileToCheck.charAt(1), 10),
+        y: parseInt(tileToCheck.charAt(3), 10),
         orientation: player.orientation
     })
 }

@@ -1,4 +1,4 @@
-import { MOVE_PLAYER, BUILD_WALL} from "../state/actions"
+import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE} from "../state/actions"
 import { DIRECTIONS } from "../utils/constants"
 import moveAi from "../players/moveAi"
 
@@ -7,7 +7,7 @@ export default function aiDecision(newState){
     const directions = [DIRECTIONS.NORTH, DIRECTIONS.SOUTH, DIRECTIONS.WEST, DIRECTIONS.EAST]
     
     function selectRandomAction(){
-        const actions = [MOVE_PLAYER, BUILD_WALL];
+        const actions = [MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE];
         const randomActionSelector = Math.floor(Math.random()*actions.length)
         const randomAction = actions[randomActionSelector]
         return(randomAction)
@@ -25,6 +25,9 @@ export default function aiDecision(newState){
                 return("player")
             case BUILD_WALL:
                 updatedPlayer.isBuilding = true;
+                return("player")
+            case SHOOT_PROJECTILE:
+                updatedPlayer.isShooting = true;
                 return("player")
             default:
                 console.log("silly computer, that isn't a move")

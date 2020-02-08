@@ -1,6 +1,7 @@
 import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER, START_GAME } from "./actions"
 
 export default function reducer(state, action) {
+    console.log(action.payload)
     switch (action.type) {
         case START_GAME:
             console.log("start game occurred")
@@ -25,10 +26,16 @@ export default function reducer(state, action) {
             }
         case BUILD_WALL:
             // recieved from useKeyboard on "e" key press
-            return { ...state, tileTracker: { ...state.tileTracker, [action.payload.tileName]: action.payload.value } }
+            return { 
+                ...state,
+                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
+            }
         case SHOOT_PROJECTILE:
             // recieved from useKeyboard on "spacebar" key press
-            return{...state, projectiles: [...state.projectiles, action.payload.newProjectile]}
+            return { 
+                ...state,
+                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
+            }
         case UPDATE_PROJECTILES:
             return{...state, projectiles: [...action.payload]}
         case DAMAGE_WALL:
