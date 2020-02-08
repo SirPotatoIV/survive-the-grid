@@ -1,18 +1,57 @@
 import { useEffect } from "react"
 // import useKeyboard from "./useKeyboard"
 import moveProjectile from "../utils/moveProjectile.js"
+import aiDecision from "../players/aiDecision.js"
 import { GAME_PARAMS } from "../utils/constants.js"
+import { RERENDER } from "../state/actions.js"
 
 export default function useGameLoop(state, dispatch){
+    
     useEffect(() => {
         const handleTime = setTimeout(() => {
+            const newState = {...state}
             // update player positions
             // check if player collisions occurred
             // update projectile position
             // check if projectile collided
             // -- if collision, collided with what (player name or tileName for wall)
             // check if player or wall health needs to be update
-            
+            aiDecision()
+            // take action
+           const newPlayers = Object.entries(newState.players).map(([key, player]) => {
+                const name = player.name
+                const x = player.x+player.dx;
+                const y = player.y+player.dy;
+                const currentTile = `x${player.x}y${player.y}`
+                let tileToCheck = ""
+
+                if(player.isRotating){
+                    console.log(player)
+                    newState.players[name].orientation = player.newOrientation 
+                }
+                if(player.isMoving){
+                    tileToCheck = `x${x}y${y}`
+                    console.log(tileToCheck)
+                }
+                if(player.isMoving && !newState.tileTracker[tileToCheck].isObstruction){
+                    // update player positions
+                    newState.players[name].x = x;
+                    newState.players[name].y = y;
+                    // update tile moving into
+                    newState.tileTracker[tileToCheck].isObstruction = true;
+                    newState.tileTracker[tileToCheck].player = player.name;
+                    // update tile moving out of
+                    newState.tileTracker[currentTile].isObstruction = false;
+                    newState.tileTracker[currentTile].player = null;
+                }
+                // reset player properties used for action resolution
+                newState.players[name].dx = 0;
+                newState.players[name].dy = 0;
+                newState.players[name].isMoving = false;
+                newState.players[name].isRotating = false;
+                return (player)
+            })
+
             // updates the state of projectiles
             const updatedProjectiles = 
                 // removes projectiles that have already traveled 4 spaces
@@ -34,8 +73,13 @@ export default function useGameLoop(state, dispatch){
                     payload: updatedProjectiles
                 })
             }
+            console.log(newState.players.main)
+            return dispatch({
+                type: RERENDER,
+                payload: {newState}
+            })
         
         }, 100)
         return () => clearTimeout(handleTime);
-    }, [state.projectiles])
+    }, [state.projectiles, state.players])
 }

@@ -1,4 +1,4 @@
-import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL } from "./actions"
+import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER } from "./actions"
 
 export default function reducer(state, action) {
     switch (action.type) {
@@ -11,10 +11,6 @@ export default function reducer(state, action) {
             }
                 // update tile player moved into and tile they moved out of 
         case ROTATE_PLAYER:
-            console.log("ROTATE_PLAYER",{
-                ...state, 
-                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
-            })
             return{
                 ...state, 
                 players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
@@ -36,6 +32,9 @@ export default function reducer(state, action) {
                     ...state.tileTracker,
                     [action.payload.tileName]: action.payload
                 }}
+        case RERENDER:
+            console.log(RERENDER)
+            return{...action.payload.newState}
         default:
             throw new Error("Unknown action:", action.type)
     }

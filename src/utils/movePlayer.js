@@ -6,7 +6,7 @@ export default function movePlayer(playerName, direction, state, dispatch){
         ...state.players[playerName],
         dx: 0,
         dy: 0,
-        newOrientation: 0
+        newOrientation: 0,
     }
     switch (direction) {
         case DIRECTIONS.NORTH:
@@ -14,6 +14,7 @@ export default function movePlayer(playerName, direction, state, dispatch){
             if (updatedPlayer.orientation !== 0) {
                 // change player orientation
                 updatedPlayer.newOrientation = 0;
+                updatedPlayer.isRotating = true;
                 // send updated position to reducer
                 return dispatch({
                     type: ROTATE_PLAYER,
@@ -29,6 +30,7 @@ export default function movePlayer(playerName, direction, state, dispatch){
             if (updatedPlayer.orientation !== 180) {
                 // change player orientation
                 updatedPlayer.newOrientation = 180;
+                updatedPlayer.isRotating = true;
                 // send updated position to reducer
                 return dispatch({
                     type: ROTATE_PLAYER,
@@ -43,6 +45,7 @@ export default function movePlayer(playerName, direction, state, dispatch){
             if (updatedPlayer.orientation !== 90) {
                 // change player orientation
                 updatedPlayer.newOrientation = 90;
+                updatedPlayer.isRotating = true;
                 // send updated postion to reducer
                 return dispatch({
                     type: ROTATE_PLAYER,
@@ -57,6 +60,7 @@ export default function movePlayer(playerName, direction, state, dispatch){
             if (updatedPlayer.orientation !== 270) {
                 // change player orientation
                 updatedPlayer.newOrientation = 270;
+                updatedPlayer.isRotating = true;
                 return dispatch({
                     type: ROTATE_PLAYER,
                     payload: {updatedPlayer}
@@ -73,6 +77,7 @@ export default function movePlayer(playerName, direction, state, dispatch){
 
         function updateDxDy(updatedPlayer){
             console.log(updatedPlayer)
+            updatedPlayer.isMoving = true;
             return dispatch({
                 type: MOVE_PLAYER,
                 payload: {updatedPlayer} 

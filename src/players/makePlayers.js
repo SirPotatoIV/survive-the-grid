@@ -12,6 +12,8 @@ export default function makePlayers(playerNames){
                 orientation: 180,
                 health: 3,
                 isAlive: true,
+                isMoving: false,
+                isRotating: false,
                 isBuilding: false,
                 isShooting: false
         })
