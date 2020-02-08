@@ -34,7 +34,7 @@ export default function useKeyboard(test) {
                 // player is NOT facing the direction they want to move, rotate player
                 break
             case "a":
-                movePlayer(player.name, DIRECTIONS.WEST, state)
+                movePlayer(player.name, DIRECTIONS.WEST, state, dispatch)
                 break
             case "e":
                 // -- to be used for building a wall --

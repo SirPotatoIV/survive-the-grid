@@ -4,18 +4,20 @@ export default function reducer(state, action) {
     switch (action.type) {
         case MOVE_PLAYER:
             // recieved from useKeyboard on "w,a,s,d" key press
-            console.log(action.payload)
             return { 
                 ...state,
                 // update player component location 
-                players: {...state.players, [action.payload.player.name]: action.payload.player}
+                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
             }
                 // update tile player moved into and tile they moved out of 
         case ROTATE_PLAYER:
-            console.log(action.payload)
+            console.log("ROTATE_PLAYER",{
+                ...state, 
+                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
+            })
             return{
                 ...state, 
-                player: {...state.players, [action.payload.player.name]: action.payload.player}
+                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
             }
         case BUILD_WALL:
             // recieved from useKeyboard on "e" key press

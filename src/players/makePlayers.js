@@ -6,6 +6,7 @@ export default function makePlayers(playerNames){
                 name: playerName,
                 dx: 0,
                 dy: 0,
+                newOrientation: 0,
                 x: startPositions[index][0],
                 y: startPositions[index][1],
                 orientation: 180,
