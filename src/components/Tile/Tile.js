@@ -1,4 +1,4 @@
-import React, {useContext, useMemo} from 'react';
+import React, {useContext} from 'react';
 import {GameContext} from "../../state/context"
 import "./style.css"
 

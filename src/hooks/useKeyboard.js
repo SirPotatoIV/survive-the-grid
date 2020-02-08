@@ -1,13 +1,13 @@
 import { useContext, useEffect } from "react"
 import { GameContext } from "../state/context";
-import { MOVE_PLAYER, ROTATE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE } from "../state/actions"
-import detectCollision from "../utils/detectCollision"
+import { BUILD_WALL, SHOOT_PROJECTILE } from "../state/actions"
+// import detectCollision from "../utils/detectCollision"
 import buildWall from "../utils/buildWall"
 import shootProjectile from "../utils/shootProjectile";
-import updateTiles from "../utils/updateTiles"
+// import updateTiles from "../utils/updateTiles"
 import movePlayer from "../utils/movePlayer";
 import { DIRECTIONS } from "../utils/constants";
-import checkPlayerCollision from "../utils/checkPlayerCollision";
+// import checkPlayerCollision from "../utils/checkPlayerCollision";
 
 export default function useKeyboard(test) {
     const { state, dispatch } = useContext(GameContext)
@@ -20,130 +20,21 @@ export default function useKeyboard(test) {
         // create new object containing current state
         const player = state.players.main
 
-        const pastTileName = `x${player.x}y${player.y}`
+        // const pastTileName = `x${player.x}y${player.y}`
 
         switch (event.key) {
             case "w":
-                const playerChange = movePlayer(player.name, DIRECTIONS.NORTH, state)
-                const playerFuturePosition = checkPlayerCollision(playerChange, state)
-                console.log(playerChange, playerFuturePosition)
-                // player is NOT facing the direction they want to move, rotate player
-                if (player.orientation !== 0) {
-                    // change player orientation
-                    player.orientation = 0;
-                    // send updated position to reducer
-                    return dispatch({
-                        type: ROTATE_PLAYER,
-                        payload: {player}
-                    })
-                }
-                // if player movement is not a collision, update the players location
-                if (detectCollision(state, player.x, player.y - 1) === "not obscruction") {
-                    // name of tile that player will move into
-                    const futureTileName = `x${player.x}y${player.y - 1}`
-                    // get new values for previous tile player was in and tile the player moved into
-                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName, player)
-                    // decrement player y position
-                    player.y--;
-                    // send updated position to reducer
-                    return dispatch({
-                        type: MOVE_PLAYER,
-                        payload: {
-                            player,
-                            pastTile, 
-                            futureTile} 
-                    })
-                }
+                movePlayer(player.name, DIRECTIONS.NORTH, state, dispatch)
                 break
             case "s":
-                console.log(movePlayer(player.name, DIRECTIONS.SOUTH, state))
-                // player is NOT facing the direction they want to move, rotate player
-                if (player.orientation !== 180) {
-                    // change player orientation
-                    player.orientation = 180;
-                    // send updated position to reducer
-                    return dispatch({
-                        type: ROTATE_PLAYER,
-                        payload: {player}
-                    })
-                }
-                // if player movement is not a collision, update the players location
-                if (detectCollision(state, player.x, player.y + 1) === "not obscruction") {
-                    // name of tile that player will move into
-                    const futureTileName = `x${player.x}y${player.y + 1}`
-                    // get new values for previous tile player was in and tile the player moved into
-                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName, player)
-                    // increment player y position
-                    player.y++;
-                    // send updated player position, pastTile, and futureTile to reducer
-                    return dispatch({
-                        type: MOVE_PLAYER,
-                        payload: {
-                            player,
-                            pastTile, 
-                            futureTile} 
-                    })
-                }
+                movePlayer(player.name, DIRECTIONS.SOUTH, state, dispatch)
                 break
             case "d":
-                console.log(movePlayer(player.name, DIRECTIONS.EAST, state))
+                movePlayer(player.name, DIRECTIONS.EAST, state, dispatch)
                 // player is NOT facing the direction they want to move, rotate player
-                if (player.orientation !== 90) {
-                    // change player orientation
-                    player.orientation = 90;
-                    // send updated postion to reducer
-                    return dispatch({
-                        type: ROTATE_PLAYER,
-                        payload: {player}
-                    })
-                }
-                // if player movement is not a collision, update the players location
-                if (detectCollision(state, player.x + 1, player.y) === "not obscruction") {
-                    // name of tile that player will move into
-                    const futureTileName = `x${player.x + 1}y${player.y}`
-                    // get new values for previous tile player was in and tile the player moved into
-                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName, player)
-                    // increment player x position
-                    player.x++;
-                    // send updated position to reducer
-                    return dispatch({
-                        type: MOVE_PLAYER,
-                        payload: {
-                            player,
-                            pastTile, 
-                            futureTile} 
-                    })
-                }
                 break
             case "a":
-                console.log(movePlayer(player.name, DIRECTIONS.WEST, state))
-                // player is NOT facing the direction they want to move, rotate player
-                if (player.orientation !== 270) {
-                    // change player orientation
-                    player.orientation = 270;
-                    // send updated positon to reducer
-                    return dispatch({
-                        type: ROTATE_PLAYER,
-                        payload: {player}
-                    })
-                }
-                // if player movement is not a collision, update the players location
-                if (detectCollision(state, player.x - 1, player.y) === "not obscruction") {
-                    // name of tile that player will move into
-                    const futureTileName = `x${player.x - 1}y${player.y}`
-                    // get new values for previous tile player was in and tile the player moved into
-                    const {pastTile, futureTile} = updateTiles(state, "player", pastTileName, futureTileName, player)
-                    // decrement player position x
-                    player.x--;
-                    // send updated position to reducer
-                    return dispatch({
-                        type: MOVE_PLAYER,
-                        payload: {
-                            player,
-                            pastTile, 
-                            futureTile} 
-                    })
-                }
+                movePlayer(player.name, DIRECTIONS.WEST, state)
                 break
             case "e":
                 // -- to be used for building a wall --

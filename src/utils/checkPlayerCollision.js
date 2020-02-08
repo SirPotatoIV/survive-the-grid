@@ -7,5 +7,8 @@ export default function checkPlayerCollision(player, state){
     const y = updatedPlayer.y + updatedPlayer.dy;
 
     const futureTile = state.tileTracker[`x${x}y${y}`];
-    console.log(futureTile);
+    
+    if(futureTile.isObstruction){
+        
+    }
 }

@@ -19,6 +19,5 @@ export default function makePlayers(playerNames){
     for(let i = 0; i < playerArray.length; i ++){
         players[playerArray[i].name] = playerArray[i];
     }
-    console.log(players)
     return(players)
 }

@@ -4,7 +4,6 @@ import "./style.css"
 import Player from "../Player"
 import Tile from "../Tile"
 import Projectile from "../Projectile"
-import OtherPlayer from "../OtherPlayer"
 // https://opengameart.org/content/wall-0
 import wallImage from "./wall.png"
 import useKeyboard from "../../hooks/useKeyboard"
