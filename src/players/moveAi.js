@@ -1,12 +1,8 @@
 import { DIRECTIONS } from "../utils/constants"
 
 export default function movePlayer(playerName, direction, state){
-    const updatedPlayer = {
-        ...state.players[playerName],
-        dx: 0,
-        dy: 0,
-        newOrientation: 0,
-    }
+    const updatedPlayer = state.players[playerName]
+ 
     switch (direction) {
         case DIRECTIONS.NORTH:
             // player is NOT facing the direction they want to move, rotate player

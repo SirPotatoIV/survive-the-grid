@@ -1,27 +1,32 @@
-import { MOVE_PLAYER} from "../state/actions"
+import { MOVE_PLAYER, BUILD_WALL} from "../state/actions"
 import { DIRECTIONS } from "../utils/constants"
 import moveAi from "../players/moveAi"
+import buildWall from "./buildWallAi"
 
 export default function aiDecision(newState){
     const updatedPlayers = {...newState.players}
     const directions = [DIRECTIONS.NORTH, DIRECTIONS.SOUTH, DIRECTIONS.WEST, DIRECTIONS.EAST]
     
     function selectRandomAction(){
-        const actions = [MOVE_PLAYER];
+        const actions = [MOVE_PLAYER, BUILD_WALL];
         const randomActionSelector = Math.floor(Math.random()*actions.length)
         const randomAction = actions[randomActionSelector]
         return(randomAction)
     }
     
     Object.entries(updatedPlayers).map(([key, player]) => {
+        let updatedPlayer = updatedPlayers[player.name] 
         const action = selectRandomAction()
         switch(action){
             case MOVE_PLAYER:
                 const randomDirectionSelector = Math.floor(Math.random()*directions.length)
                 const randomDirection = directions[randomDirectionSelector];
-                const updatedPlayer = moveAi(player.name, randomDirection, newState)
+                updatedPlayer = moveAi(player.name, randomDirection, newState)
                 updatedPlayers[player.name] = updatedPlayer
-                break
+                return("player")
+            case BUILD_WALL:
+                updatedPlayer.isBuilding = true;
+                return("player")
             default:
                 console.log("silly computer, that isn't a move")
         }

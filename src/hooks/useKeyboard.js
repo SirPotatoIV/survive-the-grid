@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react"
 import { GameContext } from "../state/context";
 import { BUILD_WALL, SHOOT_PROJECTILE } from "../state/actions"
 // import detectCollision from "../utils/detectCollision"
-import buildWall from "../utils/buildWall"
 import shootProjectile from "../utils/shootProjectile";
 // import updateTiles from "../utils/updateTiles"
 import movePlayer from "../utils/movePlayer";
@@ -38,13 +37,10 @@ export default function useKeyboard(test) {
                 break
             case "e":
                 // -- to be used for building a wall --
-                const tileWithWall = buildWall(state)
+                player.isBuilding = true;
                 return dispatch({
                     type: BUILD_WALL,
-                    payload: {
-                        tileName: tileWithWall.tileName,
-                        value: tileWithWall
-                    }
+                    payload: player
                 })
             case " ":
                 // https://stackoverflow.com/questions/22559830/html-prevent-space-bar-from-scrolling-page

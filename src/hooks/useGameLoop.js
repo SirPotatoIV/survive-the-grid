@@ -1,10 +1,10 @@
-import { useEffect, useContext } from "react"
-import { GameContext } from "../state/context";
-// import useKeyboard from "./useKeyboard"
+import { useEffect } from "react"
 import moveProjectile from "../utils/moveProjectile.js"
 import aiDecision from "../players/aiDecision.js"
 import { GAME_PARAMS } from "../utils/constants.js"
 import { RERENDER } from "../state/actions.js"
+import calcTileToCheck from "../utils/calcTileToCheck";
+import {WALL} from "../maps/tileTypes"
 
 export default function useGameLoop(state, dispatch){
 
@@ -24,31 +24,22 @@ export default function useGameLoop(state, dispatch){
                     payload: {newState}
                 })
             }
-            const tileObstructionView = `${newState.tileTracker["x2y2"].isObstruction}, ${newState.tileTracker["x2y3"].isObstruction}, ${newState.tileTracker["x3y2"].isObstruction}, ${newState.tileTracker["x3y3"].isObstruction}`
-            console.log(tileObstructionView)
-            // update player positions
-            // check if player collisions occurred
-            // update projectile position
-            // check if projectile collided
-            // -- if collision, collided with what (player name or tileName for wall)
-            // check if player or wall health needs to be update
-            const updatedPlayers = aiDecision(newState, dispatch)
-            newState.players = updatedPlayers;
+            // AI makes decisions
+            newState.players = aiDecision(newState, dispatch)
             // take action
             const newPlayers = Object.entries(newState.players).map(([key, player]) => {
                 const name = player.name
                 const x = player.x+player.dx;
                 const y = player.y+player.dy;
                 const currentTile = `x${player.x}y${player.y}`
-                let tileToCheck = ""
+                const tileToCheck = calcTileToCheck(player)
+                const newTileIsObstruction = newState.tileTracker[tileToCheck].isObstruction
 
                 if(player.isRotating){
-                    newState.players[name].orientation = player.newOrientation 
+                    newState.players[name].orientation = player.newOrientation
+                    newState.players[name].isRotating = false; 
                 }
-                if(player.isMoving){
-                    tileToCheck = `x${x}y${y}`
-                }
-                if(player.isMoving && !newState.tileTracker[tileToCheck].isObstruction){
+                if(player.isMoving && !newTileIsObstruction){
                     // update player positions
                     newState.players[name].x = x;
                     newState.players[name].y = y;
@@ -59,12 +50,21 @@ export default function useGameLoop(state, dispatch){
                     newState.tileTracker[currentTile].isObstruction = false;
                     console.log(newState.tileTracker[currentTile])
                     newState.tileTracker[currentTile].player = null;
+                    newState.players[name].isMoving = false;
+                }
+                if(player.isBuilding && !newTileIsObstruction){
+                    newState.tileTracker[tileToCheck] = {
+                        ...newState.tileTracker[tileToCheck],
+                        isObstruction: true,
+                        type: WALL,
+                        health: GAME_PARAMS.MAX_WALL_HEALTH
+                    }
+                    newState.players[name].isBuilding = false;
                 }
                 // reset player properties used for action resolution
                 newState.players[name].dx = 0;
                 newState.players[name].dy = 0;
-                newState.players[name].isMoving = false;
-                newState.players[name].isRotating = false;
+                
                 return (player)
             })
 
