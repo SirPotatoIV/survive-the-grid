@@ -1,7 +1,6 @@
 import { MOVE_PLAYER, BUILD_WALL} from "../state/actions"
 import { DIRECTIONS } from "../utils/constants"
 import moveAi from "../players/moveAi"
-import buildWall from "./buildWallAi"
 
 export default function aiDecision(newState){
     const updatedPlayers = {...newState.players}
