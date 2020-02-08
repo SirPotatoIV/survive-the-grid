@@ -1,13 +1,3 @@
-// players: {
-//     main: {
-//         name: "main",
-//         x: 2,
-//         y: 2,
-//         orientation: 180,
-//         health: 3
-//     }
-// },
-
 const startPositions = [[2,2], [2,9], [9,2], [9,9]]
 
 export default function makePlayers(playerNames){
@@ -19,7 +9,10 @@ export default function makePlayers(playerNames){
                 x: startPositions[index][0],
                 y: startPositions[index][1],
                 orientation: 180,
-                health: 3
+                health: 3,
+                isAlive: true,
+                isBuilding: false,
+                isShooting: false
         })
     })
     const players = {};
