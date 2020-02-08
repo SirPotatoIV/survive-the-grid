@@ -1,7 +1,12 @@
-import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER } from "./actions"
+import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER, START_GAME } from "./actions"
 
 export default function reducer(state, action) {
     switch (action.type) {
+        case START_GAME:
+            return {
+                ...state,
+                isRunning: true
+            }
         case MOVE_PLAYER:
             // recieved from useKeyboard on "w,a,s,d" key press
             console.log(action.payload.updatedPlayer)

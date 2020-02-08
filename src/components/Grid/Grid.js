@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import "./style.css"
+import "./Grid.css"
 
 import Player from "../Player"
 import Tile from "../Tile"
@@ -10,6 +10,7 @@ import useKeyboard from "../../hooks/useKeyboard"
 import {MAP_BOUNDARY, WALL} from "../../grids/tileTypes"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
+
 
 // Takes in the grids size from the parent component App
 function Grid() {
@@ -25,12 +26,13 @@ function Grid() {
     return (
         // adds the player inside the grid
         // maps the tiles into the grid
+        <>
         <div
             className="grid"
             style={{
                 display: "grid",
-                gridTemplateColumns: `repeat(${state.gridTiles.length}, ${DIMENSIONS.TILESIZE}px)`,
-                gridTemplateRows: `repeat(${state.gridTiles.length}, ${DIMENSIONS.TILESIZE}px)`
+                gridTemplateColumns: `repeat(${state.mapSize}, ${DIMENSIONS.TILESIZE}px)`,
+                gridTemplateRows: `repeat(${state.mapSize}, ${DIMENSIONS.TILESIZE}px)`
             }}
         >
             {Object.entries(state.tileTracker).map(([key, tile]) => {
@@ -75,6 +77,8 @@ function Grid() {
                 })
             }
         </div>
+        <div>Hello</div>
+        </>
     )
 }
 export default Grid;

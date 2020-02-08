@@ -1,6 +1,6 @@
-const startPositions = [[2,2], [2,9], [9,2], [9,9]]
+// const startPositions = [[2,2], [2,9], [9,2], [9,9]]
 
-export default function makePlayers(playerNames){
+export default function makePlayers(playerNames, startPositions){
     const playerArray = playerNames.map(function(playerName, index){
         return({
                 name: playerName,

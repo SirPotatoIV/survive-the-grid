@@ -11,6 +11,8 @@ export default function useGameLoop(state, dispatch){
     const newState = {...state}
     useEffect(() => {
         const handleTime = setTimeout(() => {
+            const tileObstructionView = `${newState.tileTracker["x2y2"].isObstruction}, ${newState.tileTracker["x2y3"].isObstruction}, ${newState.tileTracker["x3y2"].isObstruction}, ${newState.tileTracker["x3y3"].isObstruction}`
+            console.log(tileObstructionView)
             // update player positions
             // check if player collisions occurred
             // update projectile position
@@ -42,6 +44,7 @@ export default function useGameLoop(state, dispatch){
                     newState.tileTracker[tileToCheck].player = player.name;
                     // update tile moving out of
                     newState.tileTracker[currentTile].isObstruction = false;
+                    console.log(newState.tileTracker[currentTile])
                     newState.tileTracker[currentTile].player = null;
                 }
                 // reset player properties used for action resolution
@@ -78,7 +81,7 @@ export default function useGameLoop(state, dispatch){
                 type: RERENDER,
                 payload: {newState}
             })
-        }, 2000)
+        }, 1000)
         return () => clearTimeout(handleTime);
     }, [state.players])
 }
