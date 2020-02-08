@@ -1,4 +1,4 @@
-import {WALL} from "../grids/tileTypes"
+import {WALL} from "../maps/tileTypes"
 import { GAME_PARAMS } from "../utils/constants"
 
 export default function buildWall(state){

@@ -1,4 +1,4 @@
-import { PLAYER, WALL, MAP_BOUNDARY, EMPTY } from "../grids/tileTypes"
+import { PLAYER, WALL, MAP_BOUNDARY, EMPTY } from "../maps/tileTypes"
 import { GAME_PARAMS } from "../utils/constants"
 import { DAMAGE_WALL } from "../state/actions"
 

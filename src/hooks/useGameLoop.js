@@ -11,6 +11,19 @@ export default function useGameLoop(state, dispatch){
     const newState = {...state}
     useEffect(() => {
         const handleTime = setTimeout(() => {
+            // currently using to make sure game doesn't start until start game is pressed.
+            // -- also using as a clunky way to update the tileTracker to know where each player is before the game starts
+            if(!state.isRunning){
+                const empty = Object.entries(newState.players).map(([key, player]) => {
+                    const currentTile = `x${player.x}y${player.y}`
+                    newState.tileTracker[currentTile].isObstruction = true;
+                    return("blank")
+                })
+                return dispatch({
+                    type: RERENDER,
+                    payload: {newState}
+                })
+            }
             const tileObstructionView = `${newState.tileTracker["x2y2"].isObstruction}, ${newState.tileTracker["x2y3"].isObstruction}, ${newState.tileTracker["x3y2"].isObstruction}, ${newState.tileTracker["x3y3"].isObstruction}`
             console.log(tileObstructionView)
             // update player positions
@@ -81,7 +94,7 @@ export default function useGameLoop(state, dispatch){
                 type: RERENDER,
                 payload: {newState}
             })
-        }, 1000)
+        }, 500)
         return () => clearTimeout(handleTime);
-    }, [state.players])
+    }, [state.players, state.isRunning])
 }

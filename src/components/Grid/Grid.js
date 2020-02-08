@@ -7,16 +7,17 @@ import Projectile from "../Projectile"
 // https://opengameart.org/content/wall-0
 import wallImage from "./wall.png"
 import useKeyboard from "../../hooks/useKeyboard"
-import {MAP_BOUNDARY, WALL} from "../../grids/tileTypes"
+import {MAP_BOUNDARY, WALL} from "../../maps/tileTypes"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
+import { START_GAME } from '../../state/actions';
 
 
 // Takes in the grids size from the parent component App
 function Grid() {
 
     // stores the players position in context
-    const { state } = useContext(GameContext)
+    const { state, dispatch } = useContext(GameContext)
     // Starts the events that listen for keys being hit and results in the player moving
 
     useKeyboard()
@@ -77,7 +78,13 @@ function Grid() {
                 })
             }
         </div>
-        <div>Hello</div>
+        <button onClick={()=>
+             dispatch({
+                    type: START_GAME,
+                    payload: "test"
+                })}>
+                    start game
+        </button>
         </>
     )
 }

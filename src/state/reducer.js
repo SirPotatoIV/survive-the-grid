@@ -3,6 +3,7 @@ import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_P
 export default function reducer(state, action) {
     switch (action.type) {
         case START_GAME:
+            console.log("start game occurred")
             return {
                 ...state,
                 isRunning: true

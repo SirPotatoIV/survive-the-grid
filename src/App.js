@@ -9,9 +9,6 @@ function App() {
     <div className="App">
       <GameProvider>
         <Grid gridSize="5" />
-        <h1>
-          "test"
-        </h1>
       </GameProvider>
     </div>
   );
