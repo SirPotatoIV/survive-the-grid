@@ -96,7 +96,7 @@ function Grid() {
                         payload: "test"
                     }
                 ))}}>
-                    end game
+                    pause game
         </button>
         <h1>Alive Players</h1>
         <div className="PlayerCardContainer">

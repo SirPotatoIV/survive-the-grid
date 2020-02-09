@@ -13,14 +13,14 @@ export default function aiDecision(newState){
         const randomAction = actions[randomActionSelector]
         return(randomAction)
     }
-    console.log("AI started")
-    Object.entries(updatedPlayers).filter(function(player){
-        if(!player.isAlive){
-            return true
-        }
-        return false
-    })
-    .map(([key, player]) => {
+   
+    // Object.entries(updatedPlayers).filter(function(player){
+    //     if(!player.isAlive){
+    //         return true
+    //     }
+    //     return false
+    // })
+    Object.entries(updatedPlayers).map(([key, player]) => {
         let updatedPlayer = updatedPlayers[player.name] 
         const action = selectRandomAction()
         switch(action){
@@ -39,6 +39,7 @@ export default function aiDecision(newState){
             default:
                 console.log("silly computer, that isn't a move")
         }
+      
         return("player")
     })
     return updatedPlayers
