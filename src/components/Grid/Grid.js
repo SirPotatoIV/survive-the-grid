@@ -18,9 +18,6 @@ function Grid() {
 
     // stores the players position in context
     const { state, dispatch } = useContext(GameContext)
-    // Starts the events that listen for keys being hit and results in the player moving
-
-    // useKeyboard()
 
     // renders the component
     // how to map over an object https://stackoverflow.com/questions/40950546/react-js-right-way-to-iterate-over-object-instead-of-object-entries
@@ -46,7 +43,6 @@ function Grid() {
                     backgroundColor = "black"
                     backgroundImage = wallImage
                 }
-                // const backgroundColor = tile.type === "mapBoundary" ? "gray" : "transparent";
 
                 return (<Tile
                     key={tile.tileName}

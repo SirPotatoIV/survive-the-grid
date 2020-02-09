@@ -1,16 +1,17 @@
 import React from 'react';
-import './App.css';
+import {Grommet} from 'grommet';
+// import './App.css';
 
 import Grid from './components/Grid'
 import GameProvider from './state/context';
 
 function App() {
   return (
-    <div className="App">
+    <Grommet plain>
       <GameProvider>
         <Grid gridSize="5" />
       </GameProvider>
-    </div>
+    </Grommet>
   );
 }
 
