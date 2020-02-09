@@ -1,8 +1,9 @@
 import React from "react"
 
 function Modal(){
-    return(<div>
-
+    return(
+    <div>
+        
     </div>)
 }
 export default Modal;
