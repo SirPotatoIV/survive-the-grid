@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grommet} from 'grommet';
+import {Box,Grommet} from 'grommet';
 // import {Notification} from 'grommet-icons';
 import AppBar from './components/AppBar'
 // import './App.css';
@@ -10,13 +10,23 @@ import GameProvider from './state/context';
 const theme = {
   global: {
     colors: {
-      brand: '#228BE6'
+      brand: 'black'
     },
     font: {
       family: 'Roboto',
       size: '18px',
       height: '20px',
     },
+    button: {
+      border: {
+        width: '1px',
+        radius: '4px',
+      },
+      padding: {
+        vertical: '8px',
+        horizontal: '16px'
+      }
+    }
   },
 }
 
@@ -38,9 +48,11 @@ function App() {
   return (
     <Grommet theme={theme}>
       <AppBar>
-        </AppBar>
+      </AppBar>
       <GameProvider>
-        <Grid gridSize="5" />
+        <Box pad={{left: 'medium', right: 'medium', vertical: 'medium'}}>
+          <Grid gridSize="5" />
+        </Box>
       </GameProvider>
     </Grommet>
   );

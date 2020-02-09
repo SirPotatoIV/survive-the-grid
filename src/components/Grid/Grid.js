@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
 import "./Grid.css"
 
+import { Box, Button } from 'grommet';
 import Player from "../Player"
 import Tile from "../Tile"
 import Projectile from "../Projectile"
 import PlayerCard from "../PlayerCard"
 // https://opengameart.org/content/wall-0
 import wallImage from "./wall.png"
-import {MAP_BOUNDARY, WALL} from "../../maps/tileTypes"
+import { MAP_BOUNDARY, WALL } from "../../maps/tileTypes"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
 import { START_GAME, END_GAME } from '../../state/actions';
 
 
 // Takes in the grids size from the parent component App
-function Grid() {
-
+function Grid(props) {
+    console.log(props)
     // stores the players position in context
     const { state, dispatch } = useContext(GameContext)
 
@@ -76,42 +77,57 @@ function Grid() {
                 })
             }
         </div>
-        <button onClick={()=>
-             dispatch({
-                    type: START_GAME,
-                    payload: "test"
-                })}>
-                    start game
-        </button>
-        <button onClick={()=>{
-             console.log(state.tileTracker)
-             return(
-                 dispatch(
-                     {
-                        type: END_GAME,
+        <Box 
+            direction="row"
+            align="center"
+            justify="between"
+            pad={{left: 'medium', right: 'medium', vertical: 'medium'}}
+        >
+            <Button label='start game' {...props} onClick={()=>
+                dispatch({
+                        type: START_GAME,
                         payload: "test"
-                    }
-                ))}}>
-                    pause game
-        </button>
-        <h1>Alive Players</h1>
-        <div className="PlayerCardContainer">
-            {Object.entries(state.players).map(([key, player]) => { 
-                    return (<PlayerCard
-                        key={player.name}
-                        player={player}
-                    />)
-                })}
-        </div>
-        <h1>Out Players</h1>
-        <div className="PlayerCardContainer">
-            {Object.entries(state.outPlayers).map(([key, player]) => { 
-                    return (<PlayerCard
-                        key={player.name}
-                        player={player}
-                    />)
-                })}
-        </div>
+                    })}>
+            </Button>
+            <Button label="pause game" onClick={()=>{
+                console.log(state.tileTracker)
+                return(
+                    dispatch(
+                        {
+                            type: END_GAME,
+                            payload: "test"
+                        }
+                    ))}}>
+            </Button>
+        </Box>
+        <Box
+            direction ="row"
+            align = "center"
+            justify ="between"
+        >
+            <Box>
+                <h1>Alive Players</h1>
+                <div className="PlayerCardContainer">
+                    {Object.entries(state.players).map(([key, player]) => { 
+                            return (<PlayerCard
+                                key={player.name}
+                                player={player}
+                            />)
+                        })}
+                </div>
+            </Box>
+            <Box>
+                <h1>Out Players</h1>
+                <div className="PlayerCardContainer">
+                    {Object.entries(state.outPlayers).map(([key, player]) => { 
+                            return (<PlayerCard
+                                key={player.name}
+                                player={player}
+                            />)
+                        })}
+                </div>
+            </Box>
+        </Box>
         </>
     )
 }
