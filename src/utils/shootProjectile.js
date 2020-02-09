@@ -8,7 +8,6 @@ export default function shootProjectile(player, tileToCheck){
         y: parseInt(tileToCheck.charAt(3), 10),
         orientation: player.orientation
     }
-    console.log(player.orientation)
     switch(player.orientation){
         case 0:
             newProjectile.dy = -1;

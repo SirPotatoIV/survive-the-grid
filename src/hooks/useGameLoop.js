@@ -1,10 +1,16 @@
 import { useEffect } from "react"
-import { GAME_PARAMS } from "../utils/constants.js"
+import { GAME_PARAMS, DIMENSIONS } from "../utils/constants.js"
 import { RERENDER } from "../state/actions.js"
 import {WALL, PLAYER, EMPTY, MAP_BOUNDARY} from "../maps/tileTypes.js"
 import aiDecision from "../players/aiDecision.js"
 import calcTileToCheck from "../utils/calcTileToCheck.js";
 import shootProjectile from "../utils/shootProjectile.js"
+
+const emptyTile = {
+    type: EMPTY,
+    isObstruction: false,
+    player: null
+}
 
 export default function useGameLoop(state, dispatch){
 
@@ -17,6 +23,8 @@ export default function useGameLoop(state, dispatch){
                 const empty = Object.entries(newState.players).map(([key, player]) => {
                     const currentTile = `x${player.x}y${player.y}`
                     newState.tileTracker[currentTile].isObstruction = true;
+                    newState.tileTracker[currentTile].type = PLAYER;
+                    newState.tileTracker[currentTile].player = player.name;
                     return("blank")
                 })
                 return dispatch({
@@ -24,11 +32,18 @@ export default function useGameLoop(state, dispatch){
                     payload: {newState}
                 })
             }
-            console.log("loop")
             // updates the state of projectiles
             // updates position and distance traveled
             if(newState.projectiles.length !== 0){
-                const updatedProjectiles = newState.projectiles.map(projectile => {
+                // removes projectiles that have already traveled 4 spaces
+                const filteredProjectiles = newState.projectiles.filter(function(projectile){
+                    if(projectile.distanceTraveled < GAME_PARAMS.PROJECTILE_RANGE){
+                        return true
+                    }
+                    return false
+                })
+
+                const updatedProjectiles = filteredProjectiles.map(projectile => {
                     const currentTileName = `x${projectile.x}y${projectile.y}`
                     const currentTile = newState.tileTracker[currentTileName]
                     const tileType = currentTile.type
@@ -39,19 +54,14 @@ export default function useGameLoop(state, dispatch){
                             projectile.distanceTraveled++
                             break
                         case WALL:
-                            console.log(newState.tileTracker[currentTileName])
                             newState.tileTracker[currentTileName].health--
                             if(newState.tileTracker[currentTileName].health === 0){
-                                newState.tileTracker[currentTileName].type = EMPTY;
-                                newState.tileTracker[currentTileName].isObstruction = false;
+                                newState.tileTracker[currentTileName] = {...newState.tileTracker[currentTileName], ...emptyTile}
                             }
                             projectile.distanceTraveled = GAME_PARAMS.PROJECTILE_RANGE;
                             break
                         case PLAYER:
                             newState.players[currentTile.player].health--
-                            if(newState.players[currentTile.player].health === 0){
-                                newState.players[currentTile.player].isAlive = false;
-                            }
                             projectile.distanceTraveled = GAME_PARAMS.PROJECTILE_RANGE;
                             break
                         case MAP_BOUNDARY:
@@ -64,14 +74,7 @@ export default function useGameLoop(state, dispatch){
                     }
                     return(projectile)
                 })
-                // removes projectiles that have already traveled 4 spaces
-                const filteredProjectiles = updatedProjectiles.filter(function(projectile){
-                    if(projectile.distanceTraveled < GAME_PARAMS.PROJECTILE_RANGE){
-                        return true
-                    }
-                    return false
-                })
-                newState.projectiles = filteredProjectiles
+                newState.projectiles = updatedProjectiles;
             }
             // =====================================
             // AI makes decisions
@@ -83,10 +86,19 @@ export default function useGameLoop(state, dispatch){
                 const name = player.name
                 const x = player.x+player.dx;
                 const y = player.y+player.dy;
-                const currentTile = `x${player.x}y${player.y}`
+                const currentTileName = `x${player.x}y${player.y}`
                 const tileToCheck = calcTileToCheck(player)
                 const newTileIsObstruction = newState.tileTracker[tileToCheck].isObstruction
-
+                // Check is player is still alive
+                if(player.health <= 0){
+                    // update tileTracker to indicate there is no longer anyone in the tyle
+                    newState.tileTracker[currentTileName] = {...newState.tileTracker[currentTileName], ...emptyTile}
+                    // set player isAlive to false
+                    newState.players[name].isAlive = false;
+                    newState.outPlayers[name] = newState.players[name]
+                    delete newState.players[name]
+                    return("player")
+                }
                 if(player.isRotating){
                     newState.players[name].orientation = player.newOrientation
                     newState.players[name].isRotating = false; 
@@ -97,11 +109,11 @@ export default function useGameLoop(state, dispatch){
                     newState.players[name].y = y;
                     // update tile moving into
                     newState.tileTracker[tileToCheck].isObstruction = true;
+                    newState.tileTracker[tileToCheck].type = PLAYER;
                     newState.tileTracker[tileToCheck].player = player.name;
                     // update tile moving out of
-                    newState.tileTracker[currentTile].isObstruction = false;
-                    // console.log(newState.tileTracker[currentTile])
-                    newState.tileTracker[currentTile].player = null;
+                    newState.tileTracker[currentTileName] = {...newState.tileTracker[currentTileName], ...emptyTile}
+                    // update player since action was completed
                     newState.players[name].isMoving = false;
                 }
                 if(player.isBuilding && !newTileIsObstruction){
@@ -124,12 +136,11 @@ export default function useGameLoop(state, dispatch){
                 
                 return (player)
             })
-            
             return dispatch({
                 type: RERENDER,
                 payload: {newState}
             })
-        }, 50)
+        }, 333)
         return () => clearTimeout(handleTime);
     }, [state.players, state.isRunning, state.projectiles])
 }

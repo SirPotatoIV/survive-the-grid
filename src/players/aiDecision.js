@@ -1,5 +1,5 @@
 import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE} from "../state/actions"
-import { DIRECTIONS } from "../utils/constants"
+import { DIRECTIONS, GAME_PARAMS } from "../utils/constants"
 import moveAi from "../players/moveAi"
 
 export default function aiDecision(newState){
@@ -7,13 +7,19 @@ export default function aiDecision(newState){
     const directions = [DIRECTIONS.NORTH, DIRECTIONS.SOUTH, DIRECTIONS.WEST, DIRECTIONS.EAST]
     
     function selectRandomAction(){
-        const actions = [MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE];
+        // const actions = [MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE];
+        const actions = [MOVE_PLAYER, SHOOT_PROJECTILE];
         const randomActionSelector = Math.floor(Math.random()*actions.length)
         const randomAction = actions[randomActionSelector]
         return(randomAction)
     }
-    
-    Object.entries(updatedPlayers).map(([key, player]) => {
+    Object.entries(updatedPlayers).filter(function(player){
+        if(!player.isAlive){
+            return true
+        }
+        return false
+    })
+    .map(([key, player]) => {
         let updatedPlayer = updatedPlayers[player.name] 
         const action = selectRandomAction()
         switch(action){

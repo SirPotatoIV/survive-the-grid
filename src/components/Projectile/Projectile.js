@@ -12,6 +12,7 @@ function Projectile(props){
                 gridRowEnd: `${projectileState.y+1}`,
                 gridColumnStart: `${projectileState.x}`,
                 gridColumnEnd: `${projectileState.x+1}`,
+                zIndex: 100,
                 transform: `rotate(${projectileState.orientation}deg)`
             }} 
             className="projectile"

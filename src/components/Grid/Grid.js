@@ -4,6 +4,7 @@ import "./Grid.css"
 import Player from "../Player"
 import Tile from "../Tile"
 import Projectile from "../Projectile"
+import PlayerCard from "../PlayerCard"
 // https://opengameart.org/content/wall-0
 import wallImage from "./wall.png"
 import {MAP_BOUNDARY, WALL} from "../../maps/tileTypes"
@@ -70,10 +71,12 @@ function Grid() {
             }
 
             {Object.entries(state.players).map(([key, player]) => {
-                    return (<Player
-                        key={player.name}
-                        playerName={player.name}
-                    />)
+                    if(player.isAlive){
+                            return (<Player
+                                key={player.name}
+                                playerName={player.name}
+                            />)
+                    }
                 })
             }
         </div>
@@ -84,6 +87,23 @@ function Grid() {
                 })}>
                     start game
         </button>
+        <h1>Alive Players</h1>
+        <div className="PlayerCardContainer">
+            {/* {Object.entries(state.players).map(([key, player]) => { 
+                    return (<PlayerCard
+                        key={player.name}
+                        playerName={player.name}
+                    />)
+                })} */}
+        </div>
+        <h1>Out Players</h1>
+        <div className="PlayerCardContainer">
+            {Object.entries(state.outPlayers).map(([key, player]) => { 
+                    return (<PlayerCard
+                        player={player}
+                    />)
+                })}
+        </div>
         </>
     )
 }
