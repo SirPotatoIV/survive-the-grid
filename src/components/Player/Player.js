@@ -1,9 +1,13 @@
 import React, {useContext} from 'react';
 import "./style.css"
-import playerImage from "./tank.png"
+import tank from "./tank.png"
+import tank2 from "./tank2.png"
+import tank3 from "./tank3.png"
+import tank4 from "./tank4.png"
 import {GameContext} from "../../state/context"
 
 function Player(props){
+    const images = {tank, tank2, tank3, tank4}
     const {state} = useContext(GameContext)
     const player = state.players[props.playerName]
     // return useMemo(() =>
@@ -19,10 +23,10 @@ function Player(props){
                     className="player"
                 >
                     <img 
-                        src = {playerImage}
+                        src = {images[player.imageString]}
                         alt = "player"
                         height = "auto"
-                        width = "50px"
+                        width = "48px"
                     />
                 </div>
                 )
