@@ -19,3 +19,7 @@
 .PlayerCardContainer{
     display: flex;
 }
+
+h1{
+    margin: 2px;
+}

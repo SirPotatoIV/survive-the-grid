@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { GAME_PARAMS, DIMENSIONS } from "../utils/constants.js"
-import { RERENDER } from "../state/actions.js"
+import { RERENDER, END_GAME } from "../state/actions.js"
 import {WALL, PLAYER, EMPTY, MAP_BOUNDARY} from "../maps/tileTypes.js"
 import aiDecision from "../players/aiDecision.js"
 import calcTileToCheck from "../utils/calcTileToCheck.js";
@@ -78,7 +78,7 @@ export default function useGameLoop(state, dispatch){
             }
             // =====================================
             // AI makes decisions
-            // newState.players = aiDecision(newState, dispatch)
+            newState.players = aiDecision(newState, dispatch)
             //=====================================================
              
             // take action
@@ -136,6 +136,12 @@ export default function useGameLoop(state, dispatch){
                 
                 return (player)
             })
+            if(Object.entries(newState.players).length === 1){
+                return dispatch({
+                    type: END_GAME,
+                    payload: {newState}
+                })
+            }
             return dispatch({
                 type: RERENDER,
                 payload: {newState}

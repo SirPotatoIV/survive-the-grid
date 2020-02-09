@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import "./PlayerCard.css"
-import {GameContext} from "../../state/context"
+// import {GameContext} from "../../state/context"
 
 function PlayerCard(props){
-    const {state} = useContext(GameContext)
-    console.log(props)
+    // const {state} = useContext(GameContext)
+
     const player = props.player
     // return useMemo(() =>
     // {

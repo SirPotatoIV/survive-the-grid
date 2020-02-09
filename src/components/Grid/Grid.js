@@ -89,17 +89,18 @@ function Grid() {
         </button>
         <h1>Alive Players</h1>
         <div className="PlayerCardContainer">
-            {/* {Object.entries(state.players).map(([key, player]) => { 
+            {Object.entries(state.players).map(([key, player]) => { 
                     return (<PlayerCard
                         key={player.name}
-                        playerName={player.name}
+                        player={player}
                     />)
-                })} */}
+                })}
         </div>
         <h1>Out Players</h1>
         <div className="PlayerCardContainer">
             {Object.entries(state.outPlayers).map(([key, player]) => { 
                     return (<PlayerCard
+                        key={player.name}
                         player={player}
                     />)
                 })}

@@ -3,7 +3,7 @@ import makePlayers from "../players/makePlayers"
 import {maps} from "../maps/maps"
 
 // 4 player name list ["main", "AI_1", "AI_2", "AI_3"])
-const playerNames = ["main", "AI_1"]
+const playerNames = ["main", "AI_1", "AI_2", "AI_3"]
 const map = maps.map2
 export default function createState() {
     return {
