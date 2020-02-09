@@ -32,6 +32,12 @@ export default function useGameLoop(state, dispatch){
                     payload: {newState}
                 })
             }
+            if(Object.entries(newState.players).length === 1){
+                return dispatch({
+                    type: END_GAME,
+                    payload: {newState}
+                })
+            }
             // updates the state of projectiles
             // updates position and distance traveled
             if(newState.projectiles.length !== 0){
@@ -61,6 +67,8 @@ export default function useGameLoop(state, dispatch){
                             projectile.distanceTraveled = GAME_PARAMS.PROJECTILE_RANGE;
                             break
                         case PLAYER:
+                            console.log(`${currentTile.player} was hit`)
+                            console.log(newState.tileTracker[currentTileName], newState.players[currentTile.player])
                             newState.players[currentTile.player].health--
                             projectile.distanceTraveled = GAME_PARAMS.PROJECTILE_RANGE;
                             break
@@ -92,7 +100,11 @@ export default function useGameLoop(state, dispatch){
                 // Check is player is still alive
                 if(player.health <= 0){
                     // update tileTracker to indicate there is no longer anyone in the tyle
-                    newState.tileTracker[currentTileName] = {...newState.tileTracker[currentTileName], ...emptyTile}
+                    newState.tileTracker[currentTileName].type = EMPTY;
+                    newState.tileTracker[currentTileName].isObstruction = false;
+                    newState.tileTracker[currentTileName].player = null;
+                    console.log(`${player.name} died`)
+                    console.log(player.name,newState.tileTracker[currentTileName])
                     // set player isAlive to false
                     newState.players[name].isAlive = false;
                     newState.outPlayers[name] = newState.players[name]
@@ -113,6 +125,8 @@ export default function useGameLoop(state, dispatch){
                     newState.tileTracker[tileToCheck].player = player.name;
                     // update tile moving out of
                     newState.tileTracker[currentTileName] = {...newState.tileTracker[currentTileName], ...emptyTile}
+                    console.log(`${name} moved`)
+                    console.log(newState.tileTracker[currentTileName])
                     // update player since action was completed
                     newState.players[name].isMoving = false;
                 }
@@ -136,12 +150,6 @@ export default function useGameLoop(state, dispatch){
                 
                 return (player)
             })
-            if(Object.entries(newState.players).length === 1){
-                return dispatch({
-                    type: END_GAME,
-                    payload: {newState}
-                })
-            }
             return dispatch({
                 type: RERENDER,
                 payload: {newState}

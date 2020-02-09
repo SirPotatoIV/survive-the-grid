@@ -8,11 +8,12 @@ export default function aiDecision(newState){
     
     function selectRandomAction(){
         // const actions = [MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE];
-        const actions = [MOVE_PLAYER, SHOOT_PROJECTILE];
+        const actions = [MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE];
         const randomActionSelector = Math.floor(Math.random()*actions.length)
         const randomAction = actions[randomActionSelector]
         return(randomAction)
     }
+    console.log("AI started")
     Object.entries(updatedPlayers).filter(function(player){
         if(!player.isAlive){
             return true

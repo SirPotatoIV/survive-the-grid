@@ -10,7 +10,7 @@ import wallImage from "./wall.png"
 import {MAP_BOUNDARY, WALL} from "../../maps/tileTypes"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
-import { START_GAME } from '../../state/actions';
+import { START_GAME, END_GAME } from '../../state/actions';
 
 
 // Takes in the grids size from the parent component App
@@ -86,6 +86,17 @@ function Grid() {
                     payload: "test"
                 })}>
                     start game
+        </button>
+        <button onClick={()=>{
+             console.log(state.tileTracker)
+             return(
+                 dispatch(
+                     {
+                        type: END_GAME,
+                        payload: "test"
+                    }
+                ))}}>
+                    end game
         </button>
         <h1>Alive Players</h1>
         <div className="PlayerCardContainer">
