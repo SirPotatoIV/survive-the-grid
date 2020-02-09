@@ -1,11 +1,10 @@
 import { useEffect } from "react"
 import { GAME_PARAMS } from "../utils/constants.js"
 import { RERENDER } from "../state/actions.js"
-import {WALL} from "../maps/tileTypes.js"
+import {WALL, PLAYER, EMPTY, MAP_BOUNDARY} from "../maps/tileTypes.js"
 import aiDecision from "../players/aiDecision.js"
 import calcTileToCheck from "../utils/calcTileToCheck.js";
 import shootProjectile from "../utils/shootProjectile.js"
-import moveProjectile from "../utils/moveProjectile.js"
 
 export default function useGameLoop(state, dispatch){
 
@@ -25,9 +24,60 @@ export default function useGameLoop(state, dispatch){
                     payload: {newState}
                 })
             }
+            console.log("loop")
+            // updates the state of projectiles
+            // updates position and distance traveled
+            if(newState.projectiles.length !== 0){
+                const updatedProjectiles = newState.projectiles.map(projectile => {
+                    const currentTileName = `x${projectile.x}y${projectile.y}`
+                    const currentTile = newState.tileTracker[currentTileName]
+                    const tileType = currentTile.type
+                    switch(tileType){
+                        case EMPTY:
+                            projectile.x = projectile.x+projectile.dx;
+                            projectile.y = projectile.y+projectile.dy;
+                            projectile.distanceTraveled++
+                            break
+                        case WALL:
+                            console.log(newState.tileTracker[currentTileName])
+                            newState.tileTracker[currentTileName].health--
+                            if(newState.tileTracker[currentTileName].health === 0){
+                                newState.tileTracker[currentTileName].type = EMPTY;
+                                newState.tileTracker[currentTileName].isObstruction = false;
+                            }
+                            projectile.distanceTraveled = GAME_PARAMS.PROJECTILE_RANGE;
+                            break
+                        case PLAYER:
+                            newState.players[currentTile.player].health--
+                            if(newState.players[currentTile.player].health === 0){
+                                newState.players[currentTile.player].isAlive = false;
+                            }
+                            projectile.distanceTraveled = GAME_PARAMS.PROJECTILE_RANGE;
+                            break
+                        case MAP_BOUNDARY:
+                            projectile.distanceTraveled = GAME_PARAMS.PROJECTILE_RANGE;
+                            break
+                        default:
+                            console.log("tile type unknown. Projectile will be deleted") 
+                            projectile.distanceTraveled = GAME_PARAMS.PROJECTILE_RANGE;
+                            break
+                    }
+                    return(projectile)
+                })
+                // removes projectiles that have already traveled 4 spaces
+                const filteredProjectiles = updatedProjectiles.filter(function(projectile){
+                    if(projectile.distanceTraveled < GAME_PARAMS.PROJECTILE_RANGE){
+                        return true
+                    }
+                    return false
+                })
+                newState.projectiles = filteredProjectiles
+            }
+            // =====================================
             // AI makes decisions
             // newState.players = aiDecision(newState, dispatch)
-            console.log(newState.players.main)
+            //=====================================================
+             
             // take action
             const newPlayers = Object.entries(newState.players).map(([key, player]) => {
                 const name = player.name
@@ -74,28 +124,6 @@ export default function useGameLoop(state, dispatch){
                 
                 return (player)
             })
-
-            // updates the state of projectiles
-            const updatedProjectiles = 
-                // removes projectiles that have already traveled 4 spaces
-                state.projectiles.filter(function(projectile){
-                    if(projectile.distanceTraveled < GAME_PARAMS.PROJECTILE_RANGE){
-                        return true
-                    }
-                    return false
-                })
-                // updates position and distance traveled
-                .map(projectile => {
-                    const updatedProjectile = moveProjectile(state, projectile, dispatch)
-                    return(updatedProjectile)
-                })
-                
-            if(state.projectiles.length > 0){
-                return dispatch({
-                    type: "UPDATE_PROJECTILES",
-                    payload: updatedProjectiles
-                })
-            }
             
             return dispatch({
                 type: RERENDER,

@@ -6,7 +6,6 @@ import Tile from "../Tile"
 import Projectile from "../Projectile"
 // https://opengameart.org/content/wall-0
 import wallImage from "./wall.png"
-import useKeyboard from "../../hooks/useKeyboard"
 import {MAP_BOUNDARY, WALL} from "../../maps/tileTypes"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
@@ -20,7 +19,7 @@ function Grid() {
     const { state, dispatch } = useContext(GameContext)
     // Starts the events that listen for keys being hit and results in the player moving
 
-    useKeyboard()
+    // useKeyboard()
 
     // renders the component
     // how to map over an object https://stackoverflow.com/questions/40950546/react-js-right-way-to-iterate-over-object-instead-of-object-entries

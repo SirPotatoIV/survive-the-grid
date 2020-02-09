@@ -1,24 +1,18 @@
-import { useContext, useEffect } from "react"
-import { GameContext } from "../state/context";
+import { useEffect } from "react"
 import { BUILD_WALL, SHOOT_PROJECTILE } from "../state/actions"
-// import detectCollision from "../utils/detectCollision"
-import shootProjectile from "../utils/shootProjectile";
-// import updateTiles from "../utils/updateTiles"
 import movePlayer from "../utils/movePlayer";
 import { DIRECTIONS } from "../utils/constants";
 // import checkPlayerCollision from "../utils/checkPlayerCollision";
 
-export default function useKeyboard(test) {
-    const { state, dispatch } = useContext(GameContext)
-
+export default function useKeyboard(state, dispatch) {
+    // const { state, dispatch } = useContext(GameContext)
     useEffect(() => {
         window.addEventListener("keydown", handleKeyPress);
         return () => window.removeEventListener("keydown", handleKeyPress);
     });
-    function handleKeyPress(event, playerName) {
+    function handleKeyPress(event) {
         // create new object containing current state
         const updatedPlayer = state.players.main
-        console.log(updatedPlayer)
 
         // const pastTileName = `x${player.x}y${player.y}`
 
