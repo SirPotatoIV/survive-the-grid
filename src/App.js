@@ -1,9 +1,10 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import {Box,Grommet} from 'grommet';
+import {Grommet} from 'grommet';
 import Navbar from './components/Navbar'
 import Dashboard from './components/Dashboard'
 import GameProvider from './state/context';
+import Signin from './components/Signin';
 
 const theme = {
   global: {
@@ -35,7 +36,8 @@ function App() {
         <GameProvider>
           <Navbar/>
           <Switch>
-            <Route path="/" component={Dashboard} />
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/signin" component={Signin} />
           </Switch>
         </GameProvider>
       </Grommet>
