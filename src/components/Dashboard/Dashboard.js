@@ -9,7 +9,6 @@ import {GameContext} from "../../state/context"
 function Dashboard(props){
     
     const { state } = useContext(GameContext)
-    console.log(state.gameId)
     return(
     <>
         <Box
@@ -44,9 +43,8 @@ function Dashboard(props){
             </Box>
             
         </Box>
-    <GameController/>
-    <Header>{state.gameId}</Header>
-    {/* <Header>Test</Header> */}
+        <GameController/>
+        <Header>{state.gameId}</Header>
     </>
     )
 }

@@ -19,7 +19,7 @@ export default function useGameLoop(state, dispatch){
     async function test(newStateDB){
         console.log("test occurred")
         try {
-            const doc = await collectionRef.doc("gameState")
+            const doc = await collectionRef.doc(state.gameId)
             const response = await doc.update(newStateDB)
             console.log("Is this working", doc, response)
         } catch (error) {
