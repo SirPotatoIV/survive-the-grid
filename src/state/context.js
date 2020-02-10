@@ -7,7 +7,7 @@ import useKeyboard from "../hooks/useKeyboard.js";
 
 export const GameContext = createContext();
 // creates the initial state of the game, which is used as an argument for useReducer
-const initialState = createState()
+const initialState = createState(4)
 
 export default function GameProvider(props){
 

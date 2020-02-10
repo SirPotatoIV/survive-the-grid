@@ -1,7 +1,5 @@
 import React from "react"
 import {Anchor, Box } from 'grommet';
-// import {Home, Notification} from 'grommet-icons';
-import {NavLink} from 'react-router-dom'
 
 function SignedOutLinks(props){
     return(

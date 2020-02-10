@@ -66,12 +66,10 @@ function Grid() {
                 }
 
                 {Object.entries(state.players).map(([key, player]) => {
-                        if(player.isAlive){
-                                return (<Player
-                                    key={player.name}
-                                    playerName={player.name}
-                                />)
-                        }
+                        return (<Player
+                            key={player.name}
+                            playerName={player.name}
+                        />)
                     })
                 }
             </div>

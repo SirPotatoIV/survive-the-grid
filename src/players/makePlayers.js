@@ -1,11 +1,21 @@
-// const startPositions = [[2,2], [2,9], [9,2], [9,9]]
+import random from "random-name"
+const startPositions = [[2,2], [5,2], [2,5], [5,5]]
 
 const imageString = ["tank", "tank2", "tank3", "tank4"]
 
-export default function makePlayers(playerNames, startPositions){
+export default function makePlayers(numberOfAiPlayers){
+ 
+// const characterName = uniqueNamesGenerator(config); // Han Solo
+    let playerNames = [];
+    
+    for(let i = 0; i < numberOfAiPlayers; i++){
+        playerNames.push(random.first())
+    }
+    
     const playerArray = playerNames.map(function(playerName, index){
         return({
                 name: playerName,
+                type: "ai",
                 imageString: imageString[index],
                 dx: 0,
                 dy: 0,

@@ -1,7 +1,6 @@
 import React, {useContext} from "react"
-import {Box, Heading} from 'grommet';
+import {Box} from 'grommet';
 // import {Home, Notification} from 'grommet-icons';
-import {Link} from 'react-router-dom'
 import Grid from '../Grid'
 import PlayerCard from "../PlayerCard"
 import {GameContext} from "../../state/context"

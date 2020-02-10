@@ -14,9 +14,7 @@ const emptyTile = {
 }
 
 export default function useGameLoop(state, dispatch){
-    const {collectionRef, documentSnapshots} = useFirestore("game")
-
-    const data = {name: "jake"}
+    const {collectionRef} = useFirestore("game")
 
     async function test(newStateDB){
         console.log("test occurred")
@@ -38,7 +36,7 @@ export default function useGameLoop(state, dispatch){
             // currently using to make sure game doesn't start until start game is pressed.
             // -- also using as a clunky way to update the tileTracker to know where each player is before the game starts
             if(!state.isRunning){
-                const empty = Object.entries(newState.players).map(([key, player]) => {
+                Object.entries(newState.players).map(([key, player]) => {
                     const currentTile = `x${player.x}y${player.y}`
                     newState.tileTracker[currentTile].isObstruction = true;
                     newState.tileTracker[currentTile].type = PLAYER;
@@ -116,7 +114,7 @@ export default function useGameLoop(state, dispatch){
             // code below used to go through each player and decide whether they can take the action
             // ... they are trying to perform and what are the outcomes of those actions
             // -- also checks if the player is still alive
-            const newPlayers = Object.entries(newState.players).map(([key, player]) => {
+            Object.entries(newState.players).map(([key, player]) => {
                 const name = player.name
                 // calculates players potential new position
                 const x = player.x+player.dx;
