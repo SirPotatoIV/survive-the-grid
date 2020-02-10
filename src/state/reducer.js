@@ -1,10 +1,12 @@
 import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER, START_GAME, END_GAME } from "./actions"
+import createState from "./createState"
 
 export default function reducer(state, action) {
     switch (action.type) {
         case START_GAME:
+            const newState = createState()
             return {
-                ...state,
+                ...newState,
                 isRunning: true
             }
         case MOVE_PLAYER:

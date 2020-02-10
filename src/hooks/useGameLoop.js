@@ -5,6 +5,7 @@ import {WALL, PLAYER, EMPTY, MAP_BOUNDARY} from "../maps/tileTypes.js"
 import aiDecision from "../players/aiDecision.js"
 import calcTileToCheck from "../utils/calcTileToCheck.js";
 import shootProjectile from "../utils/shootProjectile.js"
+import {useFirestore} from "../firebase/firestore"
 
 const emptyTile = {
     type: EMPTY,
@@ -13,7 +14,24 @@ const emptyTile = {
 }
 
 export default function useGameLoop(state, dispatch){
+    const {collectionRef, documentSnapshots} = useFirestore("game")
 
+    const data = {name: "jake"}
+
+    async function test(newStateDB){
+        console.log("test occurred")
+        try {
+            const doc = await collectionRef.doc("gameState")
+            const response = await doc.update(newStateDB)
+            console.log("Is this working", doc, response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    
+    // const docSnapShot = testRef.get("hello")
+    // console.log(docSnapShot)
     const newState = {...state}
     useEffect(() => {
         const handleTime = setTimeout(() => {
@@ -165,13 +183,15 @@ export default function useGameLoop(state, dispatch){
                 }
                 return (player)
             })
+            // send updates to firebase
+            // test(newState)
             // sends updated state to reducer to make state equal to newState
             return dispatch({
                 type: RERENDER,
                 payload: {newState}
             })
         // sets the time for the timeout in milliseconds
-        }, 333)
+        }, 1000)
         // clears the timeout so tons of timeouts do not start
         return () => clearTimeout(handleTime);
         // tells the useEffect when it should occur
