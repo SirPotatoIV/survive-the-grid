@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import { Button, Form, FormField } from 'grommet';
+import { Button, Form, FormField, TextInput } from 'grommet';
 // import {Home, Notification} from 'grommet-icons';
 
 function Signin(props){
@@ -9,16 +9,20 @@ function Signin(props){
     
     return(
         <Form>
-            <FormField 
-                placeholder="email"
-            value={email}
-            onChange={event => setEmail(event.target.value)} 
-            />
-            <FormField 
-                placeholder="password"
-                value={password}
-                onChange={event => setPassword(event.target.value)} 
-            />
+            <FormField label="E-mail">
+                <TextInput 
+                    placeholder="E-mail"
+                    value={email}
+                    onChange={event => setEmail(event.target.value)} 
+                />
+            </FormField>
+            <FormField label="Password">
+                <TextInput 
+                    placeholder="password"
+                    value={password}
+                    onChange={event => setPassword(event.target.value)} 
+                />
+            </FormField>
             <Button type="submit" primary label="Submit" />
         </Form>
     )
