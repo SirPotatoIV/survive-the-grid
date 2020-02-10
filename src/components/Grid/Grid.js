@@ -5,7 +5,6 @@ import { Box, Button } from 'grommet';
 import Player from "../Player"
 import Tile from "../Tile"
 import Projectile from "../Projectile"
-import PlayerCard from "../PlayerCard"
 // https://opengameart.org/content/wall-0
 import wallImage from "./wall.png"
 import { MAP_BOUNDARY, WALL } from "../../maps/tileTypes"
@@ -24,110 +23,82 @@ function Grid() {
     return (
         // adds the player inside the grid
         // maps the tiles into the grid
-        <>
-        <div
-            className="grid"
-            style={{
-                display: "grid",
-                gridTemplateColumns: `repeat(${state.mapSize}, ${DIMENSIONS.TILESIZE}px)`,
-                gridTemplateRows: `repeat(${state.mapSize}, ${DIMENSIONS.TILESIZE}px)`
-            }}
-        >
-            {Object.entries(state.tileTracker).map(([key, tile]) => {
-                let backgroundColor = "transparent"
-                let backgroundImage = "null"
-                if (tile.type === MAP_BOUNDARY) {
-                    backgroundColor = "gray"
-                }
-                if (tile.type === WALL) {
-                    backgroundColor = "black"
-                    backgroundImage = wallImage
-                }
-
-                return (<Tile
-                    key={tile.tileName}
-                    tileName={tile.tileName}
-                    style={{
-                        gridColumnStart: `${tile.x}`,
-                        gridColumnEnd: `${tile.x + 1}`,
-                        gridRowStart: `${tile.y}`,
-                        gridRowEnd: `${tile.y + 1}`,
-                        backgroundColor: backgroundColor,
-                        backgroundImage: `url(${backgroundImage})`
-                    }}
-                >
-                    {tile.tileName}
-                </Tile>)
-            })}
-            
-            {state.projectiles.map((projectile, index) =>
-                {
-                    return(<Projectile key={index} projectileState = {projectile}/>)
-                })
-            }
-
-            {Object.entries(state.players).map(([key, player]) => {
-                    if(player.isAlive){
-                            return (<Player
-                                key={player.name}
-                                playerName={player.name}
-                            />)
+        <Box>
+            <div
+                className="grid"
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: `repeat(${state.mapSize}, ${DIMENSIONS.TILESIZE}px)`,
+                    gridTemplateRows: `repeat(${state.mapSize}, ${DIMENSIONS.TILESIZE}px)`
+                }}
+            >
+                {Object.entries(state.tileTracker).map(([key, tile]) => {
+                    let backgroundColor = "transparent"
+                    let backgroundImage = "null"
+                    if (tile.type === MAP_BOUNDARY) {
+                        backgroundColor = "gray"
                     }
-                })
-            }
-        </div>
-        <Box 
-            direction="row"
-            align="center"
-            justify="between"
-            pad={{left: 'medium', right: 'medium', vertical: 'medium'}}
-        >
-            <Button label='start game' onClick={()=>
-                dispatch({
-                        type: START_GAME,
-                        payload: "test"
-                    })}>
-            </Button>
-            <Button label="pause game" onClick={()=>{
-                console.log(state.tileTracker)
-                return(
-                    dispatch(
-                        {
-                            type: END_GAME,
-                            payload: "test"
+                    if (tile.type === WALL) {
+                        backgroundColor = "black"
+                        backgroundImage = wallImage
+                    }
+
+                    return (<Tile
+                        key={tile.tileName}
+                        tileName={tile.tileName}
+                        style={{
+                            gridColumnStart: `${tile.x}`,
+                            gridColumnEnd: `${tile.x + 1}`,
+                            gridRowStart: `${tile.y}`,
+                            gridRowEnd: `${tile.y + 1}`,
+                            backgroundColor: backgroundColor,
+                            backgroundImage: `url(${backgroundImage})`
+                        }}
+                    >
+                        {tile.tileName}
+                    </Tile>)
+                })}
+                
+                {state.projectiles.map((projectile, index) =>
+                    {
+                        return(<Projectile key={index} projectileState = {projectile}/>)
+                    })
+                }
+
+                {Object.entries(state.players).map(([key, player]) => {
+                        if(player.isAlive){
+                                return (<Player
+                                    key={player.name}
+                                    playerName={player.name}
+                                />)
                         }
-                    ))}}>
-            </Button>
-        </Box>
-        <Box
-            direction ="row"
-            align = "center"
-            justify ="between"
-        >
-            <Box>
-                <h1>Alive Players</h1>
-                <div className="PlayerCardContainer">
-                    {Object.entries(state.players).map(([key, player]) => { 
-                            return (<PlayerCard
-                                key={player.name}
-                                player={player}
-                            />)
-                        })}
-                </div>
-            </Box>
-            <Box>
-                <h1>Out Players</h1>
-                <div className="PlayerCardContainer">
-                    {Object.entries(state.outPlayers).map(([key, player]) => { 
-                            return (<PlayerCard
-                                key={player.name}
-                                player={player}
-                            />)
-                        })}
-                </div>
+                    })
+                }
+            </div>
+            <Box 
+                direction="row"
+                align="center"
+                justify="between"
+                pad={{left: 'medium', right: 'medium', vertical: 'medium'}}
+            >
+                <Button label='start game' onClick={()=>
+                    dispatch({
+                            type: START_GAME,
+                            payload: "test"
+                        })}>
+                </Button>
+                <Button label="pause game" onClick={()=>{
+                    console.log(state.tileTracker)
+                    return(
+                        dispatch(
+                            {
+                                type: END_GAME,
+                                payload: "test"
+                            }
+                        ))}}>
+                </Button>
             </Box>
         </Box>
-        </>
     )
 }
 export default Grid;

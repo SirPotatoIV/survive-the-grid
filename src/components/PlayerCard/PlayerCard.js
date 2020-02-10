@@ -16,7 +16,7 @@ function PlayerCard(props){
                     <h3>{player.name}</h3>
                     <div
                         style={{
-                            transform: `translate(0%, 50%) rotate(90deg)`
+                            // transform: `rotate(90deg)`
                         }}
                     >
                         <img 
