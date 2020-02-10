@@ -1,8 +1,8 @@
 import React from 'react';
+import {BrowserRouter} from 'react-router-dom'
 import {Box,Grommet} from 'grommet';
-// import {Notification} from 'grommet-icons';
-import AppBar from './components/AppBar'
-// import './App.css';
+import Navbar from './components/Navbar'
+
 
 import Grid from './components/Grid'
 import GameProvider from './state/context';
@@ -46,15 +46,16 @@ const theme = {
 
 function App() {
   return (
-    <Grommet theme={theme}>
-      <AppBar>
-      </AppBar>
-      <GameProvider>
-        <Box pad={{left: 'medium', right: 'medium', vertical: 'medium'}}>
-          <Grid gridSize="5" />
-        </Box>
-      </GameProvider>
-    </Grommet>
+    <BrowserRouter>
+      <Grommet theme={theme}>
+        <Navbar/>
+        <GameProvider>
+          <Box pad={{left: 'medium', right: 'medium', vertical: 'medium'}}>
+            <Grid gridSize="5" />
+          </Box>
+        </GameProvider>
+      </Grommet>
+    </BrowserRouter>
   );
 }
 
