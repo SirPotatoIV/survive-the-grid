@@ -5,8 +5,8 @@ import createState from "./createState"
 export default function reducer(state, action) {
     switch (action.type) {
         case START_GAME:
-            console.log(action.payload)
-            const newState = createState(4)
+            // console.log(action.payload)
+            const newState = action.payload
             return {
                 ...newState,
                 isRunning: true

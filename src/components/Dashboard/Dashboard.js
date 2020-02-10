@@ -1,5 +1,5 @@
 import React, {useContext} from "react"
-import {Box} from 'grommet';
+import {Box, Header} from 'grommet';
 // import {Home, Notification} from 'grommet-icons';
 import Grid from '../Grid'
 import PlayerCard from "../PlayerCard"
@@ -9,7 +9,7 @@ import {GameContext} from "../../state/context"
 function Dashboard(props){
     
     const { state } = useContext(GameContext)
-
+    console.log(state.gameId)
     return(
     <>
         <Box
@@ -45,6 +45,8 @@ function Dashboard(props){
             
         </Box>
     <GameController/>
+    <Header>{state.gameId}</Header>
+    {/* <Header>Test</Header> */}
     </>
     )
 }

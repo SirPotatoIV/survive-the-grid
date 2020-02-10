@@ -17,8 +17,7 @@ function GameController(){
             >
                 <Button label='start game' onClick={()=>
                         {
-                            const gameId = createNewGame(collectionRef, dispatch)
-                            setGameId(gameId)
+                            createNewGame(collectionRef, dispatch)
                         }
                     }>
                 </Button>
