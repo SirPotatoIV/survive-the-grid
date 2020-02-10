@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import "./Grid.css"
 
-import { Box, Button } from 'grommet';
+import { Box } from 'grommet';
 import Player from "../Player"
 import Tile from "../Tile"
 import Projectile from "../Projectile"
@@ -10,13 +10,12 @@ import wallImage from "./wall.png"
 import { MAP_BOUNDARY, WALL } from "../../maps/tileTypes"
 import { DIMENSIONS } from "../../utils/constants"
 import { GameContext } from '../../state/context';
-import { START_GAME, END_GAME } from '../../state/actions';
 
 
 // Takes in the grids size from the parent component App
 function Grid() {
     // stores the players position in context
-    const { state, dispatch } = useContext(GameContext)
+    const { state } = useContext(GameContext)
 
     // renders the component
     // how to map over an object https://stackoverflow.com/questions/40950546/react-js-right-way-to-iterate-over-object-instead-of-object-entries
@@ -73,29 +72,6 @@ function Grid() {
                     })
                 }
             </div>
-            <Box 
-                direction="row"
-                align="center"
-                justify="between"
-                pad={{left: 'medium', right: 'medium', vertical: 'medium'}}
-            >
-                <Button label='start game' onClick={()=>
-                    dispatch({
-                            type: START_GAME,
-                            payload: "test"
-                        })}>
-                </Button>
-                <Button label="pause game" onClick={()=>{
-                    console.log(state.tileTracker)
-                    return(
-                        dispatch(
-                            {
-                                type: END_GAME,
-                                payload: "test"
-                            }
-                        ))}}>
-                </Button>
-            </Box>
         </Box>
     )
 }

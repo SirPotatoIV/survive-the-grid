@@ -1,7 +1,6 @@
 import React from "react"
 import {Anchor, Box, Heading} from 'grommet';
 import {Home} from 'grommet-icons';
-import {Link} from 'react-router-dom'
 import SignedInLinks from "../SignedInLinks"
 import SignedOutLinks from "../SignedOutLinks"
 
