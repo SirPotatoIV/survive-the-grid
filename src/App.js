@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import {Box,Grommet} from 'grommet';
 import Navbar from './components/Navbar'
 import Dashboard from './components/Dashboard'
@@ -34,7 +34,9 @@ function App() {
       <Grommet theme={theme}>
         <GameProvider>
           <Navbar/>
-          <Dashboard/>
+          <Switch>
+            <Route path="/" component={Dashboard} />
+          </Switch>
         </GameProvider>
       </Grommet>
     </BrowserRouter>
