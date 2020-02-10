@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react"
+import React, { createContext, useReducer, useState } from "react"
 import useGameLoop from "../hooks/useGameLoop.js"
 import reducer from "./reducer"
 import createState from "./createState"
@@ -10,12 +10,12 @@ export const GameContext = createContext();
 const initialState = createState(4)
 
 export default function GameProvider(props){
-
+    const [gameId, setGameId] = useState(0)
     const [state,dispatch] = useReducer(reducer, initialState)
-    const value = {state, dispatch};
+    const value = {state, dispatch, gameId, setGameId};
     
     useKeyboard(state, dispatch)
-    useGameLoop(state,dispatch)
+    useGameLoop(state, dispatch)
 
     return (
         <GameContext.Provider value={value} {...props}/>   

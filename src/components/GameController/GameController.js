@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { Box, Button } from 'grommet';
-import { START_GAME, END_GAME } from '../../state/actions';
+import { END_GAME } from '../../state/actions';
 import { GameContext } from '../../state/context';
+import {useFirestore} from "../../firebase/firestore"
+import createNewGame from "../../utils/createNewGame.js"
 
 function GameController(){
-
-    const { state, dispatch } = useContext(GameContext)
+    const {collectionRef} = useFirestore("game")
+    const { state, dispatch, setGameId } = useContext(GameContext)
 
     return(<Box 
                 direction="row"
@@ -14,10 +16,11 @@ function GameController(){
                 pad={{left: 'medium', right: 'medium', vertical: 'medium'}}
             >
                 <Button label='start game' onClick={()=>
-                    dispatch({
-                            type: START_GAME,
-                            payload: "test"
-                        })}>
+                        {
+                            const gameId = createNewGame(collectionRef, dispatch)
+                            setGameId(gameId)
+                        }
+                    }>
                 </Button>
                 <Button label="pause game" onClick={()=>{
                     console.log(state.tileTracker)

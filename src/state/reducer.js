@@ -1,9 +1,11 @@
 import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER, START_GAME, END_GAME } from "./actions"
+import {useFirestore} from "../firebase/firestore"
 import createState from "./createState"
 
 export default function reducer(state, action) {
     switch (action.type) {
         case START_GAME:
+            console.log(action.payload)
             const newState = createState(4)
             return {
                 ...newState,
