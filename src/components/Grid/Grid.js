@@ -15,8 +15,7 @@ import { START_GAME, END_GAME } from '../../state/actions';
 
 
 // Takes in the grids size from the parent component App
-function Grid(props) {
-    console.log(props)
+function Grid() {
     // stores the players position in context
     const { state, dispatch } = useContext(GameContext)
 
@@ -83,7 +82,7 @@ function Grid(props) {
             justify="between"
             pad={{left: 'medium', right: 'medium', vertical: 'medium'}}
         >
-            <Button label='start game' {...props} onClick={()=>
+            <Button label='start game' onClick={()=>
                 dispatch({
                         type: START_GAME,
                         payload: "test"

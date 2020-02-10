@@ -2,9 +2,7 @@ import React from 'react';
 import {BrowserRouter} from 'react-router-dom'
 import {Box,Grommet} from 'grommet';
 import Navbar from './components/Navbar'
-
-
-import Grid from './components/Grid'
+import Dashboard from './components/Dashboard'
 import GameProvider from './state/context';
 
 const theme = {
@@ -30,29 +28,13 @@ const theme = {
   },
 }
 
-// const AppBar = (props) => (
-//   <Box
-//     tag="header"
-//     direction="row"
-//     align="center"
-//     justify="between"
-//     background="brand"
-//     pad={{left: 'medium', right: 'small', vertical: 'small'}}
-//     elevation='medium'
-//     style={{zIndex:'1'}}
-//     {...props}
-//   />
-// );
-
 function App() {
   return (
     <BrowserRouter>
       <Grommet theme={theme}>
-        <Navbar/>
         <GameProvider>
-          <Box pad={{left: 'medium', right: 'medium', vertical: 'medium'}}>
-            <Grid gridSize="5" />
-          </Box>
+          <Navbar/>
+          <Dashboard/>
         </GameProvider>
       </Grommet>
     </BrowserRouter>

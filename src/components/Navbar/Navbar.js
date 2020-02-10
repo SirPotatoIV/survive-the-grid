@@ -1,8 +1,11 @@
 import React from "react"
-import {Box, Button, Heading} from 'grommet';
-import {Notification} from 'grommet-icons';
+import {Anchor, Box, Button, Heading} from 'grommet';
+import {Home, Notification} from 'grommet-icons';
+import {Link} from 'react-router-dom'
+import SignedInLinks from "../SignedInLinks"
+import SignedOutLinks from "../SignedOutLinks"
 
-function AppBar(props){
+function Navbar(props){
     return(
     <Box
         tag="header"
@@ -15,10 +18,11 @@ function AppBar(props){
         style={{zIndex:'1'}}
         {...props}
     >
-        Welcome!
+        <Link to='/'><Anchor icon={<Home />} /></Link>
         <Heading level='3' margin='none'>Survive the Grid</Heading>
-        <Button icon={<Notification/>} onClick={()=>{}}/>
+        <SignedInLinks/>
+        <SignedOutLinks/>
     </Box>
     )
 }
-export default AppBar;
+export default Navbar;
