@@ -23,7 +23,7 @@ function Signin(props){
                     onChange={event => setPassword(event.target.value)} 
                 />
             </FormField>
-            <Button type="submit" primary label="Submit" />
+            <Button type="submit" primary label="Sign In" />
         </Form>
     )
 }

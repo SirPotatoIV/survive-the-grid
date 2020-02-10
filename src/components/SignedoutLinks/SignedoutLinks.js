@@ -15,9 +15,8 @@ function SignedOutLinks(props){
         style={{zIndex:'1'}}
         {...props}
     >
-        <NavLink to='/'>Sign Up</NavLink>
-        <NavLink to='/'>Log In</NavLink>
-        
+        <Anchor label="Login" href="/signin" />
+        <Anchor label="Sign Up" href="/signup" />
     </Box>
     )
 }

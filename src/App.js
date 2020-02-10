@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Dashboard from './components/Dashboard'
 import GameProvider from './state/context';
 import Signin from './components/Signin';
+import SignUp from './components/SignUp';
 
 const theme = {
   global: {
@@ -38,6 +39,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route path="/signin" component={Signin} />
+            <Route path="/signup" component={SignUp} />
           </Switch>
         </GameProvider>
       </Grommet>

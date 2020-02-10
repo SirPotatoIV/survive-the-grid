@@ -1,7 +1,5 @@
 import React from "react"
 import {Anchor, Box } from 'grommet';
-// import {Home, Notification} from 'grommet-icons';
-import {NavLink} from 'react-router-dom'
 
 function SignedInLinks(props){
     return(
@@ -15,8 +13,8 @@ function SignedInLinks(props){
         style={{zIndex:'1'}}
         {...props}
     >
-        <NavLink to='/'>Log Out</NavLink>
-        
+        <Anchor label="Log Out" href="/" />
+        <Anchor label="Play" href="/" />
     </Box>
     )
 }
