@@ -32,7 +32,7 @@ function Dashboard(props){
 
         <Box>
             <h1>Out Players</h1>
-            <div className="PlayerCardContainer">
+            <div className="PlayerCardContainer" direction="column">
                 {Object.entries(state.outPlayers).map(([key, player]) => { 
                         return (<PlayerCard
                             key={player.name}

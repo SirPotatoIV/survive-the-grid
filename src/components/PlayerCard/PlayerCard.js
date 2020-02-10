@@ -4,6 +4,7 @@ import tank from "../Player/tank.png"
 import tank2 from "../Player/tank2.png"
 import tank3 from "../Player/tank3.png"
 import tank4 from "../Player/tank4.png"
+import { Box } from 'grommet';
 // import {GameContext} from "../../state/context"
 
 function PlayerCard(props){
@@ -12,7 +13,7 @@ function PlayerCard(props){
     const player = props.player
     // return useMemo(() =>
     // {
-        return(<div className = "PlayerCards">
+        return(<Box justify="center" align="center" direction="column" className = "PlayerCards">
                     <h3>{player.name}</h3>
                     <div
                         style={{
@@ -27,7 +28,7 @@ function PlayerCard(props){
                         />
                     </div>
                     <div>Health:{player.health}</div>
-                </div>
+                </Box>
                 )
     // },[player])
 }
