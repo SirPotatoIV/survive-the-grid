@@ -17,6 +17,3 @@ export default class Player {
         this.isShooting = false;
     }
 }
-
-const newPlayer = new Player("Jake", {x: 2, y:2}, "tank.png")
-console.log(newPlayer)

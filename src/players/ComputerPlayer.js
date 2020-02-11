@@ -29,7 +29,7 @@ export class ComputerPlayer extends Player {
         
         setTimeout(()=>{
             const action = selectRandomAction()
-
+            console.log("NUMBER 5 IS ALIVE")
             switch(action){
                 case DIRECTIONS.NORTH:
                     movePlayer(this.name, DIRECTIONS.NORTH, this.y, this.x, this.orientation, dispatch)

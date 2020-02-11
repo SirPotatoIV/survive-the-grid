@@ -106,7 +106,7 @@ export default function useGameLoop(state, dispatch){
             }
             // =====================================
             // AI makes decisions
-            // newState.players = aiDecision(newState, dispatch)
+            newState.players = aiDecision(newState, dispatch)
             //=====================================================
              
             // code below used to go through each player and decide whether they can take the action
@@ -187,7 +187,7 @@ export default function useGameLoop(state, dispatch){
                 payload: {newState}
             })
         // sets the time for the timeout in milliseconds
-        }, 1000)
+        }, 200)
         // clears the timeout so tons of timeouts do not start
         return () => clearTimeout(handleTime);
         // tells the useEffect when it should occur

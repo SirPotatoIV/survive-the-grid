@@ -22,6 +22,7 @@ export default function aiDecision(newState){
     // Currently using map, but there is probably a better solution
     Object.entries(updatedPlayers).map(([key, player]) => {
         // gets a player from the object. Since I am mapping through an object can't just use player, becaue player is just a property of the object updatedPlayers
+        if(player.name !== "main"){
         let updatedPlayer = updatedPlayers[player.name] 
         // gets random action
         const action = selectRandomAction()
@@ -47,6 +48,7 @@ export default function aiDecision(newState){
             default:
                 console.log("silly computer, that isn't a move")
         }
+    }
         // Currently doesn't actually do anything. Just causes VS Code to stop complaining
         return("player")
     })
