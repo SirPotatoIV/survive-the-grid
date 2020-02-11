@@ -1,86 +1,67 @@
 import { DIRECTIONS } from "../utils/constants"
 import { ROTATE_PLAYER, MOVE_PLAYER } from "../state/actions";
 
-export default function movePlayer(playerName, direction, state, dispatch){
-    const updatedPlayer = {
-        ...state.players[playerName],
-        dx: 0,
-        dy: 0,
-        newOrientation: 0,
-    }
+export default function movePlayer(playerName, direction, x, y, orientation, dispatch){
     switch (direction) {
         case DIRECTIONS.NORTH:
             // player is NOT facing the direction they want to move, rotate player
-            if (updatedPlayer.orientation !== 0) {
-                // change player orientation
-                updatedPlayer.newOrientation = 0;
-                updatedPlayer.isRotating = true;
+            if (orientation !== 0) {
                 // send updated position to reducer
                 return dispatch({
                     type: ROTATE_PLAYER,
-                    payload: {updatedPlayer}
+                    payload: {playerName, newOrientation: 0}
                 })
             }
             // get new values for previous tile player was in and tile the player moved into
-            updatedPlayer.dy = -1
-            updateDxDy(updatedPlayer)
-            return
+            return dispatch({
+                type: MOVE_PLAYER,
+                payload: {playerName, dy: -1, dx: 0}
+            })
         case DIRECTIONS.SOUTH:
             // player is NOT facing the direction they want to move, rotate player
-            if (updatedPlayer.orientation !== 180) {
-                // change player orientation
-                updatedPlayer.newOrientation = 180;
-                updatedPlayer.isRotating = true;
+            if (orientation !== 180) {
                 // send updated position to reducer
                 return dispatch({
                     type: ROTATE_PLAYER,
-                    payload: {updatedPlayer}
+                    payload: {playerName, newOrientation: 180}
                 })
             }
-            updatedPlayer.dy = 1
-            updateDxDy(updatedPlayer)
-            return
+            // get new values for previous tile player was in and tile the player moved into
+            return dispatch({
+                type: MOVE_PLAYER,
+                payload: {playerName, dy: 1, dx: 0}
+            })
         case DIRECTIONS.EAST:
             // player is NOT facing the direction they want to move, rotate player
-            if (updatedPlayer.orientation !== 90) {
-                // change player orientation
-                updatedPlayer.newOrientation = 90;
-                updatedPlayer.isRotating = true;
-                // send updated postion to reducer
+            if (orientation !== 90) {
+                // send updated position to reducer
                 return dispatch({
                     type: ROTATE_PLAYER,
-                    payload: {updatedPlayer}
+                    payload: {playerName, newOrientation: 90}
                 })
             }
-            updatedPlayer.dx = 1
-            updateDxDy(updatedPlayer)
-            return
+            // get new values for previous tile player was in and tile the player moved into
+            return dispatch({
+                type: MOVE_PLAYER,
+                payload: {playerName, dx: 1, dy: 0}
+            })
         case DIRECTIONS.WEST:
             // player is NOT facing the direction they want to move, rotate player
-            if (updatedPlayer.orientation !== 270) {
-                // change player orientation
-                updatedPlayer.newOrientation = 270;
-                updatedPlayer.isRotating = true;
+            if (orientation !== 270) {
+                // send updated position to reducer
                 return dispatch({
                     type: ROTATE_PLAYER,
-                    payload: {updatedPlayer}
+                    payload: {playerName, newOrientation: 270}
                 })
             }
-            // update player's change in direction
-            updatedPlayer.dx = -1
-            updateDxDy(updatedPlayer)
-            return
+            // get new values for previous tile player was in and tile the player moved into
+            return dispatch({
+                type: MOVE_PLAYER,
+                payload: {playerName, dx: -1, dy: 0}
+            })
         default:
             console.log("you hit the wrong key dog")
             break
-        }
-
-        function updateDxDy(updatedPlayer){
-            updatedPlayer.isMoving = true;
-            return dispatch({
-                type: MOVE_PLAYER,
-                payload: {updatedPlayer} 
-            })
         }
 }
 

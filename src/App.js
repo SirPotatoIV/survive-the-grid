@@ -1,6 +1,6 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import {Grommet} from 'grommet';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Grommet } from 'grommet';
 import Navbar from './components/Navbar'
 import Dashboard from './components/Dashboard'
 import Spectator from './routes/Spectator/Spectator'
@@ -37,9 +37,9 @@ function App() {
     <BrowserRouter>
       <Grommet theme={theme}>
         <GameProvider>
-          <Navbar/>
+          <Navbar />
           <Switch>
-            <Route exact path="/" component={Spectator} />
+            <Route exact path="/" render={() => <Spectator />} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={SignUp} />
@@ -50,5 +50,6 @@ function App() {
     </BrowserRouter>
   );
 }
+
 
 export default App;

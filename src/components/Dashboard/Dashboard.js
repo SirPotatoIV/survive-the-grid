@@ -5,10 +5,11 @@ import Grid from '../Grid'
 import PlayerCard from "../PlayerCard"
 import GameController from "../GameController"
 import {GameContext} from "../../state/context"
+import useKeyboard from "../../hooks/useKeyboard"
 
 function Dashboard(props){
-    
-    const { state } = useContext(GameContext)
+    const { state, dispatch } = useContext(GameContext)
+    useKeyboard(state, dispatch)
     return(
     <>
         <Box

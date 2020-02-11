@@ -1,39 +1,33 @@
 import random from "random-name"
-const startPositions = [[2,2], [5,2], [2,5], [5,5]]
+import {ComputerPlayer} from "./ComputerPlayer"
+import Player from "./Player"
+const startPositions = [{x:5, y:2}, {x:2, y:5}, {x:5 , y:5}, {x:2, y:2}]
 
-const imageString = ["tank", "tank2", "tank3", "tank4"]
+const imageString = ["tank2", "tank3", "tank4", "tank"]
 
 export default function makePlayers(numberOfAiPlayers){
  
-// const characterName = uniqueNamesGenerator(config); // Han Solo
-    let playerNames = [];
+    const computerPlayerNames = ["AI_1", "AI_2", "AI_3", "AI_4"];
+    let computerNames = [];
     
     for(let i = 0; i < numberOfAiPlayers; i++){
-        playerNames.push(random.first())
+        computerNames.push(computerPlayerNames[i])
     }
     
-    const playerArray = playerNames.map(function(playerName, index){
-        return({
-                name: playerName,
-                type: "ai",
-                imageString: imageString[index],
-                dx: 0,
-                dy: 0,
-                newOrientation: 0,
-                x: startPositions[index][0],
-                y: startPositions[index][1],
-                orientation: 180,
-                health: 3,
-                isAlive: true,
-                isMoving: false,
-                isRotating: false,
-                isBuilding: false,
-                isShooting: false
-        })
+    const playerArray = computerNames.map(function(computerName, index){
+        const computerPlayer = new ComputerPlayer(computerName, startPositions[index], imageString[index])
+        return(computerPlayer)
     })
+    
+    if(numberOfAiPlayers < 4){
+        const humanPlayer = new Player("main", startPositions[3], imageString[3])
+        playerArray.push(humanPlayer)
+    }
+    console.log(playerArray)
     const players = {};
     for(let i = 0; i < playerArray.length; i ++){
-        players[playerArray[i].name] = playerArray[i];
+        players[playerArray[i].name] = {...playerArray[i]};
     }
+    console.log(players)
     return(players)
 }

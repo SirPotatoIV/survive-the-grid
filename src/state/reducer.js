@@ -10,33 +10,59 @@ export default function reducer(state, action) {
             }
         case SPECTATE:
             const spectatorState = action.payload
-            console.log(spectatorState)
-            console.log(state)
             return{...spectatorState}
         case MOVE_PLAYER:
-            // recieved from useKeyboard on "w,a,s,d" key press
             return { 
                 ...state,
                 // update player component location 
-                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
+                players: {
+                    ...state.players, 
+                    [action.payload.playerName]: {
+                        ...state.players[action.payload.playerName],
+                        isMoving: true,
+                        dx: action.payload.dx,
+                        dy: action.payload.dy
+                    }
+                }
             }
-                // update tile player moved into and tile they moved out of 
         case ROTATE_PLAYER:
-            return{
-                ...state, 
-                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
+            return { 
+                ...state,
+                // update player component location 
+                players: {
+                    ...state.players, 
+                    [action.payload.playerName]: {
+                        ...state.players[action.payload.playerName],
+                        isRotating: true,
+                        newOrientation: action.payload.newOrientation
+                    }
+                }
             }
         case BUILD_WALL:
             // recieved from useKeyboard on "e" key press
             return { 
                 ...state,
-                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
+                // update player component location 
+                players: {
+                    ...state.players, 
+                    [action.payload.playerName]: {
+                        ...state.players[action.payload.playerName],
+                        isBuilding: true 
+                    }
+                }
             }
         case SHOOT_PROJECTILE:
             // recieved from useKeyboard on "spacebar" key press
             return { 
                 ...state,
-                players: {...state.players, [action.payload.updatedPlayer.name]: action.payload.updatedPlayer}
+                // update player component location 
+                players: {
+                    ...state.players, 
+                    [action.payload.playerName]: {
+                        ...state.players[action.payload.playerName],
+                        isShooting: true,
+                    }
+                }
             }
         case UPDATE_PROJECTILES:
             return{...state, projectiles: [...action.payload]}

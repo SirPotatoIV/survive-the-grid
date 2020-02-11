@@ -20,15 +20,12 @@ export default function useGameLoop(state, dispatch){
         try {
             const doc = await collectionRef.doc(state.gameId)
             const response = await doc.update(newStateDB)
-            console.log("Updated Occurred!", doc, response)
+            // console.log("Updated Occurred!", doc, response)
         } catch (error) {
             console.log(error)
         }
     }
     
-    
-    // const docSnapShot = testRef.get("hello")
-    // console.log(docSnapShot)
     const newState = {...state}
     useEffect(() => {
         const handleTime = setTimeout(() => {
@@ -55,6 +52,7 @@ export default function useGameLoop(state, dispatch){
                     payload: {newState}
                 })
             }
+            console.log(newState.tileTracker)
             // runs only if there are projectiles currently in play
             if(newState.projectiles.length !== 0){
                 // removes projectiles that have already traveled 4 spaces
@@ -72,6 +70,7 @@ export default function useGameLoop(state, dispatch){
                     // gets the tile the projectile is currently in
                     const currentTile = newState.tileTracker[currentTileName]
                     const tileType = currentTile.type
+                    console.log(currentTileName,tileType)
                     // decides what to do based on the type of tile the projectile is currently in
                     switch(tileType){
                         case EMPTY:
@@ -107,7 +106,7 @@ export default function useGameLoop(state, dispatch){
             }
             // =====================================
             // AI makes decisions
-            newState.players = aiDecision(newState, dispatch)
+            // newState.players = aiDecision(newState, dispatch)
             //=====================================================
              
             // code below used to go through each player and decide whether they can take the action
