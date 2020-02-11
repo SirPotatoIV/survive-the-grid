@@ -1,6 +1,7 @@
 import React, {useContext} from "react"
 import {Anchor, Box } from 'grommet';
 import { GameContext } from "../../state/context";
+import {firebase} from "../../firebase/index"
 
 function NavBarLInks(props){
     const {currentUser} = useContext(GameContext)
@@ -16,8 +17,7 @@ function NavBarLInks(props){
                 style={{zIndex:'1'}}
                 {...props}
             >
-                <Anchor label="Log Out" href="/" />
-                <Anchor label="Play" href="/" />
+                <Anchor label="Log Out" onclick={()=>{firebase.auth().signOut()}} href="/" />
             </Box>
         )
     }
