@@ -16,12 +16,11 @@ const emptyTile = {
 export default function useGameLoop(state, dispatch){
     const {collectionRef} = useFirestore("game")
 
-    async function test(newStateDB){
-        console.log("test occurred")
+    async function updatedFirestore(newStateDB){
         try {
             const doc = await collectionRef.doc(state.gameId)
             const response = await doc.update(newStateDB)
-            console.log("Is this working", doc, response)
+            console.log("Updated Occurred!", doc, response)
         } catch (error) {
             console.log(error)
         }
@@ -182,7 +181,7 @@ export default function useGameLoop(state, dispatch){
                 return (player)
             })
             // send updates to firebase
-            // test(newState)
+            updatedFirestore(newState)
             // sends updated state to reducer to make state equal to newState
             return dispatch({
                 type: RERENDER,

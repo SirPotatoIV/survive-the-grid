@@ -8,8 +8,11 @@ import {GameContext} from "../../state/context"
 
 function Player(props){
     const images = {tank, tank2, tank3, tank4}
-    const {state} = useContext(GameContext)
-    const player = state.players[props.playerName]
+    // const {state} = useContext(GameContext)
+    console.log(props)
+    // const player = state.players[props.playerName]
+    const player = props.player
+    console.log(player)
     // return useMemo(() =>
     // {
         return(<div   

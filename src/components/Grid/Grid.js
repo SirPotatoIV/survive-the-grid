@@ -16,7 +16,7 @@ import { GameContext } from '../../state/context';
 function Grid() {
     // stores the players position in context
     const { state } = useContext(GameContext)
-
+    console.log(state.players)
     // renders the component
     // how to map over an object https://stackoverflow.com/questions/40950546/react-js-right-way-to-iterate-over-object-instead-of-object-entries
     return (
@@ -67,7 +67,7 @@ function Grid() {
                 {Object.entries(state.players).map(([key, player]) => {
                         return (<Player
                             key={player.name}
-                            playerName={player.name}
+                            player={player}
                         />)
                     })
                 }

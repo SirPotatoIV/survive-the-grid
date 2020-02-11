@@ -1,4 +1,4 @@
-import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER, START_GAME, END_GAME } from "./actions"
+import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER, START_GAME, SPECTATE, END_GAME } from "./actions"
 
 export default function reducer(state, action) {
     switch (action.type) {
@@ -8,6 +8,11 @@ export default function reducer(state, action) {
                 ...newState,
                 isRunning: true
             }
+        case SPECTATE:
+            const spectatorState = action.payload
+            console.log(spectatorState)
+            console.log(state)
+            return{...spectatorState}
         case MOVE_PLAYER:
             // recieved from useKeyboard on "w,a,s,d" key press
             return { 

@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import {Grommet} from 'grommet';
 import Navbar from './components/Navbar'
 import Dashboard from './components/Dashboard'
+import Spectator from './routes/Spectator/Spectator'
 import GameProvider from './state/context';
 import Signin from './components/Signin';
 import SignUp from './components/SignUp';
@@ -40,6 +41,7 @@ function App() {
             <Route exact path="/" component={Dashboard} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/spectate" component={Spectator} />
           </Switch>
         </GameProvider>
       </Grommet>

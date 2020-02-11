@@ -13,7 +13,7 @@ export default function GameProvider(props){
     const [state,dispatch] = useReducer(reducer, initialState)
     const value = {state, dispatch};
     
-    useKeyboard(state, dispatch)
+    // useKeyboard(state, dispatch)
     useGameLoop(state, dispatch)
 
     return (
