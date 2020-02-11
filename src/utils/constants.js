@@ -8,7 +8,8 @@ export const GAME_PARAMS = {
     MAX_HEALTH: 3,
     MIN_HEALTH: 1,
     MAX_WALL_HEALTH: 3,
-    MIN_WALL_HEALTH: 1
+    MIN_WALL_HEALTH: 1,
+    START_POSITIONS: [{x:5, y:2}, {x:2, y:5}, {x:5 , y:5}, {x:2, y:2}]
 }
 
 export const DIRECTIONS = {

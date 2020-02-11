@@ -1,7 +1,8 @@
 import random from "random-name"
+import {GAME_PARAMS} from "../utils/constants"
 import {ComputerPlayer} from "./ComputerPlayer"
 import Player from "./Player"
-const startPositions = [{x:5, y:2}, {x:2, y:5}, {x:5 , y:5}, {x:2, y:2}]
+const startPositions = GAME_PARAMS.START_POSITIONS
 
 const imageString = ["tank2", "tank3", "tank4", "tank"]
 
@@ -29,5 +30,5 @@ export default function makePlayers(numberOfAiPlayers){
         players[playerArray[i].name] = {...playerArray[i]};
     }
     console.log(players)
-    return(players)
+    return({players, playerArray})
 }

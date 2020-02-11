@@ -4,14 +4,28 @@ import {maps} from "../maps/maps"
 
 const map = maps.map2
 export default function createState(numberOfAiPlayers) {
-    return {
+    const {players, playerArray} = makePlayers(numberOfAiPlayers)
+    
+    const initialState = {
         gridTiles: makeTiles(map),
         tileTracker: makeTileObject(map),
         mapSize: map.length,
-        players: makePlayers(numberOfAiPlayers),
+        players: players,
         outPlayers: {},
         // players requires the names and the start positions.
         projectiles: [],
         isRunning: false
     }
+
+    for(let i=0; i < playerArray.length; i++){
+        const NameOftileToUpdate = `x${playerArray[i].x}y${playerArray[i].y}`
+        initialState.tileTracker[NameOftileToUpdate] = {
+            ...initialState.tileTracker[NameOftileToUpdate],
+            isObstruction: true,
+            type: "player",
+            player: playerArray[i].name
+        }
+    }
+    console.log(initialState)
+    return(initialState) 
 }
