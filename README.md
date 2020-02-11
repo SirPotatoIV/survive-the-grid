@@ -8,7 +8,7 @@ This project is currently in development. The end goal is a 2D battle royale cre
 * Shoot Projectile: spacebar
 
 ## Deployed Link
-https://app.netlify.com/sites/survive-the-grid/
+https://survive-the-grid.firebaseapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
