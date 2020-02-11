@@ -7,6 +7,7 @@ import Spectator from './routes/Spectator/Spectator'
 import GameProvider from './state/context';
 import Signin from './components/Signin';
 import SignUp from './components/SignUp';
+import PrivateRoute from "./routes/PrivateRoute"
 
 const theme = {
   global: {
@@ -38,10 +39,11 @@ function App() {
         <GameProvider>
           <Navbar/>
           <Switch>
-            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/" component={Spectator} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/spectate" component={Spectator} />
+            {/* <Route path="/dashboard" component={Dashboard} /> */}
           </Switch>
         </GameProvider>
       </Grommet>

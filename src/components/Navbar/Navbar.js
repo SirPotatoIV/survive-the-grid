@@ -1,10 +1,10 @@
 import React from "react"
 import {Anchor, Box, Heading} from 'grommet';
 import {Home} from 'grommet-icons';
-import SignedInLinks from "../SignedInLinks"
-import SignedOutLinks from "../SignedOutLinks"
+import NavBarLinks from "../NavBarLInks"
 
 function Navbar(props){
+
     return(
     <Box
         tag="header"
@@ -19,8 +19,7 @@ function Navbar(props){
     >
         <Anchor icon={<Home />} label="Home" href="/" />
         <Heading level='3' margin='none'>Survive the Grid</Heading>
-        <SignedInLinks/>
-        <SignedOutLinks/>
+        <NavBarLinks />
     </Box>
     )
 }

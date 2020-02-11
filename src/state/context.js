@@ -1,8 +1,9 @@
-import React, { createContext, useReducer } from "react"
+import React, { createContext, useEffect, useReducer, useState } from "react"
 import useGameLoop from "../hooks/useGameLoop.js"
 import reducer from "./reducer"
 import createState from "./createState"
 import useKeyboard from "../hooks/useKeyboard.js";
+import {firebase} from "../firebase/index"
 // import useKeyboard from "../hooks/useKeyboard"
 
 export const GameContext = createContext();
@@ -10,11 +11,17 @@ export const GameContext = createContext();
 const initialState = createState(4)
 
 export default function GameProvider(props){
+    const [currentUser, setCurrentUser] = useState("")
     const [state,dispatch] = useReducer(reducer, initialState)
-    const value = {state, dispatch};
+    const value = {state, dispatch, currentUser};
     
     // useKeyboard(state, dispatch)
     useGameLoop(state, dispatch)
+
+    // watched video for tips on how to set up authentication this way https://www.youtube.com/watch?v=unr4s3jd9qA
+    useEffect(()=>{
+        firebase.auth().onAuthStateChanged(setCurrentUser);
+    }, [])
 
     return (
         <GameContext.Provider value={value} {...props}/>   
