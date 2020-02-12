@@ -1,6 +1,6 @@
 # Survive the Grid
 
-This project is currently in development. The end goal is a 2D battle royale create with React and use Firebase for its real time database features. Currently you can move a player, build walls, and shoot projectiles.
+The end goal is a 2D battle royale create with React and use Firebase for its real time database features. Currently you can create an account to play and can spectate a game if a user sends you a game id. The spectate mode is currently a way to show the ability to get realtime updates. Eventually this will turn into actual multiplayer.
 
 ## Controls
 * Move: w, s, a, d
@@ -10,13 +10,16 @@ This project is currently in development. The end goal is a 2D battle royale cre
 ## Deployed Link
 https://survive-the-grid.firebaseapp.com/
 
+## Description 
+Primary goal of app was to use React for the first time. The app takes in a set of random employees from the API Random User Generator (randomuser.me). It stores the random employees in context. The employees are mapped over and displayed in a table format. The user is able to sort the employees by first name or age by clicking on the column name. The user is also able to search by the users first name with the search input.
+
+## Images
+GIF demonstrating the game running
+![animation of Employee Directory being used](./README_images/employee_directory.gif)
+
+## Installation
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -24,57 +27,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `npm test`
+## Usage 
+Could be used as a rough template to create other games. Could also just be used to play a silly game :).
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Credits 
+A huge thank you to my instructor bcbrian (https://github.com/bcbrian) for challenging me to take on this on as my final project. Also, for all the help understanding game and React concepts, his Firebase Hook, and all the support. Also, a huge thanks to jacksonopp (https://github.com/jacksonopp) for helping me learn to navigate Firestore functionality and documentation. I watch several YouTube videos by The Net Ninja to learn about React and Firebase working together and by Maksim Ivanov about using Firebase Auth with React. Open Game Art (https://opengameart.org/) was a great resource for the little game art currently included. Certain pieces of code I used online resources for help. I have included citations in the form of comments throughout the code. Image credits are located below the image.
 
-### `npm run build`
+## Contributing 
+I was the only one to work on this project, but of course I had help from my instructor, TA's, and classmates.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Challenges
+The main challenge was wrapping my head around the concept of a game loop and building out code for game logic like collisions, damage, movement, etc. Next, but in a close second was React and Firestore. Both are extremely new to me, let alone authentication and react router. Blending all these new concepts together and attempting to put out some sort of functioning product on my own in about a week and a half was rough to say the least.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## For the Future
+The big goal is get actual multiplayer up and running. Along with that it's moving/rewriting code so that the whole state isn't being rerendered every game loop, AI isn't within the game loop, there is an actual end game state, etc. After that it's all the basic functionality you expect from a game including: user accounts, leaderboards, character skins, etc.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
