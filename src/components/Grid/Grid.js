@@ -54,7 +54,7 @@ function Grid() {
                             backgroundImage: `url(${backgroundImage})`
                         }}
                     >
-                        {tile.tileName}
+                        {/* {tile.tileName} */}
                     </Tile>)
                 })}
                 
