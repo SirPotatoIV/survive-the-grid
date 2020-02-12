@@ -1,6 +1,7 @@
 import { makeTiles, makeTileObject } from "../maps/makeTiles"
 import makePlayers from "../players/makePlayers"
 import {maps} from "../maps/maps"
+import { PLAYER } from "../maps/tileTypes"
 
 const map = maps.map2
 export default function createState(numberOfAiPlayers) {
@@ -18,11 +19,12 @@ export default function createState(numberOfAiPlayers) {
     }
 
     for(let i=0; i < playerArray.length; i++){
+        console.log("loop occurred")
         const NameOftileToUpdate = `x${playerArray[i].x}y${playerArray[i].y}`
         initialState.tileTracker[NameOftileToUpdate] = {
             ...initialState.tileTracker[NameOftileToUpdate],
             isObstruction: true,
-            type: "player",
+            type: PLAYER,
             player: playerArray[i].name
         }
     }

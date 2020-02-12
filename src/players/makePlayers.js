@@ -24,11 +24,11 @@ export default function makePlayers(numberOfAiPlayers){
         const humanPlayer = new Player("main", startPositions[3], imageString[3])
         playerArray.push(humanPlayer)
     }
-    console.log(playerArray)
+
     const players = {};
     for(let i = 0; i < playerArray.length; i ++){
         players[playerArray[i].name] = {...playerArray[i]};
     }
-    console.log(players)
+
     return({players, playerArray})
 }
