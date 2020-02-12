@@ -16,6 +16,7 @@ function NavBarLinks(props){
                 style={{zIndex:'1'}}
                 {...props}
             >
+                <Anchor label="Spectate" href="/spectate" />
                 <Button margin={{horizontal: "small"}} primary="true" label="Play" href="/dashboard" />
                 <Button label="Log Out" onClick={()=>{
                         console.log("Log out clicked")
