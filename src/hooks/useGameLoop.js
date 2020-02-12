@@ -19,8 +19,7 @@ export default function useGameLoop(state, dispatch){
     async function updatedFirestore(newStateDB){
         try {
             const doc = await collectionRef.doc(state.gameId)
-            const response = await doc.update(newStateDB)
-            // console.log("Updated Occurred!", doc, response)
+            await doc.update(newStateDB)
         } catch (error) {
             console.log(error)
         }
@@ -52,7 +51,7 @@ export default function useGameLoop(state, dispatch){
                     payload: {newState}
                 })
             }
-            console.log(newState.tileTracker)
+
             // runs only if there are projectiles currently in play
             if(newState.projectiles.length !== 0){
                 // removes projectiles that have already traveled 4 spaces
@@ -70,7 +69,6 @@ export default function useGameLoop(state, dispatch){
                     // gets the tile the projectile is currently in
                     const currentTile = newState.tileTracker[currentTileName]
                     const tileType = currentTile.type
-                    console.log(currentTileName,tileType)
                     // decides what to do based on the type of tile the projectile is currently in
                     switch(tileType){
                         case EMPTY:

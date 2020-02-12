@@ -18,8 +18,8 @@ export default function createState(numberOfAiPlayers) {
         isRunning: false
     }
 
+    // Adds initial position of players to tileTracker
     for(let i=0; i < playerArray.length; i++){
-        console.log("loop occurred")
         const NameOftileToUpdate = `x${playerArray[i].x}y${playerArray[i].y}`
         initialState.tileTracker[NameOftileToUpdate] = {
             ...initialState.tileTracker[NameOftileToUpdate],
@@ -28,6 +28,6 @@ export default function createState(numberOfAiPlayers) {
             player: playerArray[i].name
         }
     }
-    console.log(initialState)
+
     return(initialState) 
 }

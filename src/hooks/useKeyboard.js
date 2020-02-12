@@ -11,7 +11,6 @@ export default function useKeyboard(state, dispatch) {
     function handleKeyPress(event) {
         // create new object containing current state
         const player = state.players.main
-        console.log(player)
 
         switch (event.key) {
             case "w":

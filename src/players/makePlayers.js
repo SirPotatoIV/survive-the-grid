@@ -8,11 +8,10 @@ const imageString = ["tank2", "tank3", "tank4", "tank"]
 
 export default function makePlayers(numberOfAiPlayers){
  
-    const computerPlayerNames = ["AI_1", "AI_2", "AI_3", "AI_4"];
     let computerNames = [];
     
     for(let i = 0; i < numberOfAiPlayers; i++){
-        computerNames.push(computerPlayerNames[i])
+        computerNames.push(random.first())
     }
     
     const playerArray = computerNames.map(function(computerName, index){

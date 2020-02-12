@@ -8,7 +8,7 @@ import {GameContext} from "../../state/context"
 import useKeyboard from "../../hooks/useKeyboard"
 
 function Dashboard(props){
-    const { state, dispatch, currentUser } = useContext(GameContext)
+    const { state, dispatch } = useContext(GameContext)
     useKeyboard(state, dispatch)
     return(
     <>

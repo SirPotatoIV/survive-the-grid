@@ -7,7 +7,7 @@ import createNewGame from "../../utils/createNewGame.js"
 
 function GameController(){
     const {collectionRef} = useFirestore("game")
-    const { state, dispatch, setGameId } = useContext(GameContext)
+    const { state, dispatch } = useContext(GameContext)
 
     return(<Box 
                 direction="row"

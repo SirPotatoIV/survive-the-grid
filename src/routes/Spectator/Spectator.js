@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react"
-import {Box, Button, TextInput, CheckBox} from 'grommet';
+import {Box, Button, TextInput} from 'grommet';
 import { GameContext } from '../../state/context.js'
 import Grid from '../../components/Grid'
 import PlayerCard from "../../components/PlayerCard"
@@ -19,7 +19,6 @@ function Spectator(props){
             payload: arg.data()
         })
     }
-    // const [docRef, setDocRef] = useState({})
 
     return(
     <>
