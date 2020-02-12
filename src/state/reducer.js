@@ -1,4 +1,4 @@
-import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER, START_GAME, SPECTATE, END_GAME } from "./actions"
+import { MOVE_PLAYER, BUILD_WALL, SHOOT_PROJECTILE, UPDATE_PROJECTILES, ROTATE_PLAYER, DAMAGE_WALL, RERENDER, START_GAME, SPECTATE, PAUSE_GAME, UNPAUSE_GAME } from "./actions"
 
 export default function reducer(state, action) {
     switch (action.type) {
@@ -76,10 +76,14 @@ export default function reducer(state, action) {
                 }}
         case RERENDER:
             return{...action.payload.newState}
-        case END_GAME:
+        case PAUSE_GAME:
             return {
                 ...state,
-                isRunning: false
+                isRunning: false}
+        case UNPAUSE_GAME:
+            return {
+                ...state,
+                isRunning: true
             }
         default:
             throw new Error("Unknown action:", action.type)

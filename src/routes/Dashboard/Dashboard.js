@@ -1,5 +1,5 @@
 import React, {useContext} from "react"
-import {Box, Header} from 'grommet';
+import {Box, Heading, Text} from 'grommet';
 // import {Home, Notification} from 'grommet-icons';
 import Grid from '../../components/Grid'
 import PlayerCard from "../../components/PlayerCard"
@@ -12,13 +12,22 @@ function Dashboard(props){
     useKeyboard(state, dispatch)
     return(
     <>
+        <Box>
+            <Heading
+                alignSelf="center"
+                textAlign="center"    
+                background="accent-1"
+                >
+                    Play Mode
+            </Heading>
+        </Box>
         <Box
             pad={{left: 'medium', right: 'small', vertical: 'small'}}
             direction="row"
             justify="center"
         >
             <Box>
-                <h1>Alive Players</h1>
+                <Heading size="small">Alive Players</Heading>
                 <Box className="PlayerCardContainer" direction="column">
                     {Object.entries(state.players).map(([key, player]) => { 
                             return (<PlayerCard
@@ -32,7 +41,7 @@ function Dashboard(props){
             <Grid/>
 
             <Box>
-                <h1>Out Players</h1>
+                <Heading size="small">Out Players</Heading>
                 <Box className="PlayerCardContainer" direction="column">
                     {Object.entries(state.outPlayers).map(([key, player]) => { 
                             return (<PlayerCard
@@ -44,8 +53,11 @@ function Dashboard(props){
             </Box>
             
         </Box>
+        <Box>
+            
+            <Text textAlign="center" weight="bold">Game ID: </Text><Text>{state.gameId}</Text>
+        </Box>
         <GameController/>
-        <Header>{state.gameId}</Header>
     </>
     )
 }

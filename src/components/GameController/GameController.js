@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Box, Button } from 'grommet';
-import { END_GAME } from '../../state/actions';
+import { PAUSE_GAME, UNPAUSE_GAME } from '../../state/actions';
 import { GameContext } from '../../state/context';
 import {useFirestore} from "../../firebase/firestore"
 import createNewGame from "../../utils/createNewGame.js"
@@ -21,12 +21,22 @@ function GameController(){
                         }
                     }>
                 </Button>
+                <Button label="unpause game" onClick={()=>{
+                    console.log(state.tileTracker)
+                    return(
+                        dispatch(
+                            {
+                                type: UNPAUSE_GAME,
+                                payload: "test"
+                            }
+                        ))}}>
+                </Button>
                 <Button label="pause game" onClick={()=>{
                     console.log(state.tileTracker)
                     return(
                         dispatch(
                             {
-                                type: END_GAME,
+                                type: PAUSE_GAME,
                                 payload: "test"
                             }
                         ))}}>

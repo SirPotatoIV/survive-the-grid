@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { GAME_PARAMS } from "../utils/constants.js"
-import { RERENDER, END_GAME } from "../state/actions.js"
+import { RERENDER, PAUSE_GAME } from "../state/actions.js"
 import {WALL, PLAYER, EMPTY, MAP_BOUNDARY} from "../maps/tileTypes.js"
 import aiDecision from "../players/aiDecision.js"
 import calcTileToCheck from "../utils/calcTileToCheck.js";
@@ -31,23 +31,13 @@ export default function useGameLoop(state, dispatch){
             // currently using to make sure game doesn't start until start game is pressed.
             // -- also using as a clunky way to update the tileTracker to know where each player is before the game starts
             if(!state.isRunning){
-                Object.entries(newState.players).map(([key, player]) => {
-                    const currentTile = `x${player.x}y${player.y}`
-                    newState.tileTracker[currentTile].isObstruction = true;
-                    newState.tileTracker[currentTile].type = PLAYER;
-                    newState.tileTracker[currentTile].player = player.name;
-                    return("blank")
-                })
-                return dispatch({
-                    type: RERENDER,
-                    payload: {newState}
-                })
+                return
             }
             // checks to see how many players are remaining.
             // -- if there is only one player remaining, the game is over
             if(Object.entries(newState.players).length === 1){
                 return dispatch({
-                    type: END_GAME,
+                    type: PAUSE_GAME,
                     payload: {newState}
                 })
             }
