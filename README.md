@@ -15,7 +15,7 @@ Primary goal of app was to use React for the first time. The app takes in a set 
 
 ## Images
 GIF demonstrating the game running
-![animation of Employee Directory being used](./README_images/employee_directory.gif)
+![animation of the game in action](./public/images/survive_the_grid.gif)
 
 ## Installation
 
