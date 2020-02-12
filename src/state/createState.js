@@ -15,7 +15,8 @@ export default function createState(numberOfAiPlayers) {
         outPlayers: {},
         // players requires the names and the start positions.
         projectiles: [],
-        isRunning: false
+        isRunning: false,
+        isSpectating: false
     }
 
     // Adds initial position of players to tileTracker

@@ -14,7 +14,7 @@ function HomePage(props){
             pad={{left: 'medium', right: 'small', vertical: 'xlarge'}}
         >
 
-            <Heading size="xlarge">Survive The Grid.</Heading>
+            <Heading textAlign="center" size="xlarge">Survive The Grid.</Heading>
         </Box>
             <Box 
                 direction="row"

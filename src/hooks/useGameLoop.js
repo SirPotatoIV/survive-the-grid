@@ -30,7 +30,7 @@ export default function useGameLoop(state, dispatch){
         const handleTime = setTimeout(() => {
             // currently using to make sure game doesn't start until start game is pressed.
             // -- also using as a clunky way to update the tileTracker to know where each player is before the game starts
-            if(!state.isRunning){
+            if(!state.isRunning || state.isSpectating){
                 return
             }
             // checks to see how many players are remaining.

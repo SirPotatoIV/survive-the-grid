@@ -10,7 +10,10 @@ export default function reducer(state, action) {
             }
         case SPECTATE:
             const spectatorState = action.payload
-            return{...spectatorState}
+            return{
+                ...spectatorState,
+                isSpectating: true
+            }
         case MOVE_PLAYER:
             return { 
                 ...state,

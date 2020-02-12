@@ -53,8 +53,10 @@ function Dashboard(props){
             </Box>
             
         </Box>
-        <Box>
-            
+        <Box 
+            direction="row"
+            justify="center"
+            >
             <Text textAlign="center" weight="bold">Game ID: </Text><Text>{state.gameId}</Text>
         </Box>
         <GameController/>
