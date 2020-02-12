@@ -3,7 +3,7 @@ import {Anchor, Box, Button } from 'grommet';
 import { GameContext } from "../../state/context";
 import {firebase} from "../../firebase/index"
 
-function NavBarLInks(props){
+function NavBarLinks(props){
     const {currentUser} = useContext(GameContext)
     if(currentUser){
         return(
@@ -17,6 +17,7 @@ function NavBarLInks(props){
                 style={{zIndex:'1'}}
                 {...props}
             >
+                <Button margin={{horizontal: "small"}} primary="true" label="Play" href="/dashboard" />
                 <Button label="Log Out" onClick={()=>{
                         console.log("Log out clicked")
                         firebase
@@ -36,15 +37,17 @@ function NavBarLInks(props){
             tag="header"
             direction="row"
             align="center"
-            justify="between"
+            alignContent="between"
+            justify="around"
             background="brand"
             pad={{left: 'medium', right: 'small', vertical: 'small'}}
             style={{zIndex:'1'}}
             {...props}
         >
-            <Anchor label="Login" href="/signin" />
+            <Anchor label="Spectate" href="/spectate" />
+            <Anchor margin={{horizontal:"small"}} label="Login" href="/login" />
             <Anchor label="Sign Up" href="/signup" />
         </Box>
     )
 }
-export default NavBarLInks;
+export default NavBarLinks;

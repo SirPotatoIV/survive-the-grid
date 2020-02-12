@@ -1,5 +1,5 @@
 import React, {useCallback, useState, useContext} from "react"
-import { Button, Form, FormField, TextInput } from 'grommet';
+import { Button, Form, FormField, Heading, TextInput, Box } from 'grommet';
 import {withRouter, Redirect} from "react-router-dom"
 import {firebase} from "../../firebase/index"
 import { GameContext } from "../../state/context";
@@ -33,25 +33,30 @@ function SignIn({history}){
     }
     
     return(
-        <Form>
-            <FormField label="E-mail">
-                <TextInput 
-                    placeholder="E-mail"
-                    type="e-mail"
-                    value={email}
-                    onChange={event => setEmail(event.target.value)} 
-                />
-            </FormField>
-            <FormField label="Password">
-                <TextInput 
-                    placeholder="Password"
-                    type="password"
-                    value={password}
-                    onChange={event => setPassword(event.target.value)} 
-                />
-            </FormField>
-            <Button type="submit" primary label="Login" onClick={()=>handleSignUp()} />
-        </Form>
+        <Box
+            margin= "large"
+            >
+        <Heading margin={{vertical: "medium"}}>Login</Heading>
+            <Form>
+                <FormField label="E-mail">
+                    <TextInput 
+                        placeholder="E-mail"
+                        type="e-mail"
+                        value={email}
+                        onChange={event => setEmail(event.target.value)} 
+                    />
+                </FormField>
+                <FormField label="Password">
+                    <TextInput 
+                        placeholder="Password"
+                        type="password"
+                        value={password}
+                        onChange={event => setPassword(event.target.value)} 
+                    />
+                </FormField>
+                <Button type="submit" primary label="Login" onClick={()=>handleSignUp()} />
+            </Form>
+        </Box>
     )
 }
 export default withRouter(SignIn);

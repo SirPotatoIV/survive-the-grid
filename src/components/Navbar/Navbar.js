@@ -1,7 +1,7 @@
 import React from "react"
-import {Anchor, Box, Heading} from 'grommet';
+import {Anchor, Box} from 'grommet';
 import {Home} from 'grommet-icons';
-import NavBarLinks from "../NavBarLInks"
+import NavBarLinks from "../NavBarLinks"
 
 function Navbar(props){
 
@@ -17,8 +17,7 @@ function Navbar(props){
         style={{zIndex:'1'}}
         {...props}
     >
-        <Anchor icon={<Home />} label="Home" href="/" />
-        <Heading level='3' margin='none'>Survive the Grid</Heading>
+        <Anchor icon={<Home />} label="Survive the Grid" href="/" />
         <NavBarLinks />
     </Box>
     )

@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react"
-import {Box, Button, TextInput} from 'grommet';
+import {Box, Button, TextInput, Heading} from 'grommet';
 import { GameContext } from '../../state/context.js'
 import Grid from '../../components/Grid'
 import PlayerCard from "../../components/PlayerCard"
@@ -22,13 +22,22 @@ function Spectator(props){
 
     return(
     <>
+        <Box>
+            <Heading
+                alignSelf="center"
+                textAlign="center"    
+                background="accent-1"
+                >
+                    Spectate Mode
+            </Heading>
+        </Box>
         <Box
             pad={{left: 'medium', right: 'small', vertical: 'small'}}
             direction="row"
             justify="center"
         >
             <Box>
-                <h1>Alive Players</h1>
+                <Heading size="small">Alive Players</Heading>
                 <Box className="PlayerCardContainer" direction="column">
                     {Object.entries(state.players).map(([key, player]) => { 
                             return (<PlayerCard
@@ -42,7 +51,7 @@ function Spectator(props){
             <Grid/>
 
             <Box>
-                <h1>Out Players</h1>
+                <Heading size="small">Out Players</Heading>
                 <Box className="PlayerCardContainer" direction="column">
                     {Object.entries(state.outPlayers).map(([key, player]) => { 
                             return (<PlayerCard
@@ -54,12 +63,15 @@ function Spectator(props){
             </Box>
             
         </Box>
+        <Box margin="small">
         <TextInput
+            margin="small"
+            onChange={event => setGameId(event.target.value)}
             placeholder="Enter Game Id"
             value={gameId}
-            onChange={event => setGameId(event.target.value)}
         />
         <Button
+            margin="small"
             icon={<Edit />}
             label="See Game"
             onClick={() => {
@@ -81,6 +93,7 @@ function Spectator(props){
                 getGame()
             }}
         />
+        </Box>
     </>
     )
 }

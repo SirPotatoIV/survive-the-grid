@@ -14,7 +14,7 @@ export default function PrivateRoute({component: RouteComponent, ...rest}){
                 currentUser ? (
                     <RouteComponent to={"/dashboard"} />
                     ) : (
-                        <Redirect to={"/signin"} />
+                        <Redirect to={"/login"} />
                     )
             }
         />
