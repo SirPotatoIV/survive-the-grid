@@ -36,13 +36,15 @@ function SignUp({history}){
             <FormField label="E-mail">
                 <TextInput 
                     placeholder="E-mail"
+                    type="e-mail"
                     value={email}
                     onChange={event => setEmail(event.target.value)} 
                 />
             </FormField>
             <FormField label="Password">
                 <TextInput 
-                    placeholder="password"
+                    placeholder="Password"
+                    type="password"
                     value={password}
                     onChange={event => setPassword(event.target.value)} 
                 />

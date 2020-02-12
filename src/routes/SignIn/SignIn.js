@@ -7,7 +7,7 @@ import { GameContext } from "../../state/context";
 
 // used video for help creating component https://www.youtube.com/watch?v=unr4s3jd9qA
 
-function Signin({history}){
+function SignIn({history}){
     
     // const [username, setUsername] = useState(""); 
     const [email, setEmail] = useState(""); 
@@ -15,6 +15,7 @@ function Signin({history}){
     
     const handleSignUp = useCallback(async (event)=> {
         try{
+            console.log("sign in occurred")
             await firebase
                 .auth()
                 .signInWithEmailAndPassword(email, password);
@@ -36,13 +37,15 @@ function Signin({history}){
             <FormField label="E-mail">
                 <TextInput 
                     placeholder="E-mail"
+                    type="e-mail"
                     value={email}
                     onChange={event => setEmail(event.target.value)} 
                 />
             </FormField>
             <FormField label="Password">
                 <TextInput 
-                    placeholder="password"
+                    placeholder="Password"
+                    type="password"
                     value={password}
                     onChange={event => setPassword(event.target.value)} 
                 />
@@ -51,4 +54,4 @@ function Signin({history}){
         </Form>
     )
 }
-export default withRouter(Signin);
+export default withRouter(SignIn);

@@ -1,9 +1,9 @@
 import React, {useContext} from "react"
 import {Box, Header} from 'grommet';
 // import {Home, Notification} from 'grommet-icons';
-import Grid from '../Grid'
-import PlayerCard from "../PlayerCard"
-import GameController from "../GameController"
+import Grid from '../../components/Grid'
+import PlayerCard from "../../components/PlayerCard"
+import GameController from "../../components/GameController"
 import {GameContext} from "../../state/context"
 import useKeyboard from "../../hooks/useKeyboard"
 
