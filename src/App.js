@@ -47,7 +47,6 @@ function App() {
             <Route path="/about" component={About} />
             <Route path="/login" component={SignIn} />
             <Route path="/signup" component={SignUp} />
-            {/* <Route path="/dashboard" component={Dashboard} /> */}
           </Switch>
           <Footer
             justify="center"

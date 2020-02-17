@@ -20,7 +20,8 @@ function HomePage(props){
             justify="center"
             >
             <Heading alignSelf="center" level="3" margin={{vertical: "small"}} textAlign="center" size="small">
-                An attempt at a 2D Battle Royale. Game in Development. Log in or sign up to play. Currently can only play against AI or spectate while someone else plays. 
+                An attempt at a 2D Battle Royale. Game in Development. Log in or sign up to play. Currently can only play against AI or spectate while someone else plays.
+                Check out the About section to learn more about the game's development. 
             </Heading>
         </Box>
         <Box 
@@ -28,9 +29,9 @@ function HomePage(props){
             justify="center"
             pad="medium"    
         >
-            <Button alignSelf="center" margin="small" justify="center" label="Spectate" href="/spectate" />
             <Button alignSelf="center" margin="small" label="Log In" href="/login" />
             <Button alignSelf="center" margin="small" label="Sign Up" href="/signup" />
+            <Button alignSelf="center" margin="small" label="About" href="/about" />
         </Box>
     </>
     )

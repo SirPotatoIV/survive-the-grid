@@ -54,10 +54,21 @@ function Dashboard(props){
             
         </Box>
         <Box 
-            direction="row"
+            direction="column"
             justify="center"
             >
-            <Text textAlign="center" weight="bold">Game ID: </Text><Text>{state.gameId}</Text>
+            <Box
+                direction="row"
+                justify="center"
+            >
+                <Text weight="bold">Move: </Text><Text margin={{horizontal: "xsmall"}}>W,A,S,D </Text><Text weight="bold"> Build Wall: </Text><Text margin={{horizontal: "xsmall"}}>E</Text> <Text weight="bold">Shoot: </Text><Text margin={{horizontal: "xsmall"}}>Spacebar</Text>
+            </Box>
+            <Box
+                direction="row"
+                justify="center"
+            >
+                <Text textAlign="center" weight="bold">Game ID: </Text><Text>{state.gameId}</Text>
+            </Box>
         </Box>
         <GameController/>
     </>
