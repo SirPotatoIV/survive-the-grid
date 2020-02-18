@@ -21,7 +21,7 @@ function HomePageLinks(props){
                     pad="medium"    
                 >
                     <Button alignSelf="center" margin="small" label="Play" href="/dashboard" primary="true" />
-                    <Button alignSelf="center" margin="small" label="Spectate" href="/spectator" />
+                    <Button alignSelf="center" margin="small" label="Spectate" href="/spectate" />
                     <Button alignSelf="center" margin="small" label="About" href="/about" />
                 </Box>
             </>
