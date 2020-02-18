@@ -67,7 +67,7 @@ function Dashboard(props){
                 direction="row"
                 justify="center"
             >
-                <Text textAlign="center" weight="bold">Game ID: </Text><Text>{state.gameId}</Text>
+                <Text textAlign="center" weight="bold">Spectate ID: </Text><Text>{state.gameId}</Text>
             </Box>
         </Box>
         <GameController/>

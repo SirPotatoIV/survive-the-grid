@@ -1,6 +1,6 @@
 import React from "react"
-import {Box, Button, Heading, Text} from 'grommet';
-// import {Home, Notification} from 'grommet-icons';
+import {Box, Button, Heading} from 'grommet';
+import HomePageLinks from '../../components/HomePageLinks'
 
 function HomePage(props){
 
@@ -16,7 +16,8 @@ function HomePage(props){
 
             <Heading textAlign="center" size="xlarge">Survive The Grid.</Heading>
         </Box>
-        <Box
+        <HomePageLinks />
+        {/* <Box
             justify="center"
             >
             <Heading alignSelf="center" level="3" margin={{vertical: "small"}} textAlign="center" size="small">
@@ -32,7 +33,7 @@ function HomePage(props){
             <Button alignSelf="center" margin="small" label="Log In" href="/login" />
             <Button alignSelf="center" margin="small" label="Sign Up" href="/signup" />
             <Button alignSelf="center" margin="small" label="About" href="/about" />
-        </Box>
+        </Box> */}
     </>
     )
 }
